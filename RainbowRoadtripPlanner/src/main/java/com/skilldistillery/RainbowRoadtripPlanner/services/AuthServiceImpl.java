@@ -19,11 +19,11 @@ public class AuthServiceImpl implements AuthService {
 	@Override
 	public User register(User user) {
 		//FIXME
-//		String encrypted = encoder.encode(user.getPassword());
-//		user.setPassword(encrypted);
+		String encrypted = encoder.encode(user.getPassword());
+		user.setPassword(encrypted);
 //		// TODO Auto-generated method stub
-//		user.setCompleted(true);
-//		user.setRole("standard");
+		user.setEnabled(true);
+		user.setRole("standard");
 		return userRepo.saveAndFlush(user);
 	}
 
