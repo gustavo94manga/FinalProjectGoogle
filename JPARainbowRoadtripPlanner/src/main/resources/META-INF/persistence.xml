@@ -7,7 +7,19 @@
     
     
     <!-- begin entities -->
+   <class>com.skilldistillery.RainbowRoadtripPlanner.entities.Accomodations</class>
+   <class>com.skilldistillery.RainbowRoadtripPlanner.entities.Activity</class>
+   <class>com.skilldistillery.RainbowRoadtripPlanner.entities.ActivityImage</class>
+   <class>com.skilldistillery.RainbowRoadtripPlanner.entities.ActivityRating</class>
+   <class>com.skilldistillery.RainbowRoadtripPlanner.entities.ActivityRatingId</class>
+   <class>com.skilldistillery.RainbowRoadtripPlanner.entities.Address</class>
+   <class>com.skilldistillery.RainbowRoadtripPlanner.entities.Comment</class>
+   <class>com.skilldistillery.RainbowRoadtripPlanner.entities.Destination</class>
+   <class>com.skilldistillery.RainbowRoadtripPlanner.entities.Leg</class>
+   <class>com.skilldistillery.RainbowRoadtripPlanner.entities.Trip</class>
    <class>com.skilldistillery.RainbowRoadtripPlanner.entities.User</class>
+   <class>com.skilldistillery.RainbowRoadtripPlanner.entities.Vehicle</class>
+   
     <!-- end entities -->
     
 

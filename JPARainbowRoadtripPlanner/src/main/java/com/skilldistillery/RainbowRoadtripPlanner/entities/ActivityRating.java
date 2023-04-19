@@ -4,10 +4,11 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,10 +17,9 @@ import org.hibernate.annotations.CreationTimestamp;
 @Table(name="activity_rating")
 public class ActivityRating {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
+	@EmbeddedId
+	private ActivityRatingId id;
+		
 	private int rating;
 	
 	@Column(name="rating_comment")
@@ -27,18 +27,20 @@ public class ActivityRating {
 	
 	@CreationTimestamp
 	@Column(name="rating_date")
-	private LocalDateTime ratingDAte;
+	private LocalDateTime ratingDate;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id") // DB column name
+	@MapsId(value = "userId")     // Field in ID class
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "activity_id") // DB column
+	@MapsId(value = "activityId")     // Field in ID class
+	private Activity activity;
 	
 	public ActivityRating() {
 		
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public int getRating() {
@@ -57,12 +59,36 @@ public class ActivityRating {
 		this.ratingComment = ratingComment;
 	}
 
-	public LocalDateTime getRatingDAte() {
-		return ratingDAte;
+	public LocalDateTime getRatingDate() {
+		return ratingDate;
 	}
 
-	public void setRatingDAte(LocalDateTime ratingDAte) {
-		this.ratingDAte = ratingDAte;
+	public void setRatingDate(LocalDateTime ratingDAte) {
+		this.ratingDate = ratingDAte;
+	}
+
+	public ActivityRatingId getId() {
+		return id;
+	}
+
+	public void setId(ActivityRatingId id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Activity getActivity() {
+		return activity;
+	}
+
+	public void setActivity(Activity activity) {
+		this.activity = activity;
 	}
 
 	@Override
@@ -84,16 +110,9 @@ public class ActivityRating {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ActivityRating [id=").append(id).append(", rating=").append(rating).append(", ratingComment=")
-				.append(ratingComment).append(", ratingDAte=").append(ratingDAte).append("]");
-		return builder.toString();
+		return "ActivityRating [id=" + id + ", rating=" + rating + ", ratingComment=" + ratingComment + ", ratingDate="
+				+ ratingDate + "]";
 	}
 	
 	
-	
-	
-	
-	
-
 }
