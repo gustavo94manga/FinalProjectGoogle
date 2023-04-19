@@ -7,7 +7,7 @@
     
     
     <!-- begin entities -->
-   <class>com.skilldistillery.RainbowRoadtripPlanner.entities.Accomodations</class>
+   <class>com.skilldistillery.RainbowRoadtripPlanner.entities.Accomodation</class>
    <class>com.skilldistillery.RainbowRoadtripPlanner.entities.Activity</class>
    <class>com.skilldistillery.RainbowRoadtripPlanner.entities.ActivityImage</class>
    <class>com.skilldistillery.RainbowRoadtripPlanner.entities.ActivityRating</class>

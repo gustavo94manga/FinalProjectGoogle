@@ -31,7 +31,7 @@ class ActivityImageTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		activityImage = em.find(ActivityImage.class, 2);
+		activityImage = em.find(ActivityImage.class, 1);
 	}
 
 	@AfterEach
@@ -43,6 +43,6 @@ class ActivityImageTest {
 	@Test
 	void test() {
 		assertNotNull(activityImage);
-		assertEquals("caption test", activityImage.getCaption());
+		assertEquals("my first pic", activityImage.getCaption());
 	}
 }
