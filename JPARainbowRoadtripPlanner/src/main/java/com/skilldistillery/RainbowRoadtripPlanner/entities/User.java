@@ -1,11 +1,16 @@
 package com.skilldistillery.RainbowRoadtripPlanner.entities;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class User {
@@ -22,13 +27,87 @@ public class User {
 	
 	private String role;
 	
+	@Column(name="first_name")
+	private String firstName;
+	
+	@Column(name="last_name")
+	private String lastName;
+	
+	private String phone;
+	
+	@Column(name="image_url")
+	private String imageUrl;
+	
+	@Column(name="about_me")
+	private String aboutMe;
+	
+	@CreationTimestamp
+	@Column(name="create_date")
+	private LocalDateTime createDate;
+	
+	@UpdateTimestamp
+	@Column(name="update_date")
+	private LocalDateTime updateDate;
 	
 	
+	public User() {}
 
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
+	public String getFirstName() {
+		return firstName;
 	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getAboutMe() {
+		return aboutMe;
+	}
+
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
+	}
+
+	public LocalDateTime getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public LocalDateTime getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(LocalDateTime updateDate) {
+		this.updateDate = updateDate;
+	}
+
 
 	public int getId() {
 		return id;
@@ -89,8 +168,13 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", role=" + role + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("User [id=").append(id).append(", username=").append(username).append(", password=")
+				.append(password).append(", enabled=").append(enabled).append(", role=").append(role)
+				.append(", firstName=").append(firstName).append(", lastName=").append(lastName).append(", phone=")
+				.append(phone).append(", imageUrl=").append(imageUrl).append(", aboutMe=").append(aboutMe)
+				.append(", createDate=").append(createDate).append(", updateDate=").append(updateDate).append("]");
+		return builder.toString();
 	}
 	
 }
