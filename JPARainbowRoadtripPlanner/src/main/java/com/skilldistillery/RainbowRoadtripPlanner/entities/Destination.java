@@ -1,5 +1,6 @@
 package com.skilldistillery.RainbowRoadtripPlanner.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Destination {
@@ -27,7 +33,22 @@ public class Destination {
 	private String phone;
 	
 	private Double fee;
-
+	
+	@ManyToMany
+	@JoinTable(name="accomodation_has_destination",
+		joinColumns=@JoinColumn(name="destination_id"),
+		inverseJoinColumns=@JoinColumn(name="accomodation_id")
+	)
+	private List<Accomodation> accomodations;
+	
+	@OneToMany(mappedBy = "destinations")
+	private List<Activity> activity;
+	
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+	
+	
 	public Destination() {
 
 	}
@@ -86,6 +107,30 @@ public class Destination {
 
 	public void setFee(Double fee) {
 		this.fee = fee;
+	}
+
+	public List<Accomodation> getAccomodations() {
+		return accomodations;
+	}
+
+	public void setAccomodations(List<Accomodation> accomodations) {
+		this.accomodations = accomodations;
+	}
+
+	public List<Activity> getActivity() {
+		return activity;
+	}
+
+	public void setActivity(List<Activity> activity) {
+		this.activity = activity;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	@Override

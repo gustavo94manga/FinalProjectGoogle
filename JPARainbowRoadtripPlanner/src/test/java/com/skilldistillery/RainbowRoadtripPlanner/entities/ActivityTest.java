@@ -45,5 +45,12 @@ class ActivityTest {
 		assertNotNull(activity);
 		assertEquals("lunch break", activity.getDescription());
 	}
+	
+	@Test
+	void test_Activity_Destination_MTO() {
+		assertNotNull(activity);
+		assertNotNull(activity.getDestinations());
+		assertEquals(1, activity.getDestinations().getId());
+	}
 
 }

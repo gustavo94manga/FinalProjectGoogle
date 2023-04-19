@@ -1,8 +1,8 @@
 package com.skilldistillery.RainbowRoadtripPlanner.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -46,6 +46,20 @@ class UserTest {
 	void test() {
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());
+	}
+	
+	@Test
+	void test_User_To_Vehicle_OTM() {
+		assertNotNull(user);
+		assertNotNull(user.getVehicles());
+		assertFalse(user.getVehicles().isEmpty());
+	}
+	
+	@Test
+	void test_User_To_Comment_OTM() {
+		assertNotNull(user);
+		assertNotNull(user.getComments());
+		assertFalse(user.getComments().isEmpty());
 	}
 
 }

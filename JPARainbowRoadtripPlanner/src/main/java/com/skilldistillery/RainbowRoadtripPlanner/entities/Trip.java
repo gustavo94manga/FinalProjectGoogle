@@ -1,6 +1,7 @@
 package com.skilldistillery.RainbowRoadtripPlanner.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -44,6 +48,16 @@ public class Trip {
 	
 	@Column(name="image_url")
 	private String imageUrl;
+	
+	@OneToMany(mappedBy = "trip")
+	private List<Leg> legs;
+	
+	@ManyToOne
+	@JoinColumn(name = "vehicle_id")
+	private Vehicle vehicle;
+	
+	@OneToMany(mappedBy = "trip")
+	private List<Comment> comments;
 
 	public Trip() {
 		
@@ -127,6 +141,30 @@ public class Trip {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public List<Leg> getLegs() {
+		return legs;
+	}
+
+	public void setLegs(List<Leg> legs) {
+		this.legs = legs;
+	}
+
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override

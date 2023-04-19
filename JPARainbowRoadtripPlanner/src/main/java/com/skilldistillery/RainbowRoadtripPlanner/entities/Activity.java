@@ -1,5 +1,6 @@
 package com.skilldistillery.RainbowRoadtripPlanner.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Activity {
@@ -25,6 +28,10 @@ public class Activity {
 	
 	@Column(name="time_to_spend")
 	private String timeToSpend;
+	
+	@ManyToOne
+	@JoinColumn(name="destination_id")
+	private Destination destinations;
 
 	public Activity() {
 
@@ -68,6 +75,14 @@ public class Activity {
 
 	public void setTimeToSpend(String timeToSpend) {
 		this.timeToSpend = timeToSpend;
+	}
+
+	public Destination getDestinations() {
+		return destinations;
+	}
+
+	public void setDestinations(Destination destinations) {
+		this.destinations = destinations;
 	}
 
 	@Override

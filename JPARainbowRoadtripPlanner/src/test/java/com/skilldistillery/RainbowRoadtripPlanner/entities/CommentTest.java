@@ -45,5 +45,19 @@ class CommentTest {
 		assertNotNull(comment);
 		assertEquals("testing comment", comment.getDescription());
 	}
+	
+	@Test
+	void test_Comment_To_User_MTO() {
+		assertNotNull(comment);
+		assertNotNull(comment.getUser());
+		assertEquals(1, comment.getUser().getId());
+	}
+	
+	@Test
+	void test_Comment_To_Trip_MTO() {
+		assertNotNull(comment);
+		assertNotNull(comment.getTrip());
+		assertEquals(1, comment.getTrip().getId());
+	}
 
 }
