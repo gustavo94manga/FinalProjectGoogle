@@ -12,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ActivityImageTest {
+class TripTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private ActivityImage activityImage;
+	private Trip trip;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,18 +31,20 @@ class ActivityImageTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		activityImage = em.find(ActivityImage.class, 2);
+				trip = em.find(Trip.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		activityImage = null;
+		trip = null;
 	}
 
 	@Test
 	void test() {
-		assertNotNull(activityImage);
-		assertEquals("caption test", activityImage.getCaption());
+		assertNotNull(trip);
+		assertEquals("First trip", trip.getTitle());
 	}
+
+
 }

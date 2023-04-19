@@ -26,7 +26,7 @@ public class Destination {
 	
 	private String phone;
 	
-	private double fee;
+	private Double fee;
 
 	public Destination() {
 
@@ -84,7 +84,7 @@ public class Destination {
 		return fee;
 	}
 
-	public void setFee(double fee) {
+	public void setFee(Double fee) {
 		this.fee = fee;
 	}
 
