@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `about_me` TEXT NULL,
   `create_date` DATETIME NULL,
   `update_date` DATETIME NULL,
+  `active` TINYINT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
@@ -50,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   `city` VARCHAR(45) NOT NULL,
   `state` VARCHAR(45) NOT NULL,
   `zip` VARCHAR(45) NULL,
+  `active` TINYINT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -96,6 +98,7 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `title` VARCHAR(45) NULL,
   `description` TEXT NULL,
   `image_url` VARCHAR(100) NULL,
+  `active` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_trip_user_idx` (`user_id` ASC),
   INDEX `fk_trip_vehicle1_idx` (`vehicle_id` ASC),
@@ -124,6 +127,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `trip_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `comment_date` DATETIME NULL,
+  `active` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_comment_user1_idx` (`user_id` ASC),
   INDEX `fk_comment_trip1_idx` (`trip_id` ASC),
@@ -154,6 +158,7 @@ CREATE TABLE IF NOT EXISTS `destination` (
   `notes` TEXT NULL,
   `phone` VARCHAR(45) NULL,
   `fee` DECIMAL(5,2) NULL,
+  `active` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_destination_address1_idx` (`address_id` ASC),
   CONSTRAINT `fk_destination_address1`
@@ -180,6 +185,7 @@ CREATE TABLE IF NOT EXISTS `leg` (
   `end_destination_id` INT NOT NULL,
   `leg_number` INT NOT NULL,
   `notes` TEXT NULL,
+  `active` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_leg_trip1_idx` (`trip_id` ASC),
   INDEX `fk_leg_destination1_idx` (`start_destination_id` ASC),
@@ -379,7 +385,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`) VALUES (1, 'admin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'admin', 'bob', 'dobs', '555-55-5555', NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (1, 'admin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'admin', 'bob', 'dobs', '555-55-5555', NULL, NULL, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -389,9 +395,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (1, '1 main st', NULL, 'Denver', 'Colorado', '80014');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (2, '2 test blvd', NULL, 'Salt Lake City', 'Utah', '84004');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (3, '45 circle dr', NULL, 'Springfield', 'Nevada', '44995');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (1, '1 main st', NULL, 'Denver', 'Colorado', '80014', NULL);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (2, '2 test blvd', NULL, 'Salt Lake City', 'Utah', '84004', NULL);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (3, '45 circle dr', NULL, 'Springfield', 'Nevada', '44995', NULL);
 
 COMMIT;
 
@@ -412,7 +418,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`) VALUES (1, '2023-02-02', '2023-02-22', true, 500, 1, 1, NULL, NULL, 'First trip', 'test trip', NULL);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`) VALUES (1, '2023-02-02', '2023-02-22', true, 500, 1, 1, NULL, NULL, 'First trip', 'test trip', NULL, NULL);
 
 COMMIT;
 
@@ -422,7 +428,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `comment` (`id`, `photo`, `description`, `trip_id`, `user_id`, `comment_date`) VALUES (1, NULL, 'testing comment', 1, 1, '2023-02-02');
+INSERT INTO `comment` (`id`, `photo`, `description`, `trip_id`, `user_id`, `comment_date`, `active`) VALUES (1, NULL, 'testing comment', 1, 1, '2023-02-02', NULL);
 
 COMMIT;
 
@@ -432,9 +438,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`) VALUES (1, 'McDonalds', 1, 'food', NULL, NULL, '555-55-5555', NULL);
-INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`) VALUES (2, 'Shell', 2, 'gas', NULL, NULL, NULL, 2.89);
-INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`) VALUES (3, 'Hilton', 3, 'hotel', NULL, NULL, '876-332-2763', 99.99);
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (1, 'McDonalds', 1, 'food', NULL, NULL, '555-55-5555', NULL, NULL);
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (2, 'Shell', 2, 'gas', NULL, NULL, NULL, 2.89, NULL);
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (3, 'Hilton', 3, 'hotel', NULL, NULL, '876-332-2763', 99.99, NULL);
 
 COMMIT;
 
@@ -444,8 +450,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `leg` (`id`, `estimated_miles`, `trip_id`, `actual_miles`, `name`, `description`, `start_destination_id`, `end_destination_id`, `leg_number`, `notes`) VALUES (1, 500, 1, 700, 'first leg', NULL, 1, 2, 1, NULL);
-INSERT INTO `leg` (`id`, `estimated_miles`, `trip_id`, `actual_miles`, `name`, `description`, `start_destination_id`, `end_destination_id`, `leg_number`, `notes`) VALUES (2, 300, 1, 275, 'second leg', NULL, 2, 3, 2, NULL);
+INSERT INTO `leg` (`id`, `estimated_miles`, `trip_id`, `actual_miles`, `name`, `description`, `start_destination_id`, `end_destination_id`, `leg_number`, `notes`, `active`) VALUES (1, 500, 1, 700, 'first leg', NULL, 1, 2, 1, NULL, NULL);
+INSERT INTO `leg` (`id`, `estimated_miles`, `trip_id`, `actual_miles`, `name`, `description`, `start_destination_id`, `end_destination_id`, `leg_number`, `notes`, `active`) VALUES (2, 300, 1, 275, 'second leg', NULL, 2, 3, 2, NULL, NULL);
 
 COMMIT;
 
