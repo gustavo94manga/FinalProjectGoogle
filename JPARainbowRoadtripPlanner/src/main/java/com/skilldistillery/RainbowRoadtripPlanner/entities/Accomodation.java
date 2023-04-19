@@ -1,5 +1,6 @@
 package com.skilldistillery.RainbowRoadtripPlanner.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Accomodation {
@@ -21,6 +23,9 @@ public class Accomodation {
 	
 	@Column(name="icon_url")
 	private String iconUrl;
+	
+	@ManyToMany(mappedBy = "accomodations")
+	private List<Destination> destinations;
 
 	public Accomodation() {
 	
@@ -52,6 +57,14 @@ public class Accomodation {
 
 	public String getIconUrl() {
 		return iconUrl;
+	}
+
+	public List<Destination> getDestinations() {
+		return destinations;
+	}
+
+	public void setDestinations(List<Destination> destinations) {
+		this.destinations = destinations;
 	}
 
 	public void setIconUrl(String iconUrl) {

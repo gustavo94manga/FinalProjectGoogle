@@ -46,5 +46,19 @@ class VehicleTest {
 //		assertEquals("carolla", vehicle.getModel());
 		assertEquals("toyota", vehicle.getMake());
 	}
+	
+	@Test
+	void test_Vehicle_To_Trip_OTM() {
+		assertNotNull(vehicle);
+		assertNotNull(vehicle.getTrips());
+		assertFalse(vehicle.getTrips().isEmpty());
+	}
+	
+	@Test
+	void test_Vehicle_User_MTO() {
+		assertNotNull(vehicle);
+		assertNotNull(vehicle.getUser());
+		assertEquals("bob", vehicle.getUser().getFirstName());
+	}
 
 }

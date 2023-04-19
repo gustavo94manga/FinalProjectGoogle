@@ -45,6 +45,27 @@ class TripTest {
 		assertNotNull(trip);
 		assertEquals("First trip", trip.getTitle());
 	}
+	
+	@Test
+	void test_Trip_Leg_OTM() {
+		assertNotNull(trip);
+		assertNotNull(trip.getLegs());
+		assertFalse(trip.getLegs().isEmpty());
+	}
+	
+	@Test
+	void test_Trip_To_Vehicle_MTO() {
+		assertNotNull(trip);
+		assertNotNull(trip.getVehicle());
+		assertEquals(1, trip.getVehicle().getId());
+	}
+	
+	@Test
+	void test_Trip_To_Comment_OTM() {
+		assertNotNull(trip);
+		assertNotNull(trip.getComments());
+		assertFalse(trip.getComments().isEmpty());
+	}
 
 
 }

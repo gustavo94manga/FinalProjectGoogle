@@ -1,6 +1,7 @@
 package com.skilldistillery.RainbowRoadtripPlanner.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -48,6 +50,12 @@ public class User {
 	@UpdateTimestamp
 	@Column(name="update_date")
 	private LocalDateTime updateDate;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Vehicle> vehicles;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Comment> comments;
 	
 	
 	public User() {}
@@ -147,6 +155,22 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public List<Vehicle> getVehicles() {
+		return vehicles;
+	}
+
+	public void setVehicles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override

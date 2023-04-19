@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Leg {
@@ -29,6 +31,18 @@ public class Leg {
 	private Integer legNumber;
 	
 	private String notes;
+	
+	@ManyToOne
+	@JoinColumn(name = "start_destination_id")
+	private Destination startDestination;
+	
+	@ManyToOne
+	@JoinColumn(name = "end_destination_id")
+	private Destination endDestination;
+	
+	@ManyToOne
+	@JoinColumn(name = "trip_id")
+	private Trip trip;
 
 	public Leg() {
 
@@ -88,6 +102,30 @@ public class Leg {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public Destination getStartDestination() {
+		return startDestination;
+	}
+
+	public void setStartDestination(Destination startDestination) {
+		this.startDestination = startDestination;
+	}
+
+	public Destination getEndDestination() {
+		return endDestination;
+	}
+
+	public void setEndDestination(Destination endDestination) {
+		this.endDestination = endDestination;
+	}
+
+	public Trip getTrip() {
+		return trip;
+	}
+
+	public void setTrip(Trip trip) {
+		this.trip = trip;
 	}
 
 	@Override

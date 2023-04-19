@@ -1,5 +1,6 @@
 package com.skilldistillery.RainbowRoadtripPlanner.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Vehicle {
@@ -29,6 +33,13 @@ public class Vehicle {
 	
 	@Column(name="is_electric")
 	private boolean isElectric;
+	
+	@OneToMany(mappedBy = "vehicle")
+	private List<Trip> trips;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	public Vehicle() {
 		super();
@@ -93,6 +104,22 @@ public class Vehicle {
 	
 	
 	
+	public List<Trip> getTrips() {
+		return trips;
+	}
+
+	public void setTrips(List<Trip> trips) {
+		this.trips = trips;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

@@ -45,5 +45,22 @@ class LegTest {
 		assertNotNull(leg);
 		assertEquals("first leg", leg.getName());
 	}
+	
+	@Test
+	void test_Leg_To_Destination_MTO() {
+		assertNotNull(leg);
+		assertNotNull(leg.getEndDestination());
+		assertNotNull(leg.getStartDestination());
+		assertEquals(1, leg.getStartDestination().getId());
+		assertEquals(2, leg.getEndDestination().getId());
+		
+	}
+	
+	@Test
+	void test_Leg_To_Trip_MTO() {
+		assertNotNull(leg);
+		assertNotNull(leg.getTrip());
+		assertEquals(1 , leg.getTrip().getId());
+	}
 
 }

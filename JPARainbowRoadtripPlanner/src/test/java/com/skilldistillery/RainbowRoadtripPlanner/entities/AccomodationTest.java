@@ -45,5 +45,12 @@ class AccomodationTest {
 		assertNotNull(accomodation);
 		assertEquals("Gas", accomodation.getName());
 	}
+	
+	@Test
+	void test_accomodation_destination_relational_manyToMany() {
+		assertNotNull(accomodation);
+		assertNotNull(accomodation.getDestinations());
+		assertFalse(accomodation.getDestinations().isEmpty());
+	}
 
 }
