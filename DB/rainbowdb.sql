@@ -490,6 +490,26 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `trip_has_user`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rainbowdb`;
+INSERT INTO `trip_has_user` (`trip_id`, `user_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `activity_image`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rainbowdb`;
+INSERT INTO `activity_image` (`id`, `image_url`, `caption`, `activity_id`) VALUES (1, NULL, 'my first pic', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `activity_rating`
 -- -----------------------------------------------------
 START TRANSACTION;
