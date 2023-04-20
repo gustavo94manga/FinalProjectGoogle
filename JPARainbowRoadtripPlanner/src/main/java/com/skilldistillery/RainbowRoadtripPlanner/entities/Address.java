@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Address {
 	
@@ -26,6 +28,9 @@ public class Address {
 	
 	private String zip;
 	
+	private Boolean active;
+	
+	@JsonIgnore
 	@OneToOne(mappedBy = "address")
 	private Destination destination;
 	
@@ -87,6 +92,14 @@ public class Address {
 
 	public void setDestination(Destination destination) {
 		this.destination = destination;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	@Override

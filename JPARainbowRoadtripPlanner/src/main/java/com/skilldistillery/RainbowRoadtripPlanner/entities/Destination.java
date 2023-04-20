@@ -14,41 +14,47 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Destination {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
+
 	private String description;
-	
-	@Column(name="image_url")
+
+	@Column(name = "image_url")
 	private String imageUrl;
-	
+
 	private String notes;
-	
+
 	private String phone;
-	
+
 	private Double fee;
 	
-	@ManyToMany
-	@JoinTable(name="accomodation_has_destination",
-		joinColumns=@JoinColumn(name="destination_id"),
-		inverseJoinColumns=@JoinColumn(name="accomodation_id")
-	)
-	private List<Accomodation> accomodations;
+	private Boolean active;
+
 	
+	
+	@ManyToMany
+	@JoinTable(name = "accomodation_has_destination", 
+	joinColumns = @JoinColumn(name = "destination_id"),
+	inverseJoinColumns = @JoinColumn(name = "accomodation_id"))
+	private List<Accomodation> accomodations;
+
+	@JsonIgnore
 	@OneToMany(mappedBy = "destinations")
 	private List<Activity> activity;
+
 	
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-	
-	
+
 	public Destination() {
 
 	}
@@ -101,7 +107,7 @@ public class Destination {
 		this.phone = phone;
 	}
 
-	public double getFee() {
+	public Double getFee() {
 		return fee;
 	}
 
@@ -133,6 +139,14 @@ public class Destination {
 		this.address = address;
 	}
 
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -158,11 +172,5 @@ public class Destination {
 				.append(", phone=").append(phone).append(", fee=").append(fee).append("]");
 		return builder.toString();
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }
