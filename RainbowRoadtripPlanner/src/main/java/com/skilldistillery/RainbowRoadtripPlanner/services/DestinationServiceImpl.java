@@ -19,6 +19,11 @@ public class DestinationServiceImpl implements DestinationService {
 		// TODO Auto-generated method stub
 		return destinationRepo.findAll();
 	}
+	@Override
+	public Destination findById(int id) {
+		// TODO Auto-generated method stub
+		return destinationRepo.findById(id);
+	}
 
 	@Override
 	public Destination findByAddressId(int id) {
@@ -49,9 +54,36 @@ public class DestinationServiceImpl implements DestinationService {
 
 	@Override
 	public Destination update(Destination dest, int id) {
-		// TODO Auto-generated method stub
+		Destination toUpdate = destinationRepo.findById(id);
+		if(toUpdate != null) {
+			if(dest.getName() != null) {
+				toUpdate.setName(dest.getName());
+			}
+			if(dest.getAddress() != null) {
+				toUpdate.setAddress(dest.getAddress());
+			}
+			if(dest.getDescription() != null) {
+				toUpdate.setDescription(dest.getDescription());
+			}
+			if(dest.getImageUrl() != null) {
+				toUpdate.setImageUrl(dest.getImageUrl());
+			}
+			if(dest.getNotes() != null) {
+				toUpdate.setNotes(dest.getNotes());
+			}
+			if(dest.getPhone() != null) {
+				toUpdate.setPhone(dest.getPhone());
+			}
+			if(dest.getFee() != null) {
+				toUpdate.setFee(dest.getFee());
+			}
+			destinationRepo.saveAndFlush(toUpdate);
+			return toUpdate;
+		}
 		return null;
 	}
+
+	
 	
 	
 	
