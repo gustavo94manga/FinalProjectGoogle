@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Trip {
 
@@ -49,6 +51,9 @@ public class Trip {
 	@Column(name="image_url")
 	private String imageUrl;
 	
+	private Boolean active;
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "trip")
 	private List<Leg> legs;
 	
@@ -143,6 +148,14 @@ public class Trip {
 		this.imageUrl = imageUrl;
 	}
 
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	public List<Leg> getLegs() {
 		return legs;
 	}
@@ -186,13 +199,10 @@ public class Trip {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Trip [id=").append(id).append(", startDate=").append(startDate).append(", endDate=")
-				.append(endDate).append(", roundTrip=").append(roundTrip).append(", miles=").append(miles)
-				.append(", createDate=").append(createDate).append(", updateDate=").append(updateDate)
-				.append(", title=").append(title).append(", description=").append(description).append(", imageUrl=")
-				.append(imageUrl).append("]");
-		return builder.toString();
+		return "Trip [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", roundTrip=" + roundTrip
+				+ ", miles=" + miles + ", createDate=" + createDate + ", updateDate=" + updateDate + ", title=" + title
+				+ ", description=" + description + ", imageUrl=" + imageUrl + ", active=" + active + ", legs=" + legs
+				+ ", vehicle=" + vehicle + ", comments=" + comments + "]";
 	}
 	
 	

@@ -29,6 +29,8 @@ public class User {
 	
 	private String role;
 	
+	private Boolean active;
+	
 	@Column(name="first_name")
 	private String firstName;
 	
@@ -173,6 +175,14 @@ public class User {
 		this.comments = comments;
 	}
 
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -192,13 +202,10 @@ public class User {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("User [id=").append(id).append(", username=").append(username).append(", password=")
-				.append(password).append(", enabled=").append(enabled).append(", role=").append(role)
-				.append(", firstName=").append(firstName).append(", lastName=").append(lastName).append(", phone=")
-				.append(phone).append(", imageUrl=").append(imageUrl).append(", aboutMe=").append(aboutMe)
-				.append(", createDate=").append(createDate).append(", updateDate=").append(updateDate).append("]");
-		return builder.toString();
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
+				+ ", role=" + role + ", active=" + active + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", phone=" + phone + ", imageUrl=" + imageUrl + ", aboutMe=" + aboutMe + ", createDate=" + createDate
+				+ ", updateDate=" + updateDate + ", vehicles=" + vehicles + ", comments=" + comments + "]";
 	}
 	
 }

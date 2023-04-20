@@ -1,0 +1,84 @@
+package com.skilldistillery.RainbowRoadtripPlanner.controllers;
+
+import java.security.Principal;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.skilldistillery.RainbowRoadtripPlanner.entities.Trip;
+import com.skilldistillery.RainbowRoadtripPlanner.services.TripService;
+
+@RestController
+@RequestMapping("api")
+@CrossOrigin({ "*", "http://localhost/" })
+public class TripController {
+	
+	@Autowired
+	private TripService tripService;
+	
+	@GetMapping("trip")
+	public Set<Trip> index(Principal principal, HttpServletRequest req, HttpServletResponse res) {
+		return tripService.index(principal.getName());
+	}
+	
+	@PostMapping("trip")
+	public Trip create(Principal principal, HttpServletRequest req, HttpServletResponse res, @RequestBody Trip trip) {
+		try {
+			trip = tripService.create(principal.getName(), trip);
+			if (trip != null) {
+				res.setStatus(201);
+				StringBuffer url = req.getRequestURL();
+				res.setHeader("Location", url.append("/").append(trip.getId()).toString());
+			} else {
+				res.setStatus(400);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			trip = null;
+		}
+		return trip;
+	}
+	
+	@PutMapping("todos/{tid}")
+	public Trip update(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable int tid, @RequestBody Trip trip) {
+		Trip updatedTodo = null;
+		try {
+			updatedTodo = tripService.update(principal.getName(), id, trip);
+			if (updatedTodo == null) {
+				res.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		return updatedTodo;
+	}
+	
+	@DeleteMapping("todos/{tid}")
+	public void destroy(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
+		try {
+			if (tripService.destroy(principal.getName(), id)) {
+				res.setStatus(204);
+			} else {
+				res.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+	}
+
+}
