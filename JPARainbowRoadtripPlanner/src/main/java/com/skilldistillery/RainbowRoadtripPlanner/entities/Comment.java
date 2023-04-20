@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Comment {
 
@@ -33,10 +35,21 @@ public class Comment {
 	private User user;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "trip_id")
 	private Trip trip;
 	
+	private Boolean active;
 	
+	
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	public Comment() {
 		
 	}
@@ -110,7 +123,8 @@ public class Comment {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Comment [id=").append(id).append(", photo=").append(photo).append(", description=")
-				.append(description).append(", commentDate=").append(commentDate).append("]");
+				.append(description).append(", commentDate=").append(commentDate).append(", user=").append(user)
+				.append(", trip=").append(trip).append(", active=").append(active).append("]");
 		return builder.toString();
 	}
 	
