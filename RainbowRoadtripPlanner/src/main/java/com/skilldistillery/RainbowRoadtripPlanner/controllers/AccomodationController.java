@@ -27,18 +27,18 @@ public class AccomodationController {
 	private AccomodationService accSrvc;
 	
 	
-	@GetMapping("accomodation")
+	@GetMapping("accomodations")
 	public List<Accomodation> index(){
 		return accSrvc.index();
 	}
 	
 	
-	@PostMapping("accomodation")
+	@PostMapping("accomodations")
 	public Accomodation create(HttpServletRequest req, HttpServletResponse res, @RequestBody Accomodation accomodation) {
 		try {
 			accomodation = accSrvc.create(accomodation);
 			res.setStatus(201);
-			res.setHeader("Location", "http://localhost:8090/api/destination" +accomodation.getId());
+			res.setHeader("Location", "http://localhost:8090/api/accomodations" +accomodation.getId());
 		}catch(Exception e){
 			e.printStackTrace();
 			res.setStatus(400);
@@ -46,7 +46,7 @@ public class AccomodationController {
 		return accomodation;
 	}
 	
-	@PutMapping("accomodation/{id}")
+	@PutMapping("accomodations/{id}")
 	public Accomodation update(HttpServletRequest req, HttpServletResponse res, @RequestBody Accomodation accomodation, @PathVariable int id) {
 		try {
 			 accomodation = accSrvc.update(accomodation, id);

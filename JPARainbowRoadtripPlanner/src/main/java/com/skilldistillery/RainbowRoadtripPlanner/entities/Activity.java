@@ -19,12 +19,12 @@ public class Activity {
 	private int id;
 	
 	@Column(name="did_stop")
-	private boolean didStop;
+	private Boolean didStop;
 	
 	private String description;
 	
 	@Column(name="priority_level")
-	private int priorityLevel;
+	private Integer priorityLevel;
 	
 	@Column(name="time_to_spend")
 	private String timeToSpend;
@@ -32,7 +32,12 @@ public class Activity {
 	@ManyToOne
 	@JoinColumn(name="destination_id")
 	private Destination destinations;
-
+	
+	@ManyToOne
+	@JoinColumn(name="leg_id")
+	private Leg leg;
+	
+	
 	public Activity() {
 
 	}
@@ -45,11 +50,11 @@ public class Activity {
 		this.id = id;
 	}
 
-	public boolean isDidStop() {
+	public Boolean getDidStop() {
 		return didStop;
 	}
 
-	public void setDidStop(boolean didStop) {
+	public void setDidStop(Boolean didStop) {
 		this.didStop = didStop;
 	}
 
@@ -61,11 +66,11 @@ public class Activity {
 		this.description = description;
 	}
 
-	public int getPriorityLevel() {
+	public Integer getPriorityLevel() {
 		return priorityLevel;
 	}
 
-	public void setPriorityLevel(int priorityLevel) {
+	public void setPriorityLevel(Integer priorityLevel) {
 		this.priorityLevel = priorityLevel;
 	}
 
@@ -83,6 +88,14 @@ public class Activity {
 
 	public void setDestinations(Destination destinations) {
 		this.destinations = destinations;
+	}
+
+	public Leg getLeg() {
+		return leg;
+	}
+
+	public void setLeg(Leg leg) {
+		this.leg = leg;
 	}
 
 	@Override

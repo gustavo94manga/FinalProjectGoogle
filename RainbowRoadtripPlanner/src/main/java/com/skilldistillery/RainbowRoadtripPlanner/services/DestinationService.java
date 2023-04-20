@@ -11,5 +11,6 @@ public interface DestinationService {
 		public Destination create(Destination destination);
 		public Destination update(Destination dest, int id);
 		public boolean destroy(int id);
+		public Destination findById(int id);
 	
 }

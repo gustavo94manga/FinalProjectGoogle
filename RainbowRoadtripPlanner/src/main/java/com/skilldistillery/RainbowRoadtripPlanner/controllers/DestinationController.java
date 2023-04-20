@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,18 +27,34 @@ public class DestinationController {
 	@Autowired
 	private DestinationService destSrvc;
 	
-	@GetMapping("destination")
+	@GetMapping("destinations")
 	public List<Destination> index(){
 		return destSrvc.index();
 	}
 	
-	@GetMapping("destination/address/{id}")
+	@GetMapping("destinations/{id}")
+	public Destination findById(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
+		try {
+			Destination destination = destSrvc.findById(id);
+				res.setStatus(201);
+				res.setHeader("Location", "http://localhost:8090/api/destinations" +destination.getId());
+				return destination;
+			}catch(Exception e){
+				e.printStackTrace();
+				res.setStatus(400);
+			}
+			return null;
+		}
+	
+	
+	
+	@GetMapping("destinations/addresses/{id}")
 	public Destination findByAddress(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
 		
 		try {
 		Destination destination = destSrvc.findByAddressId(id);
 			res.setStatus(201);
-			res.setHeader("Location", "http://localhost:8090/api/destination" +destination.getId());
+			res.setHeader("Location", "http://localhost:8090/api/destinations" +destination.getId());
 			return destination;
 		}catch(Exception e){
 			e.printStackTrace();
@@ -47,12 +64,12 @@ public class DestinationController {
 	}
 	
 	
-	@PostMapping("destination")
+	@PostMapping("destinations")
 	public Destination create(HttpServletRequest req, HttpServletResponse res, @RequestBody Destination destination) {
 		try {
 			destination = destSrvc.create(destination);
 			res.setStatus(201);
-			res.setHeader("Location", "http://localhost:8090/api/destination" +destination.getId());
+			res.setHeader("Location", "http://localhost:8090/api/destinations" +destination.getId());
 		}catch(Exception e){
 			e.printStackTrace();
 			res.setStatus(400);
@@ -61,7 +78,7 @@ public class DestinationController {
 	}
 	
 	
-	@DeleteMapping("destination/{id}")
+	@DeleteMapping("destinations/{id}")
 	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
 		
 		try {
@@ -80,6 +97,20 @@ public class DestinationController {
 
 	}
 	
+	@PutMapping("destinations/{id}")
+	public Destination update(HttpServletRequest req, HttpServletResponse res, @RequestBody Destination destination, @PathVariable int id) {
+		try {
+			 destination = destSrvc.update(destination, id);
+			if(destination ==null) {
+				res.setStatus(404);
+			}
+			}catch(Exception e){
+				e.printStackTrace();
+				res.setStatus(400);
+				destination = null;
+			}
+			return destination;
+	}
 	
 	
 	
