@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -51,9 +53,11 @@ public class User {
 	@Column(name="update_date")
 	private LocalDateTime updateDate;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Vehicle> vehicles;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comments;
 	
