@@ -5,31 +5,36 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.RainbowRoadtripPlanner.entities.Address;
 import com.skilldistillery.RainbowRoadtripPlanner.entities.Trip;
+import com.skilldistillery.RainbowRoadtripPlanner.entities.User;
 import com.skilldistillery.RainbowRoadtripPlanner.repositories.TripRepository;
+import com.skilldistillery.RainbowRoadtripPlanner.repositories.UserRepository;
 @Service
 public class TripServiceImpl implements TripService {
 
 	@Autowired
 	private TripRepository tripRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
-	public List<Trip> index() {
-		return tripRepo.findAll();
+	public List<Trip> index(String username) {
+		return tripRepo.findByUser_Username(username);
 	}
 
 	@Override
-	public Trip create(Trip trip) {
-		if (trip != null) {
+	public Trip create(String username, Trip trip) {
+		User user = userRepo.findByUsername(username);
+		if (user != null) {
 			return tripRepo.saveAndFlush(trip);
 		}
-		return trip;
+		return null;
 	}
 
 	@Override
-	public Trip update(Trip trip, int id) {
-		Trip existing = tripRepo.findById(trip, id);
+	public Trip update(String username, int id, Trip trip) {
+		Trip existing = tripRepo.findByIdAndUser_Username(id, username);
 		if (existing != null) {
 			existing.setStartDate(trip.getStartDate());
 			existing.setEndDate(trip.getEndDate());
@@ -43,12 +48,13 @@ public class TripServiceImpl implements TripService {
 			tripRepo.saveAndFlush(existing);
 			return existing;
 		}
+		return null;
 	}
 
 	@Override
-	public boolean destroy(int id) {
+	public boolean destroy(String username, int id) {
 		boolean deleted = false;
-		Trip toDelete = tripRepo.findById(id);
+		Trip toDelete = tripRepo.findByIdAndUser_Username(id, username);
 		tripRepo.delete(toDelete);
 		if (!tripRepo.existsById(id)) {
 			deleted = true;

@@ -61,8 +61,13 @@ public class Trip {
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "trip")
 	private List<Comment> comments;
+	
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 	public Trip() {
 		
@@ -178,6 +183,14 @@ public class Trip {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

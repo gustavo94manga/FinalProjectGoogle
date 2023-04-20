@@ -82,7 +82,7 @@ public class UserController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			res.setStatus(400);
+			res.setStatus(500);
 		}
 	
 	}

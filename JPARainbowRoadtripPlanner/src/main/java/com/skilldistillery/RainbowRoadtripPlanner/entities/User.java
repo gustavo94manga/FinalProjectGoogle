@@ -63,6 +63,10 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comments;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<Trip> trips;
+	
 	
 	public User() {}
 
@@ -185,6 +189,14 @@ public class User {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public List<Trip> getTrips() {
+		return trips;
+	}
+
+	public void setTrips(List<Trip> trips) {
+		this.trips = trips;
 	}
 
 	@Override

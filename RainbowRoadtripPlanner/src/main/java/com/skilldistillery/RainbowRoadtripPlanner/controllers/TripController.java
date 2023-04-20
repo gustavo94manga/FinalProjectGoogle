@@ -1,7 +1,7 @@
 package com.skilldistillery.RainbowRoadtripPlanner.controllers;
 
 import java.security.Principal;
-import java.util.Set;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,15 +28,16 @@ public class TripController {
 	@Autowired
 	private TripService tripService;
 	
-	@GetMapping("trip")
-	public Set<Trip> index(Principal principal, HttpServletRequest req, HttpServletResponse res) {
+	@GetMapping("trips")
+	public List<Trip> index(Principal principal, HttpServletRequest req, HttpServletResponse res) {
 		return tripService.index(principal.getName());
 	}
 	
-	@PostMapping("trip")
+	@PostMapping("trips")
 	public Trip create(Principal principal, HttpServletRequest req, HttpServletResponse res, @RequestBody Trip trip) {
+		Trip createTrip = null;
 		try {
-			trip = tripService.create(principal.getName(), trip);
+			createTrip = tripService.create(principal.getName(), trip);
 			if (trip != null) {
 				res.setStatus(201);
 				StringBuffer url = req.getRequestURL();
@@ -49,11 +50,11 @@ public class TripController {
 			res.setStatus(400);
 			trip = null;
 		}
-		return trip;
+		return createTrip;
 	}
 	
-	@PutMapping("todos/{tid}")
-	public Trip update(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable int tid, @RequestBody Trip trip) {
+	@PutMapping("trips/{id}")
+	public Trip update(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable int id, @RequestBody Trip trip) {
 		Trip updatedTodo = null;
 		try {
 			updatedTodo = tripService.update(principal.getName(), id, trip);
@@ -67,17 +68,19 @@ public class TripController {
 		return updatedTodo;
 	}
 	
-	@DeleteMapping("todos/{tid}")
+	@DeleteMapping("trips/{id}")
 	public void destroy(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
+		boolean deleted = false;
 		try {
-			if (tripService.destroy(principal.getName(), id)) {
+			deleted = tripService.destroy(principal.getName(), id);
+			if (deleted) {
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			res.setStatus(400);
+			res.setStatus(500);
 		}
 	}
 
