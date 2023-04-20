@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Accomodation {
 
@@ -24,6 +26,7 @@ public class Accomodation {
 	@Column(name="icon_url")
 	private String iconUrl;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "accomodations")
 	private List<Destination> destinations;
 
