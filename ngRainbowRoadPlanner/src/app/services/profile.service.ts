@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { User } from '../models/user';
 import { Observable, catchError, throwError } from 'rxjs';
+import { Trip } from '../models/trip';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +45,20 @@ return this.http.get<User>(this.url+"/"+username, this.getHttpOptions() ).pipe(
 
 }
 
+getUserTrips():Observable<Trip[]>{
+  return this.http.get<Trip[]>(this.url+"/trips",this.getHttpOptions()).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('ProfileSrvc(): error retrieving Trips: ' + err)
+      );
+    })
+  )
 
+
+
+
+}
 
 update(updatedUser:User): Observable<User>{
   return this.http.put<User>(this.url+"/"+updatedUser.id, updatedUser, this.getHttpOptions()).pipe(

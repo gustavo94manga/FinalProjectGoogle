@@ -18,6 +18,7 @@ username: string ='';
 editUser: User | null = null;
 
 
+
 constructor(
   private auth: AuthService,
   private route: ActivatedRoute,
@@ -25,7 +26,12 @@ constructor(
   private profileService: ProfileService
 ){}
 
-
+ngOnInit(): void {
+  //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+  //Add 'implements OnInit' to the class.
+  this.getLoggedInUserInfo();
+  this.showUserTrips();
+}
 
 reload(){
 this.getLoggedInUserInfo();
@@ -34,7 +40,15 @@ this.editUser=null;
 
 }
 
-
+showUserTrips(){
+  this.profileService.getUserTrips().subscribe({
+    next:(trips)=>{
+      if(this.selected !=null){
+        this.selected.trips=trips;
+      }
+    }
+  })
+}
 
 
 
@@ -46,7 +60,14 @@ getLoggedInUserInfo(){
       this.profileService.show(this.username).subscribe({
         next:(foundUser)=>{
          this.selected=foundUser;
-        //  console.log(this.selected)
+          console.log(this.selected)
+          this.profileService.getUserTrips().subscribe({
+            next:(trips)=>{
+              if(this.selected !=null){
+                this.selected.trips=trips;
+              }
+            }
+          })
         },
         error:(fail)=>{
           console.log('ohh no');

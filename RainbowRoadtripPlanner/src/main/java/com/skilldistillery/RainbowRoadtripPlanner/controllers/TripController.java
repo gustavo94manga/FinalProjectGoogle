@@ -29,11 +29,12 @@ public class TripController {
 	private TripService tripService;
 	
 	@GetMapping("trips")
-	public List<Trip> index(Principal principal, HttpServletRequest req, HttpServletResponse res) {
-		return tripService.index(principal.getName());
+	public List<Trip> index( HttpServletRequest req, HttpServletResponse res) {
+		return tripService.index();
 	}
 	
-	@GetMapping("trips/users")
+	
+	@GetMapping("users/trips")
 	public List<Trip> getUserTrips(Principal principal, HttpServletRequest req, HttpServletResponse res) {
 		return tripService.findUserTrips(principal.getName());
 	}
