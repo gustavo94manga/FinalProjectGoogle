@@ -1,3 +1,6 @@
+import { User } from './user';
+import { Vehicle } from './vehicle';
+
 export class Trip {
   id: number;
   startDate: string;
@@ -11,9 +14,9 @@ export class Trip {
   imageUrl: string;
   active: boolean;
   legs: any[] | undefined;
-  vehicles: any[] | undefined;
+  vehicles: Vehicle;
   comments: any[] | undefined;
-  users: any[] | undefined;
+  users: User;
 
   constructor(
     id: number = 0,
@@ -28,9 +31,9 @@ export class Trip {
     imageUrl: string = '',
     active: boolean = false,
     legs: any[] = [],
-    vehicles: any[] = [],
+    vehicles: Vehicle,
     comments: any[] = [],
-    users: any[] = []
+    users: User
   ) {
     this.id = id;
     this.startDate = startDate;
