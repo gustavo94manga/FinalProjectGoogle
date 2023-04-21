@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SignupComponent } from '../signup/signup.component';
 
 @Component({
   selector: 'app-navbar',
@@ -7,8 +9,14 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  constructor(private auth: AuthService) {}
   isCollapsed = false;
+
+  constructor(private modalService: NgbModal, private auth: AuthService) {}
+
+  showSignupModal() {
+    const modalRef = this.modalService.open(SignupComponent);
+  }
+
   loggedIn(): boolean {
     return this.auth.checkLogin();
   }
