@@ -1,21 +1,21 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthService } from './auth.service';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Trip } from '../models/trip';
+import { Activity } from '../models/activity';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TripService {
+export class ActivityService {
 
-  //private baseUrl = 'http://localhost:8090/'; // adjust port to match server
-private url = environment.baseUrl + 'api/trips';
+   //private baseUrl = 'http://localhost:8090/'; // adjust port to match server
+private url = environment.baseUrl + 'api/activities';
 
 constructor(private http: HttpClient, private datePipe: DatePipe, private auth: AuthService) { }
-
 
 getHttpOptions() {
   let options = {
@@ -28,21 +28,21 @@ getHttpOptions() {
 }
 
 
-create(trip:Trip):Observable <Trip>{
+create(activity:Activity):Observable <Activity>{
 
-  return this.http.post<Trip>(this.url, trip, this.getHttpOptions()).pipe(
+  return this.http.post<Activity>(this.url, activity, this.getHttpOptions()).pipe(
     catchError((err: any)=>{
       console.error(err);
       return throwError(
-        ()=> new Error('tripService.create(): error creating Trip'+ trip)
+        ()=> new Error('tripService.create(): error creating Trip'+ activity)
       )
     })
 )
 
 }
 
-index(): Observable<Trip[]>{
-  return this.http.get<Trip[]>(this.url, this.getHttpOptions()).pipe(
+index(): Observable<Activity[]>{
+  return this.http.get<Activity[]>(this.url, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(
@@ -52,8 +52,8 @@ index(): Observable<Trip[]>{
   )
 }
 
-update(trip:Trip): Observable<Trip>{
-  return this.http.put<Trip>(this.url+trip.id, trip, this.getHttpOptions()).pipe(
+update(activity: Activity): Observable<Activity>{
+  return this.http.put<Activity>(this.url+activity.id, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(
@@ -64,30 +64,6 @@ update(trip:Trip): Observable<Trip>{
   )
 
 }
-destroy(id:number): Observable<void> {
-  return this.http.delete<void>(this.url+"/"+ id, this.getHttpOptions()).pipe(
-   catchError((err: any)=>{
-     console.error(err);
-     return throwError(
-       ()=> new Error('tripService.destroy(): error deleting Trip')
-     )
-   })
-
-  );
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
