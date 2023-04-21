@@ -30,11 +30,11 @@ getHttpOptions() {
 
 create(trip:Trip):Observable <Trip>{
 
-  return this.http.post<Trip>(this.url, trip).pipe(
+  return this.http.post<Trip>(this.url, trip, this.getHttpOptions()).pipe(
     catchError((err: any)=>{
       console.error(err);
       return throwError(
-        ()=> new Error('companyService.create(): error creating Company'+ trip)
+        ()=> new Error('tripService.create(): error creating Trip'+ trip)
       )
     })
 )
@@ -52,7 +52,16 @@ index(): Observable<Trip[]>{
   )
 }
 
-update(trip:Trip){
+update(trip:Trip): Observable<Trip>{
+  return this.http.put<Trip>(this.url+trip.id, this.getHttpOptions()).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('TripService.index(): error update trip: ' + err)
+      );
+    })
+
+  )
 
 }
 
