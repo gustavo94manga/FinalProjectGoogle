@@ -33,7 +33,7 @@ public class TripController {
 		return tripService.index(principal.getName());
 	}
 	
-	@GetMapping("trips/users")
+	@GetMapping("users/trips")
 	public List<Trip> getUserTrips(Principal principal, HttpServletRequest req, HttpServletResponse res) {
 		return tripService.findUserTrips(principal.getName());
 	}

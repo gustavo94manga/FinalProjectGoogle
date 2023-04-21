@@ -18,19 +18,22 @@
 
 
                   <div>
-                      <p>About me: {{selected?.aboutMe}} </p>
+                    <p>About me</p>
+                      <p>{{selected?.aboutMe}} </p>
 
                   </div>
-
+                    <div>
+                      <h3>My Trips</h3>
                    <ul>
-                      <li *ngFor="let trip of selected?.trips"></li>
+                      <li *ngFor="let trip of selected?.trips">{{trip.title}}</li>
 
                   </ul>
-
+                </div>
                   <div>
 
                       <button (click)="getLoggedInUserInfo()">Get User Info</button>
                       <button (click)="setEditUser()">Update Profile</button>
+                      <!-- <button (click)="showUserTrips()">Show My Trips</button> -->
                   </div>
 
 
@@ -45,6 +48,7 @@
 
                   <button (click)="cancelEdit()">Cancel</button>
                   <button (click)="editProfile(editUser)">Save</button>
+
                 </form>
 
                 </div>
