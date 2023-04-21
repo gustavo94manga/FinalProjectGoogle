@@ -1,3 +1,4 @@
+import { TripService } from './../../services/trip.service';
 import { Trip } from 'src/app/models/trip';
 import { Component } from '@angular/core';
 import { User } from 'src/app/models/user';
@@ -11,12 +12,15 @@ import { User } from 'src/app/models/user';
 export class HomeComponent {
 
   viewRoadtrips: boolean = false;
+  selectedTrip: Trip | null = null;
   selected: Trip | null = null;
   activeSlide = 0;
   user: User = new User;
   selectedUser: User | null = null;
   trips: Trip[] = [];
-  private tripService tripServ;
+
+  constructor(
+    private tripServ: TripService){};
 
   // selected: Trip | null = null;
 
@@ -33,8 +37,17 @@ export class HomeComponent {
     this.selected = tripImage;
   }
 
+
   displayAllRoadtrips(){
-    this.tripServ.displayAllTrips();
+    this.tripServ.index().subscribe({
+      next:(alltrips)=>{
+
+          console.log("Hello")
+          this.trips=alltrips;
+
+
+      }
+    })
   }
 
 

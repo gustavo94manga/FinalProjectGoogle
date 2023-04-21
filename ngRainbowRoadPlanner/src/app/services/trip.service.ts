@@ -42,7 +42,7 @@ create(trip:Trip):Observable <Trip>{
 }
 
 index(): Observable<Trip[]>{
-  return this.http.get<Trip[]>(this.url).pipe(
+  return this.http.get<Trip[]>(this.url, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(

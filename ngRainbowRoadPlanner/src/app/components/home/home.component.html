@@ -111,11 +111,27 @@
   </div>
 </div>
 
-<button type="btn btn-primary" (click)="viewRoadtrips = true"></button>
+<input type="submit" class="btn btn-primary" value="Show all Trips" (click)="viewRoadtrips = true" (click)="displayAllRoadtrips()">
 
-<div id="viewRoadtrips" *ngIf="viewRoadtrips == true">
-  <div *ngFor="let trip of selectedUser?.trips">
-   <h1>hello</h1>
+<div id="viewRoadtrips" *ngIf="viewRoadtrips">
+  <div *ngFor="let trip of trips">
+    <h2 (click)="selectedTrip = trip">{{trip.title}}</h2>
+    <input type="submit" value = "Show Trip Details" class = "btn btn-primary">
+
+
+  </div>
 </div>
-</div>
+
+<div id="displayDetails" *ngIf="selectedTrip">
+  <ul>
+    <li><strong>{{selectedTrip.title}}</strong></li>
+    <img src="{{selectedTrip.imageUrl}}">
+    <li>Description: {{selectedTrip.description}}</li>
+    <li>Created: {{selectedTrip.createDate}}</li>
+    <li>Miles: {{selectedTrip.miles}}mi</li>
+
+  </ul>
+  <input type="submit" value = "Hide Trip Details" class = "btn btn-primary" (click)="selectedTrip = null">
+
+  </div>
 
