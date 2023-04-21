@@ -8,12 +8,11 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   title = 'ngRainbowRoadPlanner';
+  lat = 51.678418;
+  lng = 7.809007;
 
   constructor(private auth: AuthService) {}
-
   ngOnInit() {
-     // DELETE LATER!!!
+    // DELETE LATER!!!
   }
-
-
 }
