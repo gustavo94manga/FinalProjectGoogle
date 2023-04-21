@@ -6,16 +6,10 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-
-  constructor(
-    private auth: AuthService,
-    private router: Router
-  ) {
-
-  }
+  constructor(private auth: AuthService, private router: Router) {}
 
   loginUser: User = new User();
 
@@ -25,15 +19,12 @@ export class LoginComponent {
 
     this.auth.login(user.username, user.password).subscribe({
       next: (loggedInUser) => {
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/trip');
       },
       error: (problem) => {
         console.error('RegisterComponent.register(): Error logging in user:');
         console.error(problem);
-      }
+      },
     });
   }
-
-
-
 }
