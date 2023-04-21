@@ -1,0 +1,7 @@
+#map-container {
+  width: 100%; /* Set the desired width */
+  height: 100%; /* Set the desired height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
