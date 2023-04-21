@@ -53,7 +53,7 @@ index(): Observable<Trip[]>{
 }
 
 update(trip:Trip): Observable<Trip>{
-  return this.http.put<Trip>(this.url+trip.id, this.getHttpOptions()).pipe(
+  return this.http.put<Trip>(this.url+trip.id, trip, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(
@@ -64,7 +64,19 @@ update(trip:Trip): Observable<Trip>{
   )
 
 }
+destroy(id:number): Observable<void> {
+  return this.http.delete<void>(this.url+"/"+ id, this.getHttpOptions()).pipe(
+   catchError((err: any)=>{
+     console.error(err);
+     return throwError(
+       ()=> new Error('tripService.destroy(): error deleting Trip')
+     )
+   })
 
+  );
+
+
+}
 
 
 

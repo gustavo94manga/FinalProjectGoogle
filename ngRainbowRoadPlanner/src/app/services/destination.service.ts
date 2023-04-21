@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { Destination } from '../models/destination';
 
 @Injectable({
@@ -26,18 +26,57 @@ getHttpOptions() {
   return options;
 }
 
+create(dest: Destination):Observable<Destination>{
+  return this.http.post<Destination>(this.url, dest, this.getHttpOptions()).pipe(
+    catchError((err: any)=>{
+      console.error(err);
+      return throwError(
+        ()=> new Error('DestinationService.get(): error with create ')
+      )
+    })
+)
+}
 
 
+update(dest:Destination): Observable<Destination>{
+  return this.http.put<Destination>(this.url+dest.id, dest, this.getHttpOptions()).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('DestinationService.update(): error update destination: ' + err)
+      );
+    })
 
-show():Observable<Destination[]>{
-  return this.http.get
-
+  )
 
 }
 
 
 
+showAll():Observable<Destination[]>{
+  return this.http.get<Destination[]>(this.url,  this.getHttpOptions()).pipe(
+    catchError((err: any)=>{
+      console.error(err);
+      return throwError(
+        ()=> new Error('DestinationService.get(): error getting destinations ')
+      )
+    })
+)
+}
 
+destroy(id:number): Observable<void> {
+  return this.http.delete<void>(this.url+"/"+ id, this.getHttpOptions()).pipe(
+   catchError((err: any)=>{
+     console.error(err);
+     return throwError(
+       ()=> new Error('destinationService.delete(): error deleting destination')
+     )
+   })
+
+  );
+
+
+}
 
 
 

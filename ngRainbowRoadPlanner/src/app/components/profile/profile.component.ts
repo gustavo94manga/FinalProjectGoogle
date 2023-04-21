@@ -96,7 +96,7 @@ editProfile(user:User){
       this.reload();
     },
     error: (failure) => {
-      console.error('Error getting todo list');
+      console.error('Error getting edit prifile');
       console.error(failure);
     }
 })
