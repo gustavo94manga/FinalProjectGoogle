@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { TripComponent } from './components/trip/trip.component';
 import { ActivityComponent } from './components/activity/activity.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ActivityComponent } from './components/activity/activity.component';
     LoginComponent,
     TripComponent,
     ActivityComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
