@@ -1,32 +1,37 @@
+import { Trip } from './trip';
+
 export class Leg {
+  id: number;
   estimatedMiles: number;
-  tripId: number;
+  trip: Trip;
   actualMiles: number;
   name: string;
   description: string;
-  startDestinationId: number;
-  endDestinationId: number;
+  startDestination: number;
+  endDestination: number;
   legNumber: number;
   notes: string;
 
   constructor(
+    id: number = 0,
     estimatedMiles: number = 0,
-    tripId: number = 0,
     actualMiles: number = 0,
     name: string = '',
     description: string = '',
-    startDestinationId: number = 0,
-    endDestinationId: number = 0,
     legNumber: number = 0,
-    notes: string = ''
-  ){
+    notes: string = '',
+    startDestination: number = 0,
+    endDestination: number = 0,
+    trip: Trip
+  ) {
+    this.id = id;
     this.estimatedMiles = estimatedMiles;
-    this.tripId = tripId;
+    this.trip = trip;
     this.actualMiles = actualMiles;
     this.name = name;
     this.description = description;
-    this.startDestinationId = startDestinationId;
-    this.endDestinationId = endDestinationId;
+    this.startDestination = startDestination;
+    this.endDestination = endDestination;
     this.legNumber = legNumber;
     this.notes = notes;
   }
