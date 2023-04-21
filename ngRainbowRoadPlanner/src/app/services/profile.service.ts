@@ -19,7 +19,6 @@ private url = environment.baseUrl + 'api/users';
 
 constructor(private http: HttpClient, private datePipe: DatePipe, private auth: AuthService) { }
 
-username ='admin';
 
 
 getHttpOptions() {

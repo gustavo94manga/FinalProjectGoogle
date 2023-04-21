@@ -12,7 +12,7 @@ fee:number;
 active:boolean;
 accomodations: any[] | undefined;
 activity: any[] | undefined;
-address: Address;
+address: Address | null;
 
 
 constructor(
@@ -26,7 +26,7 @@ constructor(
   active:boolean=true,
   accomodations: any[] = [],
   activity: any[] = [],
-  address: Address,
+  address: Address | null = null,
 
 ){
 
