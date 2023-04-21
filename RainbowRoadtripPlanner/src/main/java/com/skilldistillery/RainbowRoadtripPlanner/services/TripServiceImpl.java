@@ -19,8 +19,8 @@ public class TripServiceImpl implements TripService {
 	private UserRepository userRepo;
 
 	@Override
-	public List<Trip> index(String username) {
-		return tripRepo.findByUser_Username(username);
+	public List<Trip> index() {
+		return tripRepo.findAll();
 	}
 
 	@Override

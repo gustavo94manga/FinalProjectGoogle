@@ -59,7 +59,7 @@ public class Trip {
 	
 	@ManyToOne
 	@JoinColumn(name = "vehicle_id")
-	private Vehicle vehicles;
+	private Vehicle vehicle;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "trip")
@@ -170,11 +170,11 @@ public class Trip {
 	}
 
 	public Vehicle getVehicle() {
-		return vehicles;
+		return vehicle;
 	}
 
-	public void setVehicle(Vehicle vehicles) {
-		this.vehicles = vehicles;
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 
 	public List<Comment> getComments() {
@@ -215,7 +215,7 @@ public class Trip {
 		return "Trip [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", roundTrip=" + roundTrip
 				+ ", miles=" + miles + ", createDate=" + createDate + ", updateDate=" + updateDate + ", title=" + title
 				+ ", description=" + description + ", imageUrl=" + imageUrl + ", active=" + active + ", legs=" + legs
-				+ ", vehicle=" + vehicles + ", comments=" + comments + "]";
+				+ ", vehicle=" + vehicle + ", comments=" + comments + "]";
 	}
 	
 	

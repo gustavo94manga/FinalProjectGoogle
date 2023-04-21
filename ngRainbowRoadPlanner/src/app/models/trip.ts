@@ -13,10 +13,10 @@ export class Trip {
   description: string;
   imageUrl: string;
   active: boolean;
-  legs: any[] | undefined;
-  vehicles: Vehicle;
-  comments: any[] | undefined;
-  users: User;
+  legs: any[] | null;
+  vehicle: Vehicle | null;
+  comments: any[] | null;
+  user: User | null;
 
   constructor(
     id: number = 0,
@@ -31,9 +31,9 @@ export class Trip {
     imageUrl: string = '',
     active: boolean = false,
     legs: any[] = [],
-    vehicles: Vehicle,
+    vehicle: Vehicle | null = null,
     comments: any[] = [],
-    users: User
+    user: User | null = null
   ) {
     this.id = id;
     this.startDate = startDate;
@@ -47,8 +47,8 @@ export class Trip {
     this.imageUrl = imageUrl;
     this.active = active;
     this.legs = legs;
-    this.vehicles = vehicles;
+    this.vehicle = vehicle;
     this.comments = comments;
-    this.users = users;
+    this.user = user;
   }
 }
