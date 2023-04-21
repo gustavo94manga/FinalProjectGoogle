@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.RainbowRoadtripPlanner.entities.Trip;
 import com.skilldistillery.RainbowRoadtripPlanner.entities.User;
 import com.skilldistillery.RainbowRoadtripPlanner.services.UserService;
 
@@ -32,6 +33,8 @@ public class UserController {
 	public List<User> listAllUsers() {
 		return userService.listAllUsers();
 	}
+	
+	
 	
 	@GetMapping("users/{username}")
 	public User getUserByUsername(@PathVariable String username) {

@@ -11,7 +11,7 @@ export class User {
   aboutMe: string;
   createDate: string;
   updateDate: string;
-
+  trips: any[] | undefined;
 
   constructor(
   id: number = 0,
@@ -26,6 +26,7 @@ export class User {
   aboutMe: string='',
   createDate: string='',
   updateDate: string='',
+  trips: any[]=[]
   ) {
   this.id = id;
   this.username= username;
@@ -39,5 +40,6 @@ export class User {
   this.aboutMe = aboutMe;
   this.createDate = createDate;
   this.updateDate= updateDate;
+  this.trips=trips;
   }
 }
