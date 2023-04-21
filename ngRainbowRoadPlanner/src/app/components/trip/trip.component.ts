@@ -35,6 +35,14 @@ createTrip(trip: Trip){
   })
 }
 
+updateTrip(trip: Trip){
+  this.tripService.update(trip).subscribe({
+    next:(updated)=>{
+    this.selected=updated;
+    }
+  })
+}
+
 
 
 
