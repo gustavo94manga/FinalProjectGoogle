@@ -81,6 +81,31 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `destination`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `destination` ;
+
+CREATE TABLE IF NOT EXISTS `destination` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `address_id` INT NOT NULL,
+  `description` TEXT NULL,
+  `image_url` VARCHAR(2000) NULL,
+  `notes` TEXT NULL,
+  `phone` VARCHAR(45) NULL,
+  `fee` DECIMAL(5,2) NULL,
+  `active` TINYINT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_destination_address1_idx` (`address_id` ASC),
+  CONSTRAINT `fk_destination_address1`
+    FOREIGN KEY (`address_id`)
+    REFERENCES `address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `trip`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `trip` ;
@@ -99,9 +124,13 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `description` TEXT NULL,
   `image_url` VARCHAR(2000) NULL,
   `active` TINYINT NULL,
+  `start_destination_id` INT NOT NULL,
+  `end_destination_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_trip_user_idx` (`user_id` ASC),
   INDEX `fk_trip_vehicle1_idx` (`vehicle_id` ASC),
+  INDEX `fk_trip_destination1_idx` (`start_destination_id` ASC),
+  INDEX `fk_trip_destination2_idx` (`end_destination_id` ASC),
   CONSTRAINT `fk_trip_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
@@ -110,6 +139,16 @@ CREATE TABLE IF NOT EXISTS `trip` (
   CONSTRAINT `fk_trip_vehicle1`
     FOREIGN KEY (`vehicle_id`)
     REFERENCES `vehicle` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_trip_destination1`
+    FOREIGN KEY (`start_destination_id`)
+    REFERENCES `destination` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_trip_destination2`
+    FOREIGN KEY (`end_destination_id`)
+    REFERENCES `destination` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -139,31 +178,6 @@ CREATE TABLE IF NOT EXISTS `comment` (
   CONSTRAINT `fk_comment_trip1`
     FOREIGN KEY (`trip_id`)
     REFERENCES `trip` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `destination`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `destination` ;
-
-CREATE TABLE IF NOT EXISTS `destination` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  `address_id` INT NOT NULL,
-  `description` TEXT NULL,
-  `image_url` VARCHAR(2000) NULL,
-  `notes` TEXT NULL,
-  `phone` VARCHAR(45) NULL,
-  `fee` DECIMAL(5,2) NULL,
-  `active` TINYINT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_destination_address1_idx` (`address_id` ASC),
-  CONSTRAINT `fk_destination_address1`
-    FOREIGN KEY (`address_id`)
-    REFERENCES `address` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -418,14 +432,26 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `destination`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rainbowdb`;
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (1, 'McDonalds', 1, 'food', NULL, NULL, '555-55-5555', NULL, NULL);
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (2, 'Shell', 2, 'gas', NULL, NULL, NULL, 2.89, NULL);
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (3, 'Hilton', 3, 'hotel', NULL, NULL, '876-332-2763', 99.99, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `trip`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`) VALUES (1, '2023-02-02', '2023-02-22', true, 500, 1, 1, NULL, NULL, 'First trip', 'test trip 1', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-CYcYaVQnP9DF8EQ7fIgEL-raKRaXNO7uqpRgSaOVQSqU6K6rovc9mLYDc2plipuboIA&usqp=CAU', NULL);
-INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`) VALUES (2, '2019-01-01', '2019-01-09', true, 600, 1, 2, NULL, NULL, 'Second Trip', 'test trip 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXWedvqc3ZZqnTIqlp-Kyi0BWTBOknEJ3Dwmn2-v3kHcwzyXOdHT_LdGr-vNG4dXtUKg&usqp=CAU', NULL);
-INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`) VALUES (3, '2022-06-03', '2022-07-01', false, 366, 2, 2, NULL, NULL, 'Third trip', 'test trip 3', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPCWS4qr1QByDcUkr-9uIajXFPFsxCkqlsBCZh9Wr2Osywiu5z14_fQfNkiFsDvEx9Bec&usqp=CAU', NULL);
-INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`) VALUES (4, '2023-03-03', '2023-05-05', false, 344, 3, 1, NULL, NULL, 'last trip', 'test trip 4', 'https://us.123rf.com/450wm/edgarbullon/edgarbullon2005/edgarbullon200500265/148254276-epic-adventurous-extreme-sport-composite-of-rock-climbing-man-rappelling-from-a-cliff-mountain.jpg?ver=6', NULL);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (1, '2023-02-02', '2023-02-22', true, 500, 1, 1, NULL, NULL, 'First trip', 'test trip 1', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-CYcYaVQnP9DF8EQ7fIgEL-raKRaXNO7uqpRgSaOVQSqU6K6rovc9mLYDc2plipuboIA&usqp=CAU', NULL, 1, 3);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (2, '2019-01-01', '2019-01-09', true, 600, 1, 2, NULL, NULL, 'Second Trip', 'test trip 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXWedvqc3ZZqnTIqlp-Kyi0BWTBOknEJ3Dwmn2-v3kHcwzyXOdHT_LdGr-vNG4dXtUKg&usqp=CAU', NULL, 3, 1);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (3, '2022-06-03', '2022-07-01', false, 366, 2, 2, NULL, NULL, 'Third trip', 'test trip 3', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPCWS4qr1QByDcUkr-9uIajXFPFsxCkqlsBCZh9Wr2Osywiu5z14_fQfNkiFsDvEx9Bec&usqp=CAU', NULL, 1, 2);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (4, '2023-03-03', '2023-05-05', false, 344, 3, 1, NULL, NULL, 'last trip', 'test trip 4', 'https://us.123rf.com/450wm/edgarbullon/edgarbullon2005/edgarbullon200500265/148254276-epic-adventurous-extreme-sport-composite-of-rock-climbing-man-rappelling-from-a-cliff-mountain.jpg?ver=6', NULL, 2, 3);
 
 COMMIT;
 
@@ -436,18 +462,6 @@ COMMIT;
 START TRANSACTION;
 USE `rainbowdb`;
 INSERT INTO `comment` (`id`, `photo`, `description`, `trip_id`, `user_id`, `comment_date`, `active`) VALUES (1, NULL, 'testing comment', 1, 1, '2023-02-02', NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `destination`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `rainbowdb`;
-INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (1, 'McDonalds', 1, 'food', NULL, NULL, '555-55-5555', NULL, NULL);
-INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (2, 'Shell', 2, 'gas', NULL, NULL, NULL, 2.89, NULL);
-INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (3, 'Hilton', 3, 'hotel', NULL, NULL, '876-332-2763', 99.99, NULL);
 
 COMMIT;
 

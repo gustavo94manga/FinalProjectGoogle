@@ -3,7 +3,7 @@ import { Trip } from './trip';
 export class Leg {
   id: number;
   estimatedMiles: number;
-  trip: Trip;
+  trip: Trip | null;
   actualMiles: number;
   name: string;
   description: string;
@@ -22,7 +22,7 @@ export class Leg {
     notes: string = '',
     startDestination: number = 0,
     endDestination: number = 0,
-    trip: Trip
+    trip: Trip | null = null
   ) {
     this.id = id;
     this.estimatedMiles = estimatedMiles;

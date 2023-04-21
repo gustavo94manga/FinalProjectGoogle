@@ -9,7 +9,7 @@ export class Vehicle {
   capacity: number;
   isElectric: boolean;
   trips: any[] | undefined;
-  user: User;
+  user: User | null;
 
   constructor(
     id: number = 0,
@@ -20,7 +20,7 @@ export class Vehicle {
     capacity: number = 0,
     isElectric: boolean = false,
     trips: any[] = [],
-    user: User
+    user: User | null = null
   ){
     this.id = id;
     this.make = make;

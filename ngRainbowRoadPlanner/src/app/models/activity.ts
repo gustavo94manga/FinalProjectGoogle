@@ -7,7 +7,7 @@ export class Activity {
   description: string;
   priorityLevel: number;
   timeToSpend: string;
-  leg: Leg;
+  leg: Leg | null;
 
   constructor(
   legId: number = 0,
@@ -16,7 +16,7 @@ export class Activity {
   description: string = '',
   priorityLevel: number = 0,
   timeToSpend: string = '',
-  leg: Leg
+  leg: Leg | null = null
   ){
     this.legId = legId;
     this.destinationId = destinationId;
