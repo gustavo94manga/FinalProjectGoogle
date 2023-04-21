@@ -29,6 +29,7 @@
         <li class="nav-item" *ngIf="!loggedIn()">
           <a class="nav-link" [routerLink]="['/login']">Login</a>
         </li>
+
         <li *ngIf="loggedIn()">
           <app-logout></app-logout>
         </li>
