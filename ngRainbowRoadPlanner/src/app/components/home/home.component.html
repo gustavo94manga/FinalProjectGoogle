@@ -113,6 +113,9 @@
 
 <input type="submit" class="btn btn-primary" value="Show all Trips" (click)="viewRoadtrips = true" (click)="displayAllRoadtrips()">
 
+<h2></h2>
+
+
 <div id="viewRoadtrips" *ngIf="viewRoadtrips">
   <div *ngFor="let trip of trips">
     <h2 (click)="selectedTrip = trip">{{trip.title}}</h2>
@@ -132,6 +135,11 @@
 
   </ul>
   <input type="submit" value = "Hide Trip Details" class = "btn btn-primary" (click)="selectedTrip = null">
+
+  </div>
+
+  <div id="gallery">
+
 
   </div>
 
