@@ -1,5 +1,6 @@
 import { Trip } from 'src/app/models/trip';
 import { Component } from '@angular/core';
+import { User } from 'src/app/models/user';
 
 
 @Component({
@@ -9,9 +10,13 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-
+  viewRoadtrips: boolean = false;
   selected: Trip | null = null;
   activeSlide = 0;
+  user: User = new User;
+  selectedUser: User | null = null;
+  trips: Trip[] = [];
+  private tripService tripServ;
 
   // selected: Trip | null = null;
 
@@ -26,6 +31,10 @@ export class HomeComponent {
 
   displayTripImages(tripImage: Trip) {
     this.selected = tripImage;
+  }
+
+  displayAllRoadtrips(){
+    this.tripServ.displayAllTrips();
   }
 
 

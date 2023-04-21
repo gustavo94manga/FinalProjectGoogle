@@ -2,6 +2,7 @@ import { ProfileService } from './../../services/profile.service';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Trip } from 'src/app/models/trip';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -16,6 +17,7 @@ user: User = new User();
 selected: User | null = null;
 username: string ='';
 editUser: User | null = null;
+
 
 
 constructor(
