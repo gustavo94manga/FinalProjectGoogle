@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TripComponent } from './components/trip/trip.component';
 import { ActivityComponent } from './components/activity/activity.component';
 import { GeoResultToAddressPipe } from './pipes/geo-result-to-address.pipe';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { GeoResultToAddressPipe } from './pipes/geo-result-to-address.pipe';
     TripComponent,
     ActivityComponent,
     GeoResultToAddressPipe,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
