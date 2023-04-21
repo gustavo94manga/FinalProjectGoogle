@@ -30,6 +30,10 @@ createTrip(trip: Trip){
     next:(madeTrip)=>{
       this.selected=madeTrip;
       console.log(madeTrip)
+    },
+    error: (failure) => {
+      console.error('Error create trip');
+      console.error(failure);
     }
 
   })
@@ -39,6 +43,10 @@ updateTrip(trip: Trip){
   this.tripService.update(trip).subscribe({
     next:(updated)=>{
     this.selected=updated;
+    },
+    error: (failure) => {
+      console.error('Error update trip');
+      console.error(failure);
     }
   })
 }

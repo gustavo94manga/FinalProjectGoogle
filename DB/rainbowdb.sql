@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `roundtrip` TINYINT NULL,
   `miles` INT NULL,
   `user_id` INT NOT NULL,
-  `vehicle_id` INT NOT NULL,
+  `vehicle_id` INT NULL,
   `create_date` DATETIME NULL,
   `update_date` DATETIME NULL,
   `title` VARCHAR(45) NULL,
