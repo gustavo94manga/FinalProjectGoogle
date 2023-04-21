@@ -1,12 +1,14 @@
 <h1>Trip Page</h1>
 <div>
   <form>
+    //inout type for start date and end date. bind these to 'newtrip.startdate'
+    and 'newtrip.enddate'
     <label for="startDestination">Start</label>
     <input
       type="text"
       name="startDestination"
       #startDestination="ngModel"
-      [ngModel]="newTrip.startDestination?.address"
+      [ngModel]="newTrip.startDestination?.address?.city"
     />
 
     <label for="endDestination">End</label>
@@ -14,9 +16,9 @@
       type="text"
       name="endDestination"
       #endDestination="ngModel"
-      [ngModel]="newTrip.endDestination?.address"
+      [ngModel]="newTrip.endDestination?.address?.city"
     />
-    <button (click)="createTrip()">Route</button>
+    <button (click)="createTrip(newTrip)">Create Trip</button>
   </form>
   <google-map
     height="45em"

@@ -7,6 +7,7 @@ import { FormControl } from '@angular/forms';
 import { MapGeocoder } from '@angular/google-maps';
 import { Address } from 'src/app/models/address';
 import { Destination } from 'src/app/models/destination';
+import { GeoResultToAddressPipe } from 'src/app/pipes/geo-result-to-address.pipe';
 
 @Component({
   selector: 'app-trip',
@@ -25,16 +26,13 @@ export class TripComponent implements OnInit {
     private auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private geocoder: MapGeocoder
+    private geocoder: MapGeocoder,
+    private addrPipe: GeoResultToAddressPipe
   ) {}
 
   ngOnInit() {}
 
-  createTrip() {
-    let trip = new Trip();
-    // trip.startDestination = this.startDestination.value;
-    // trip.endDestination = this.endDestination.value;
-
+  createTrip(trip: Trip) {
     this.tripService.create(trip).subscribe({
       next: (madeTrip) => {
         this.selected = madeTrip;
@@ -59,16 +57,11 @@ export class TripComponent implements OnInit {
       next: (result) => {
         console.log(result);
         let address = new Address();
-        let geoAddress: any = result.results[0].address_components[0];
-        address.street =
-          geoAddress[0].long_name + ' ' + geoAddress[1].long_name;
-        address.city = geoAddress[2].long_name;
-        address.state = geoAddress[4].short_name;
-        address.zip = geoAddress[6].short_name;
-        console.log(address);
+        let geoAddress: any = result.results[0].address_components;
+        address = this.addrPipe.transform(geoAddress);
         let dest = new Destination();
         dest.address = address;
-        dest.name = geoAddress[0].long_name;
+        dest.name = address.city;
         console.log(dest);
         if (this.newTrip.startDestination == null) {
           this.newTrip.startDestination = dest;

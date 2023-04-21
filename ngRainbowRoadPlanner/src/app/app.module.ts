@@ -16,6 +16,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TripComponent } from './components/trip/trip.component';
 import { ActivityComponent } from './components/activity/activity.component';
+import { GeoResultToAddressPipe } from './pipes/geo-result-to-address.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ActivityComponent } from './components/activity/activity.component';
     LoginComponent,
     TripComponent,
     ActivityComponent,
+    GeoResultToAddressPipe,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,7 @@ import { ActivityComponent } from './components/activity/activity.component';
     NgbModule,
     GoogleMapsModule,
   ],
-  providers: [DatePipe, NgbActiveModal],
+  providers: [DatePipe, NgbActiveModal, GeoResultToAddressPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
