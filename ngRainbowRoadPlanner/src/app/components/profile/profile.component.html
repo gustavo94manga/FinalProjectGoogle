@@ -1,38 +1,39 @@
 <h1>Profile Page</h1>
-<div class="container mt-5">
 
-  <div class="row d-flex justify-content-center">
+<div>
 
-      <div class="col-md-7">
+  <div>
 
-          <div class="card p-3 py-4">
+      <div>
 
-              <div class="text-center">
-                  <img src="https://i.imgur.com/bDLhJiP.jpg" width="100" class="rounded-circle">
+          <div>
+
+              <div>
+                  <img src="{{selected?.imageUrl}}" width="100" class="rounded-circle">
               </div>
 
-              <div class="text-center mt-3">
-                  <span class="bg-secondary p-1 px-4 rounded text-white">Pro</span>
-                  <h5 class="mt-2 mb-0">Alexender Schidmt</h5>
-                  <span>UI/UX Designer</span>
+              <div>
+                  <span>{{selected?.role}}</span>
+                  <h5>{{selected?.firstName}} {{selected?.lastName}}</h5>
 
-                  <div class="px-4 mt-1">
-                      <p class="fonts">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+
+                  <div>
+                      <p>About me: {{selected?.aboutMe}} </p>
 
                   </div>
 
-                   <ul class="social-list">
-                      <li><i class="fa fa-facebook"></i></li>
-                      <li><i class="fa fa-dribbble"></i></li>
-                      <li><i class="fa fa-instagram"></i></li>
-                      <li><i class="fa fa-linkedin"></i></li>
-                      <li><i class="fa fa-google"></i></li>
+                   <ul>
+                      <li><i></i></li>
+                      <li><i></i></li>
+                      <li><i></i></li>
+                      <li><i></i></li>
+                      <li><i></i></li>
                   </ul>
 
-                  <div class="buttons">
+                  <div>
 
-                      <button class="btn btn-outline-primary px-4">Message</button>
-                      <button class="btn btn-primary px-4 ms-3">Contact</button>
+                      <button (click)="getUserInfo()">Get User Info</button>
+
                   </div>
 
 
