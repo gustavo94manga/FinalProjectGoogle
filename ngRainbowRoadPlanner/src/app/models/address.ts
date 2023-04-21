@@ -8,7 +8,7 @@ export class Address {
   state: string;
   zip:string;
   active: boolean;
-  destination: Destination;
+  destination: Destination | null;
 
 
 
@@ -22,7 +22,7 @@ constructor(
   state: string='',
   zip:string='',
   active: boolean=true,
-  destination: Destination
+  destination: Destination | null = null
 
 
 

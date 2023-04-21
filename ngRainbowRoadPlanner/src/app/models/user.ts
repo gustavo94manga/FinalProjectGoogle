@@ -11,9 +11,9 @@ export class User {
   aboutMe: string;
   createDate: string;
   updateDate: string;
-  vehicles: any[] | undefined;
-  comments: any[] | undefined;
-  trips: any[] | undefined;
+  vehicles: any[] | null;
+  comments: any[] | null;
+  trips: any[] | null;
 
   constructor(
     id: number = 0,
