@@ -2,6 +2,7 @@ package com.skilldistillery.RainbowRoadtripPlanner.services;
 
 import java.util.List;
 
+import com.skilldistillery.RainbowRoadtripPlanner.entities.Trip;
 import com.skilldistillery.RainbowRoadtripPlanner.entities.User;
 
 public interface UserService {
@@ -10,4 +11,5 @@ public interface UserService {
 	User create(User user);
 	User update(int id, User user);
 	boolean deleteById(int id);
+
 }

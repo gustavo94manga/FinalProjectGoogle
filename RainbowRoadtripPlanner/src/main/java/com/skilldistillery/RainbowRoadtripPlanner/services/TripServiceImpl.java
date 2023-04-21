@@ -62,4 +62,10 @@ public class TripServiceImpl implements TripService {
 		return deleted;
 	}
 
+	@Override
+	public List<Trip> findUserTrips(String username) {
+		// TODO Auto-generated method stub
+		return tripRepo.findByUser_Username(username);
+	}
+
 }

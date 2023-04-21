@@ -1,6 +1,7 @@
 import { ProfileService } from './../../services/profile.service';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -13,8 +14,8 @@ export class ProfileComponent {
 
 user: User = new User();
 selected: User | null = null;
-
-
+username: string ='';
+editUser: User | null = null;
 
 
 constructor(
@@ -26,26 +27,59 @@ constructor(
 
 
 
+reload(){
+this.getLoggedInUserInfo();
 
 
-
-
-
-
-getUserInfo(){
-  this.profileService.show().subscribe({
-    next:(foundUser)=>{
-     this.selected=foundUser;
-     console.log(this.selected)
-    },
-    error:(fail)=>{
-      console.log('ohh no');
-    }
-  })
 
 }
 
 
+
+
+
+getLoggedInUserInfo(){
+   this.auth.getLoggedInUser().subscribe({
+    next:(foundUser)=>{
+      this.username =foundUser.username;
+      console.log(this.selected)
+      this.profileService.show(this.username).subscribe({
+        next:(foundUser)=>{
+         this.selected=foundUser;
+        //  console.log(this.selected)
+        },
+        error:(fail)=>{
+          console.log('ohh no');
+        }
+      })
+     },
+     error:(fail)=>{
+       console.log('ohh no');
+     }
+   });
+}
+
+setEditUser(){
+  this.editUser = Object.assign({}, this.selected)
+}
+cancelEdit(){
+  this.editUser=null;
+
+}
+
+editProfile(user:User){
+  this.profileService.update(user).subscribe({
+    next: (user) =>{
+      // console.log(user)
+
+      this.reload();
+    },
+    error: (failure) => {
+      console.error('Error getting todo list');
+      console.error(failure);
+    }
+})
+}
 
 
 
