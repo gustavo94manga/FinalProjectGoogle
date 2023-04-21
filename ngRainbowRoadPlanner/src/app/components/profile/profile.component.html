@@ -1,1 +1,60 @@
-<p>profile works!</p>
+<h1>Profile Page</h1>
+
+<div>
+
+  <div>
+
+      <div>
+
+          <div>
+
+              <div>
+                  <img src="{{selected?.imageUrl}}" width="100" class="rounded-circle">
+              </div>
+
+              <div>
+                  <span>{{selected?.role}}</span>
+                  <h5>{{selected?.firstName}} {{selected?.lastName}}</h5>
+
+
+                  <div>
+                      <p>About me: {{selected?.aboutMe}} </p>
+
+                  </div>
+
+                   <ul>
+                      <li *ngFor="let trip of selected?.trips"></li>
+
+                  </ul>
+
+                  <div>
+
+                      <button (click)="getLoggedInUserInfo()">Get User Info</button>
+                      <button (click)="setEditUser()">Update Profile</button>
+                  </div>
+
+
+              </div>
+              <div id="todoEdit" *ngIf="editUser">
+                <h1>Edit Profile</h1>
+                <form>
+
+                  <p>About me <input type="text" name="description"  [(ngModel)]="editUser.aboutMe"/><br /></p>
+                  <p>Profile pic <input type="text" name="dueDate" [(ngModel)]="editUser.imageUrl"><br></p>
+
+
+                  <button (click)="cancelEdit()">Cancel</button>
+                  <button (click)="editProfile(editUser)">Save</button>
+                </form>
+
+                </div>
+
+
+
+          </div>
+
+      </div>
+
+  </div>
+
+</div>

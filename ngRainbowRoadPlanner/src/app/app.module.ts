@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DatePipe } from '@angular/common';
@@ -15,7 +15,15 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NavbarComponent, LogoutComponent, SignupComponent, ProfileComponent, LoginComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    NavbarComponent,
+    LogoutComponent,
+    SignupComponent,
+    ProfileComponent,
+    LoginComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,7 +31,7 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule,
     NgbModule,
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, NgbActiveModal],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

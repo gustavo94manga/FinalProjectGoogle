@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `phone` VARCHAR(45) NULL,
-  `image_url` VARCHAR(45) NULL,
+  `image_url` VARCHAR(2000) NULL,
   `about_me` TEXT NULL,
   `create_date` DATETIME NULL,
   `update_date` DATETIME NULL,
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `update_date` DATETIME NULL,
   `title` VARCHAR(45) NULL,
   `description` TEXT NULL,
-  `image_url` VARCHAR(100) NULL,
+  `image_url` VARCHAR(2000) NULL,
   `active` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_trip_user_idx` (`user_id` ASC),
@@ -385,7 +385,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (1, 'admin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'admin', 'bob', 'dobs', '555-55-5555', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (1, 'admin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'admin', 'bob', 'dobs', '544-344-4322', 'https://img.freepik.com/free-icon/user_318-159711.jpg', NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (2, 'kenny', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'user', 'Kenny', 'Yan', '322-424-7488', 'https://img.freepik.com/free-icon/user_318-159711.jpg', NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (3, 'collin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'user', 'Collin', 'Wheat', '740-445-9884', 'https://img.freepik.com/free-icon/user_318-159711.jpg', NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (4, 'angel', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'user', 'Angel G', 'Guevara', '334-432-2344', 'https://img.freepik.com/free-icon/user_318-159711.jpg', NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (5, 'david', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'user', 'David', 'Dunlevy', '375-334-2773', 'https://img.freepik.com/free-icon/user_318-159711.jpg', NULL, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -418,7 +422,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`) VALUES (1, '2023-02-02', '2023-02-22', true, 500, 1, 1, NULL, NULL, 'First trip', 'test trip', NULL, NULL);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`) VALUES (1, '2023-02-02', '2023-02-22', true, 500, 1, 1, NULL, NULL, 'First trip', 'test trip 1', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-CYcYaVQnP9DF8EQ7fIgEL-raKRaXNO7uqpRgSaOVQSqU6K6rovc9mLYDc2plipuboIA&usqp=CAU', NULL);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`) VALUES (2, '2019-01-01', '2019-01-09', true, 600, 1, 2, NULL, NULL, 'Second Trip', 'test trip 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXWedvqc3ZZqnTIqlp-Kyi0BWTBOknEJ3Dwmn2-v3kHcwzyXOdHT_LdGr-vNG4dXtUKg&usqp=CAU', NULL);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`) VALUES (3, '2022-06-03', '2022-07-01', false, 366, 2, 2, NULL, NULL, 'Third trip', 'test trip 3', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPCWS4qr1QByDcUkr-9uIajXFPFsxCkqlsBCZh9Wr2Osywiu5z14_fQfNkiFsDvEx9Bec&usqp=CAU', NULL);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`) VALUES (4, '2023-03-03', '2023-05-05', false, 344, 3, 1, NULL, NULL, 'last trip', 'test trip 4', 'https://us.123rf.com/450wm/edgarbullon/edgarbullon2005/edgarbullon200500265/148254276-epic-adventurous-extreme-sport-composite-of-rock-climbing-man-rappelling-from-a-cliff-mountain.jpg?ver=6', NULL);
 
 COMMIT;
 
@@ -501,6 +508,24 @@ COMMIT;
 START TRANSACTION;
 USE `rainbowdb`;
 INSERT INTO `trip_has_user` (`trip_id`, `user_id`) VALUES (1, 1);
+INSERT INTO `trip_has_user` (`trip_id`, `user_id`) VALUES (2, 3);
+INSERT INTO `trip_has_user` (`trip_id`, `user_id`) VALUES (3, 2);
+INSERT INTO `trip_has_user` (`trip_id`, `user_id`) VALUES (4, 2);
+INSERT INTO `trip_has_user` (`trip_id`, `user_id`) VALUES (4, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_has_friend`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rainbowdb`;
+INSERT INTO `user_has_friend` (`user_id`, `friend_id`) VALUES (1, 2);
+INSERT INTO `user_has_friend` (`user_id`, `friend_id`) VALUES (1, 3);
+INSERT INTO `user_has_friend` (`user_id`, `friend_id`) VALUES (2, 3);
+INSERT INTO `user_has_friend` (`user_id`, `friend_id`) VALUES (1, 4);
+INSERT INTO `user_has_friend` (`user_id`, `friend_id`) VALUES (3, 4);
 
 COMMIT;
 

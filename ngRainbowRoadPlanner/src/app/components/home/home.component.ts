@@ -13,6 +13,8 @@ export class HomeComponent {
   selected: Trip | null = null;
   activeSlide = 0;
 
+  // selected: Trip | null = null;
+
   prevSlide() {
     this.activeSlide = (this.activeSlide - 1 +5) % 5;
   }
@@ -21,9 +23,11 @@ export class HomeComponent {
     this.activeSlide = (this.activeSlide + 1 + 5) % 5;
   }
 
+
   displayTripImages(tripImage: Trip) {
     this.selected = tripImage;
   }
+
 
 
 }
