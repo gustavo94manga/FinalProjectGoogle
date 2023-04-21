@@ -69,6 +69,14 @@ public class Trip {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "start_destination_id")
+    private Destination startDestination;
+    
+    @ManyToOne
+    @JoinColumn(name = "end_destination_id")
+    private Destination endDestination;
+    
 	public Trip() {
 		
 	}
@@ -191,6 +199,22 @@ public class Trip {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Destination getStartDestination() {
+		return startDestination;
+	}
+
+	public void setStartDestination(Destination startDestination) {
+		this.startDestination = startDestination;
+	}
+
+	public Destination getEndDestination() {
+		return endDestination;
+	}
+
+	public void setEndDestination(Destination endDestination) {
+		this.endDestination = endDestination;
 	}
 
 	@Override

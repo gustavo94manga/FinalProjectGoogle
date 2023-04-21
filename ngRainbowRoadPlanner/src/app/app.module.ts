@@ -13,8 +13,11 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TripComponent } from './components/trip/trip.component';
 import { ActivityComponent } from './components/activity/activity.component';
+import { GeoResultToAddressPipe } from './pipes/geo-result-to-address.pipe';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -27,16 +30,19 @@ import { ActivityComponent } from './components/activity/activity.component';
     LoginComponent,
     TripComponent,
     ActivityComponent,
+    GeoResultToAddressPipe,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     GoogleMapsModule,
   ],
-  providers: [DatePipe, NgbActiveModal],
+  providers: [DatePipe, NgbActiveModal, GeoResultToAddressPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
