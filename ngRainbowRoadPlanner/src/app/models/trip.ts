@@ -1,3 +1,4 @@
+import { Destination } from './destination';
 import { User } from './user';
 import { Vehicle } from './vehicle';
 
@@ -17,6 +18,8 @@ export class Trip {
   vehicle: Vehicle | null;
   comments: any[] | null;
   user: User | null;
+  startDestination: Destination | null;
+  endDestination: Destination | null;
 
   constructor(
     id: number = 0,
@@ -33,7 +36,9 @@ export class Trip {
     legs: any[] = [],
     vehicle: Vehicle | null = null,
     comments: any[] = [],
-    user: User | null = null
+    user: User | null = null,
+    startDestination: Destination | null = null,
+    endDestination: Destination | null = null
   ) {
     this.id = id;
     this.startDate = startDate;
@@ -50,5 +55,7 @@ export class Trip {
     this.vehicle = vehicle;
     this.comments = comments;
     this.user = user;
+    this.startDestination = startDestination;
+    this.endDestination = endDestination;
   }
 }
