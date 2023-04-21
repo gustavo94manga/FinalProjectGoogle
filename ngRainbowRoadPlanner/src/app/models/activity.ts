@@ -1,6 +1,7 @@
 import { Leg } from "./leg";
 
 export class Activity {
+  id: number;
   legId: number;
   destinationId: number;
   didStop: boolean;
@@ -10,6 +11,7 @@ export class Activity {
   leg: Leg | null;
 
   constructor(
+  id: number = 0,
   legId: number = 0,
   destinationId: number = 0,
   didStop: boolean = false,
@@ -18,6 +20,7 @@ export class Activity {
   timeToSpend: string = '',
   leg: Leg | null = null
   ){
+    this.id = id;
     this.legId = legId;
     this.destinationId = destinationId;
     this.didStop = didStop;
