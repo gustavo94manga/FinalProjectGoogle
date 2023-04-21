@@ -29,7 +29,7 @@ constructor(
 
 reload(){
 this.getLoggedInUserInfo();
-
+this.editUser=null;
 
 
 }
