@@ -6,8 +6,8 @@ export class Comment {
   photo: string;
   description: string;
   commentDate: string;
-  user: User;
-  trip: Trip;
+  user: User | null;
+  trip: Trip | null;
   active: boolean;
 
   constructor(
@@ -15,8 +15,8 @@ export class Comment {
   photo: string = "",
   description: string = "",
   commentDate: string = "",
-  user: User,
-  trip: Trip,
+  user: User | null = null,
+  trip: Trip | null = null,
   active: boolean = false
   ){
     this.id = id;

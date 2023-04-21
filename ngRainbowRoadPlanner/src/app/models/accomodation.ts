@@ -6,7 +6,7 @@ id:number;
 name:string;
 description:string;
 iconUrl:string;
-destination: Destination;
+destination: Destination | null;
 
 constructor(
 
@@ -14,7 +14,8 @@ constructor(
   name:string='',
   description:string='',
   iconUrl:string='',
-  destination: Destination)
+  destination: Destination| null = null
+  )
   {
 
     this.id=id;

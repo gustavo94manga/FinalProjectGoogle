@@ -1,7 +1,8 @@
 import { ProfileService } from './../../services/profile.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Trip } from 'src/app/models/trip';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -10,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
 
 user: User = new User();
 selected: User | null = null;
@@ -96,7 +97,7 @@ editProfile(user:User){
       this.reload();
     },
     error: (failure) => {
-      console.error('Error getting todo list');
+      console.error('Error getting edit prifile');
       console.error(failure);
     }
 })
