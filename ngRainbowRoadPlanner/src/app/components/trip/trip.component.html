@@ -1,4 +1,26 @@
 <h1>Trip Page</h1>
-<!-- <div id="map-container"> -->
-<google-map height="45em" width="100%"></google-map>
-<!-- </div> -->
+<div>
+  <form>
+    <label for="startDestination">Start</label>
+    <input
+      type="text"
+      name="startDestination"
+      #startDestination="ngModel"
+      [ngModel]="newTrip.startDestination?.address"
+    />
+
+    <label for="endDestination">End</label>
+    <input
+      type="text"
+      name="endDestination"
+      #endDestination="ngModel"
+      [ngModel]="newTrip.endDestination?.address"
+    />
+    <button (click)="createTrip()">Route</button>
+  </form>
+  <google-map
+    height="45em"
+    width="100%"
+    (mapClick)="handleMapClick($event)"
+  ></google-map>
+</div>
