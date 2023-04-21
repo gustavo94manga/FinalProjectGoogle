@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  activeSlide = 0;
+  // selected: Trip | null = null;
+
+  prevSlide() {
+    this.activeSlide = (this.activeSlide - 1 +5) % 5;
+  }
+
+  nextSlide() {
+    this.activeSlide = (this.activeSlide + 1 + 5) % 5;
+  }
+
+
 }
