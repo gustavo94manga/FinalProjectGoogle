@@ -1,3 +1,5 @@
+import { Leg } from "./leg";
+
 export class Activity {
   legId: number;
   destinationId: number;
@@ -5,6 +7,7 @@ export class Activity {
   description: string;
   priorityLevel: number;
   timeToSpend: string;
+  leg: Leg;
 
   constructor(
   legId: number = 0,
@@ -12,7 +15,8 @@ export class Activity {
   didStop: boolean = false,
   description: string = '',
   priorityLevel: number = 0,
-  timeToSpend: string = ''
+  timeToSpend: string = '',
+  leg: Leg
   ){
     this.legId = legId;
     this.destinationId = destinationId;
@@ -20,6 +24,7 @@ export class Activity {
     this.description = description;
     this.priorityLevel = priorityLevel;
     this.timeToSpend = timeToSpend;
+    this.leg = leg;
   }
 
 }
