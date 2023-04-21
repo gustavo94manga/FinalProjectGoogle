@@ -1,4 +1,5 @@
 import { User } from "./user";
+import { Trip } from "./trip";
 
 export class Comment {
   id: number;
