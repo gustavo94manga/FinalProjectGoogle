@@ -1,4 +1,4 @@
-<h1>Profile Page</h1>
+<h1 class="center">Profile</h1>
 
 <div>
 
@@ -8,29 +8,32 @@
 
           <div>
 
-              <div>
+              <div class="center">
                   <img src="{{selected?.imageUrl}}" width="100" class="rounded-circle">
               </div>
 
-              <div>
-                  <span>{{selected?.role}}</span>
-                  <h5>{{selected?.firstName}} {{selected?.lastName}}</h5>
+              <div class="center">
 
-
-                  <div>
-                      <p>About me: {{selected?.aboutMe}} </p>
+                  <p>{{selected?.firstName}} {{selected?.lastName}}</p>
 
                   </div>
+                  <div>
+                    <p>About me</p>
+                      <p>{{selected?.aboutMe}} </p>
 
+                  </div>
+                    <div>
+                      <h3>My Trips</h3>
                    <ul>
-                      <li *ngFor="let trip of selected?.trips"></li>
+                      <li *ngFor="let trip of selected?.trips">{{trip.title}}</li>
 
                   </ul>
 
                   <div>
 
-                      <button (click)="getLoggedInUserInfo()">Get User Info</button>
+
                       <button (click)="setEditUser()">Update Profile</button>
+
                   </div>
 
 
@@ -45,6 +48,7 @@
 
                   <button (click)="cancelEdit()">Cancel</button>
                   <button (click)="editProfile(editUser)">Save</button>
+
                 </form>
 
                 </div>
