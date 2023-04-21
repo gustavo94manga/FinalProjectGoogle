@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,6 +12,8 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { TripComponent } from './components/trip/trip.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { LoginComponent } from './components/login/login.component';
     SignupComponent,
     ProfileComponent,
     LoginComponent,
+    TripComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +32,7 @@ import { LoginComponent } from './components/login/login.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
+    GoogleMapsModule,
   ],
   providers: [DatePipe, NgbActiveModal],
   bootstrap: [AppComponent],
