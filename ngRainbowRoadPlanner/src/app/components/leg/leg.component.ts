@@ -22,7 +22,8 @@ export class LegComponent implements OnInit {
   startDestination = new FormControl('');
   endDestination = new FormControl('');
 
-
+  startAddress: Address | null = null;
+  endAddress: Address | null = null;
   selected: Leg | null= null;
   newLeg: Leg = new Leg();
   editLeg: Leg | null = null;
@@ -46,7 +47,10 @@ export class LegComponent implements OnInit {
     this.newLeg.endDestination = null;
   }
 
-
+  clearLegAddresses() {
+    this.startAddress = null;
+    this.endAddress = null;
+  }
 
 
 setEditLeg(){
@@ -54,6 +58,7 @@ setEditLeg(){
 }
 
 createLeg(leg:Leg){
+
   this.legService.create(leg).subscribe({
     next:(madeLeg)=>{
       this.selected=madeLeg;
@@ -91,6 +96,13 @@ deleteLeg(id:number){
 })
 
 }
+
+
+
+
+
+
+
 
 
 handleMapClick(mapEvent: google.maps.MapMouseEvent) {

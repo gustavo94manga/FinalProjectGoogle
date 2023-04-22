@@ -30,7 +30,7 @@ public class LegController {
 	
 	@PostMapping("legs")
 	public Leg createLeg(Principal principal, @RequestBody Leg leg, HttpServletResponse res) {
-		int tripid = leg.getTrip().getId();
+		int tripid = 1;
 		legServ.createLeg(principal.getName(), leg, tripid);
 		return leg;
 	}
