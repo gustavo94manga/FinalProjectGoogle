@@ -18,6 +18,7 @@ import { TripComponent } from './components/trip/trip.component';
 import { ActivityComponent } from './components/activity/activity.component';
 import { GeoResultToAddressPipe } from './pipes/geo-result-to-address.pipe';
 import { CommentComponent } from './components/comment/comment.component';
+import { LegComponent } from './components/leg/leg.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CommentComponent } from './components/comment/comment.component';
     ActivityComponent,
     GeoResultToAddressPipe,
     CommentComponent,
+    LegComponent
   ],
   imports: [
     BrowserModule,
