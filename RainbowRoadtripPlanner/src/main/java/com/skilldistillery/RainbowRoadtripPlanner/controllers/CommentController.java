@@ -44,11 +44,12 @@ public Comment show(Principal principal,HttpServletRequest req, HttpServletRespo
 	
 	
 
-	@PostMapping("comments")
-public Comment create(Principal principal,HttpServletRequest req, @RequestBody Comment comment,HttpServletResponse res) {
+	@PostMapping("trips/{id}/comments")
+public Comment create(Principal principal,HttpServletRequest req, @RequestBody Comment comment,HttpServletResponse res,
+		@PathVariable int id) {
 	Comment createdComment =  null;
 	try {
-		createdComment = commentService.create(principal.getName(), comment);
+		createdComment = commentService.create(principal.getName(), comment, id);
 		res.setStatus(201);
 	} catch (Exception e) {
 		e.printStackTrace();

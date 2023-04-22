@@ -10,7 +10,7 @@ public interface CommentService {
 	
 	public List<Comment> showAll(String username);
 	
-	public Comment create(String username, Comment comment);
+	public Comment create(String username, Comment comment, int id);
 	
 	public Comment update(String username, int id, Comment comment);
 	

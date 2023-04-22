@@ -8,7 +8,7 @@
       #startDestination="ngModel"
       [ngModel]="newTrip.startDestination?.address?.city"
     />
- 
+
     <label for="endDestination">End</label>
     <input
       type="text"
@@ -32,6 +32,8 @@
       #endDate="ngModel"
       [(ngModel)]="newTrip.endDate"
     />
+
+    <app-comment></app-comment>
 
     <input type="submit" (click)="createTrip(newTrip)" />
     <!-- <button type="submit" (click)="createTrip(newTrip)">Create Trip</button> -->
