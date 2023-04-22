@@ -16,7 +16,7 @@ export class LegService {
 
 constructor(private http: HttpClient, private datePipe: DatePipe, private auth: AuthService) { }
 
- 
+
 
 getHttpOptions() {
   let options = {
@@ -55,7 +55,9 @@ update(leg:Leg): Observable<Leg>{
 }
 
 create(leg: Leg): Observable<Leg>{
-
+  // if(leg.trip != null){
+  //   leg.trip.id=1;
+  // }
   return this.http.post<Leg>(this.url, leg, this.getHttpOptions()).pipe(
     catchError((err: any)=>{
       console.error(err);

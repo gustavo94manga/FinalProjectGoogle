@@ -33,7 +33,7 @@ public List<Comment> showAll(Principal principal,HttpServletRequest req, HttpSer
 		return commentService.showAll(principal.getName());
 	}
 
-	@GetMapping("comments/{id}")
+	@GetMapping("comment/{id}")
 public Comment show(Principal principal,HttpServletRequest req, HttpServletResponse res,@PathVariable  int id) {
 	Comment findComment = commentService.show(principal.getName(), id); 
 	if (findComment == null) {

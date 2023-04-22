@@ -35,6 +35,7 @@ public class Comment {
 	private User user;
 	
 	@ManyToOne
+
 	@JoinColumn(name = "trip_id")
 	private Trip trip;
 	
