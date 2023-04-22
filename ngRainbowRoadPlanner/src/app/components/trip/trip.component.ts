@@ -57,27 +57,6 @@ export class TripComponent implements OnInit {
     })
   }
 
-  // setStartDestionation(dest: Destination){
-  //   this.destService.create(dest).subscribe({
-  //     next:(madeDest)=>{
-  //       this.newTrip.startDestination=madeDest
-  //       // console.log(madeDest)
-  //     },
-
-  //   })
-
-  // }
-
-  // setEndDestination(dest: Destination) {
-
-  //   this.destService.create(dest).subscribe({
-  //     next:(madeDest)=>{
-  //       this.newTrip.endDestination=madeDest;
-  //       // console.log(madeDest)
-  //     }
-
-  //   })
-  // }
 
   clearTripDestinations() {
     this.newTrip.startDestination = null;
