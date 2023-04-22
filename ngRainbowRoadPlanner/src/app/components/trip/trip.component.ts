@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Trip } from 'src/app/models/trip';
@@ -35,6 +34,7 @@ export class TripComponent implements OnInit {
     private addrPipe: GeoResultToAddressPipe,
     private destService: DestinationService,
     private addressService: AddressService
+
   ) {}
 
   ngOnInit() {}
@@ -43,12 +43,18 @@ export class TripComponent implements OnInit {
 
 
   createTrip(trip: Trip) {
-    this.tripService.create(trip).subscribe({
-      next: (madeTrip) => {
-        this.selected = madeTrip;
-        console.log(madeTrip);
-      },
-    });
+    this.auth.getLoggedInUser().subscribe({
+      next:(user)=>{
+        trip.user=user;
+        this.tripService.create(trip).subscribe({
+
+          next: (madeTrip) => {
+            this.selected = madeTrip;
+            console.log(madeTrip);
+          },
+        });
+      }
+    })
   }
 
   // setStartDestionation(dest: Destination){

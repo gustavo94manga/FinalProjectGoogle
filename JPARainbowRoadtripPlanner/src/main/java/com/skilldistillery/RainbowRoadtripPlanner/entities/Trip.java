@@ -1,6 +1,7 @@
 package com.skilldistillery.RainbowRoadtripPlanner.entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -26,10 +27,10 @@ public class Trip {
 	private int id;
 	
 	@Column(name="start_date")
-	private LocalDateTime startDate;
+	private LocalDate startDate;
 	
 	@Column(name="end_date")
-	private LocalDateTime endDate;
+	private LocalDate endDate;
 	
 	@Column(name="roundtrip")
 	private boolean roundTrip;
@@ -38,11 +39,11 @@ public class Trip {
 	
 	@CreationTimestamp
 	@Column(name="create_date")
-	private LocalDateTime createDate;
+	private LocalDate createDate;
 	
 	@UpdateTimestamp
 	@Column(name="update_date")
-	private LocalDateTime updateDate;
+	private LocalDate updateDate;
 	
 	private String title;
 	
@@ -89,19 +90,19 @@ public class Trip {
 		this.id = id;
 	}
 
-	public LocalDateTime getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDateTime startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public LocalDateTime getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(LocalDateTime endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 
@@ -121,19 +122,19 @@ public class Trip {
 		this.miles = miles;
 	}
 
-	public LocalDateTime getCreateDate() {
+	public LocalDate getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(LocalDate createDate) {
 		this.createDate = createDate;
 	}
 
-	public LocalDateTime getUpdateDate() {
+	public LocalDate getUpdateDate() {
 		return updateDate;
 	}
 
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(LocalDate updateDate) {
 		this.updateDate = updateDate;
 	}
 
