@@ -49,7 +49,7 @@ updateDestination(dest: Destination){
   })
 }
 
-createTrip(dest: Destination){
+createDestination(dest: Destination){
   this.destService.create(dest).subscribe({
     next:(madeDest)=>{
       this.selected=madeDest;

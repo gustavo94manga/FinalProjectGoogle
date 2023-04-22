@@ -46,6 +46,18 @@ public class Leg {
 	@JsonIgnore
 	@JoinColumn(name = "trip_id")
 	private Trip trip;
+	
+	private Boolean active;
+	
+	
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
 
 	public Leg() {
 

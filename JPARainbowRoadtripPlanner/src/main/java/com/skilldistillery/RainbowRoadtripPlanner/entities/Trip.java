@@ -1,7 +1,7 @@
 package com.skilldistillery.RainbowRoadtripPlanner.entities;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Objects;
 
