@@ -8,6 +8,10 @@ import { MapGeocoder } from '@angular/google-maps';
 import { Address } from 'src/app/models/address';
 import { Destination } from 'src/app/models/destination';
 import { GeoResultToAddressPipe } from 'src/app/pipes/geo-result-to-address.pipe';
+import { DestinationService } from 'src/app/services/destination.service';
+import { AddressService } from 'src/app/services/address.service';
+
+
 
 @Component({
   selector: 'app-trip',
@@ -27,23 +31,53 @@ export class TripComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private geocoder: MapGeocoder,
-    private addrPipe: GeoResultToAddressPipe
+    private addrPipe: GeoResultToAddressPipe,
+    private destService: DestinationService,
+    private addressService: AddressService
+
   ) {}
 
   ngOnInit() {}
 
+
+
+
   createTrip(trip: Trip) {
-    this.tripService.create(trip).subscribe({
-      next: (madeTrip) => {
-        this.selected = madeTrip;
-        console.log(madeTrip);
-      },
-    });
+    this.auth.getLoggedInUser().subscribe({
+      next:(user)=>{
+        trip.user=user;
+        this.tripService.create(trip).subscribe({
+
+          next: (madeTrip) => {
+            this.selected = madeTrip;
+            console.log(madeTrip);
+          },
+        });
+      }
+    })
   }
 
-  setStartDestionation() {}
+  // setStartDestionation(dest: Destination){
+  //   this.destService.create(dest).subscribe({
+  //     next:(madeDest)=>{
+  //       this.newTrip.startDestination=madeDest
+  //       // console.log(madeDest)
+  //     },
 
-  setEndDestination() {}
+  //   })
+
+  // }
+
+  // setEndDestination(dest: Destination) {
+
+  //   this.destService.create(dest).subscribe({
+  //     next:(madeDest)=>{
+  //       this.newTrip.endDestination=madeDest;
+  //       // console.log(madeDest)
+  //     }
+
+  //   })
+  // }
 
   clearTripDestinations() {
     this.newTrip.startDestination = null;
@@ -52,26 +86,52 @@ export class TripComponent implements OnInit {
 
   handleMapClick(mapEvent: google.maps.MapMouseEvent) {
     let lat = mapEvent.latLng;
-    console.log(lat);
+    // console.log(lat);
     this.geocoder.geocode({ location: lat }).subscribe({
       next: (result) => {
-        console.log(result);
+        // console.log(result);
         let address = new Address();
         let geoAddress: any = result.results[0].address_components;
         address = this.addrPipe.transform(geoAddress);
-        let dest = new Destination();
-        dest.address = address;
-        dest.name = address.city;
-        console.log(dest);
-        if (this.newTrip.startDestination == null) {
-          this.newTrip.startDestination = dest;
-        } else if (this.newTrip.endDestination == null) {
-          this.newTrip.endDestination = dest;
-        } else {
-          this.clearTripDestinations();
-        }
-        console.log(this.newTrip);
-      },
-    });
-  }
+        this.addressService.create(address).subscribe({
+          next:(newAddress)=>{
+
+            console.log(newAddress)
+
+            let dest = new Destination();
+            dest.address = newAddress
+            dest.name = newAddress.city;
+            console.log(dest);
+
+            if (this.newTrip.startDestination == null) {
+              this.destService.create(dest).subscribe({
+                next:(madeDest)=>{
+                  this.newTrip.startDestination=madeDest
+                  // console.log(madeDest)
+                },
+
+              })
+
+
+            }else if(this.newTrip.endDestination == null) {
+              this.destService.create(dest).subscribe({
+                next:(madeDest)=>{
+                  this.newTrip.endDestination=madeDest;
+                  // console.log(madeDest)
+                }
+
+              })
+            } else {
+              this.clearTripDestinations();
+            }
+
+            console.log(this.newTrip);
+          },
+        });
+      }
+      })
+    }
+
+
+
 }
