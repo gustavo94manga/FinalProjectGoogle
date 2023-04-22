@@ -1,3 +1,4 @@
+import { Destination } from './destination';
 import { Trip } from './trip';
 
 export class Leg {
@@ -7,8 +8,8 @@ export class Leg {
   actualMiles: number;
   name: string;
   description: string;
-  startDestination: number;
-  endDestination: number;
+  startDestination: Destination | null;
+  endDestination: Destination | null;
   legNumber: number;
   notes: string;
 
@@ -20,8 +21,8 @@ export class Leg {
     description: string = '',
     legNumber: number = 0,
     notes: string = '',
-    startDestination: number = 0,
-    endDestination: number = 0,
+    startDestination: Destination | null= null,
+    endDestination: Destination | null =null,
     trip: Trip | null = null
   ) {
     this.id = id;

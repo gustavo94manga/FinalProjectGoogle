@@ -16,7 +16,7 @@ export class LegService {
 
 constructor(private http: HttpClient, private datePipe: DatePipe, private auth: AuthService) { }
 
-
+ 
 
 getHttpOptions() {
   let options = {

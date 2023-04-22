@@ -1,3 +1,29 @@
-<p>
-  leg works!
-</p>
+
+<div>
+  <form>
+    <label for="startDestination">Start</label>
+    <input
+      type="text"
+      name="startDestination"
+      #startDestination="ngModel"
+      [ngModel]="newLeg.startDestination?.address?.city"
+    />
+
+    <label for="endDestination">End</label>
+    <input
+      type="text"
+      name="endDestination"
+      #endDestination="ngModel"
+      [ngModel]="newLeg.endDestination?.address?.city"
+    />
+
+
+    <input type="submit" (click)="createLeg(newLeg)" />
+    <!-- <button type="submit" (click)="createTrip(newTrip)">Create Trip</button> -->
+  </form>
+  <google-map
+    height="45em"
+    width="100%"
+    (mapClick)="handleMapClick($event)"
+  ></google-map>
+</div>
