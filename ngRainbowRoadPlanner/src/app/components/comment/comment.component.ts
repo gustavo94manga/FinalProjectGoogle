@@ -1,9 +1,12 @@
+import { Trip } from './../../models/trip';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CommentService } from './../../services/comment.service';
 import { Component } from '@angular/core';
 import { Comment } from 'src/app/models/comment';
 import { DatePipe } from '@angular/common';
+import { User } from 'src/app/models/user';
+
 
 @Component({
   selector: 'app-comment',
@@ -17,7 +20,8 @@ export class CommentComponent {
 newComment: Comment = new Comment();
 editComment: Comment | null = null;
 comments: Comment[] = [];
-
+user: User = new User();
+trip: Trip = new Trip();
 
 
 constructor(private commentService: CommentService,
@@ -58,16 +62,48 @@ displayTable() {
 }
 
 createComment(comment: Comment): void{
-  this.commentService.create(comment).subscribe({
-    next:(madeComment)=>{
-      this.newComment = new Comment();
-      this.reload();
-    },
-    error: (fail) => {
-      console.error('Error creating comment');
-    }
+
+
+  this.auth.getLoggedInUser().subscribe(user => {
+    comment.user = user;
+    this.trip.id = 1;
+    comment.trip = this.trip;
+    this.commentService.create(comment).subscribe({
+      next:(madeComment)=>{
+        this.newComment = new Comment();
+        this.reload();
+      },
+      error: (fail) => {
+        console.error('Error creating comment');
+      }
+    });
   });
-}
+  }
+
+
+
+
+
+
+
+
+//   // DELETE ME
+//     this.user.id = 1;
+//     this.trip.id = 1;
+//     comment.user = this.user;
+//     comment.trip = this.trip;
+
+//     //
+//     this.commentService.create(comment).subscribe({
+//     next:(madeComment)=>{
+//       this.newComment = new Comment();
+//       this.reload();
+//     },
+//     error: (fail) => {
+//       console.error('Error creating comment');
+//     }
+//   });
+// }
 
 setEditComment() {
   this.editComment = Object.assign({}, this.selected);
