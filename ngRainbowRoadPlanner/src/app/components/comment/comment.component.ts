@@ -28,10 +28,12 @@ constructor(private commentService: CommentService,
   private auth: AuthService,
   private route: ActivatedRoute,
   private router: Router,
-  private datePipe: DatePipe) {
+  private datePipe: DatePipe,
+  ) {
   {
   }
 }
+
 
 ngOnInit() {
   let commentIdString = this.route.snapshot.paramMap.get('id');

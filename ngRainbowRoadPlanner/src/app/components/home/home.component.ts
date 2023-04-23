@@ -2,6 +2,7 @@ import { TripService } from './../../services/trip.service';
 import { Trip } from 'src/app/models/trip';
 import { Component } from '@angular/core';
 import { User } from 'src/app/models/user';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class HomeComponent {
   trips: Trip[] = [];
 
   constructor(
-    private tripServ: TripService){};
+    private tripServ: TripService,
+    private router: Router){};
 
   // selected: Trip | null = null;
 
@@ -46,8 +48,13 @@ export class HomeComponent {
           this.trips=alltrips;
 
 
+
       }
     })
+  }
+
+  navigateToTrip() {
+    this.router.navigate(['trip']);
   }
 
 
