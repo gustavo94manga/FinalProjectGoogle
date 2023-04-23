@@ -40,8 +40,8 @@ export class TripComponent implements OnInit {
     private addressService: AddressService,
     private vehicleService: VehicleService
   ) {
-    this.newTrip.roundTrip = '';
-    this.newTrip.vehicle = '';
+    // this.newTrip.roundTrip = '';
+    // this.newTrip.vehicle = '';
   }
 
   ngOnInit() {

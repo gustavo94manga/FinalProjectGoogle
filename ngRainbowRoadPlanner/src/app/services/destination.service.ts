@@ -51,6 +51,17 @@ update(dest:Destination): Observable<Destination>{
 
 }
 
+showAllOfType(keyword:string):Observable<Destination[]>{
+  return this.http.get<Destination[]>(this.url+"/type/"+ keyword,  this.getHttpOptions()).pipe(
+    catchError((err: any)=>{
+      console.error(err);
+      return throwError(
+        ()=> new Error('DestinationService.get(): error getting destinations ')
+      )
+    })
+)
+}
+
 
 
 showAll():Observable<Destination[]>{

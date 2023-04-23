@@ -1,5 +1,5 @@
-<div *ngIf="!selected">
-  <h1>Trip Page</h1>
+<h1>Trip Page</h1>
+<div>
   <form class="create-trip-form">
     <input
       type="text"
@@ -34,13 +34,13 @@
     />
 
     <select
-      name="roundTrip"
+      name="roundtrip"
       #roundtrip="ngModel"
       [(ngModel)]="newTrip.roundTrip"
     >
       <option value="" disabled selected>Route Type</option>
-      <option value="false">One-Way</option>
-      <option value="true">Round Trip</option>
+      <option value="0">One-Way</option>
+      <option value="1">Round Trip</option>
     </select>
 
     <select
@@ -104,19 +104,19 @@
     </table>
     <h4>Description: {{ selected.description }}</h4>
     <button (click)="getCurrentTrips()">Return</button>
+
     <app-comment></app-comment>
 
-  </div>
+    <input type="submit" (click)="createTrip(newTrip)" />
   <br />
   <google-map
     height="35em"
     width="100%"
     (mapClick)="handleMapClick($event)"
   ></google-map>
-
+</div>
 <br />
 
-<div *ngIf="!selected">
 <h3>Current Trips</h3>
 <table class="trip-table">
   <thead>
@@ -128,15 +128,15 @@
     </tr>
   </thead>
   <tbody>
+
     <tr (click)="getSingleTripById(trip.id)" *ngFor="let trip of currentTrips">
-      <td   >{{ trip.startDestination?.address?.city }}</td>
+      <td>{{ trip.startDestination?.address?.city }}</td>
       <td>{{ trip.endDestination?.address?.city }}</td>
       <td>{{ trip.startDate }}</td>
       <td>{{ trip.endDate }}</td>
     </tr>
   </tbody>
 </table>
-
 
 <h3 class="past-trips-heading">Past Trips</h3>
 <table class="trip-table">
@@ -157,4 +157,3 @@
     </tr>
   </tbody>
 </table>
-</div>
