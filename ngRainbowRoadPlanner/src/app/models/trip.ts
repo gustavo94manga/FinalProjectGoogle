@@ -15,7 +15,7 @@ export class Trip {
   imageUrl: string;
   active: boolean;
   legs: any[] | null;
-  vehicle: Vehicle | null | '';
+  vehicle: Vehicle | null;
   comments: any[] | null;
   user: User | null;
   startDestination: Destination | null;
