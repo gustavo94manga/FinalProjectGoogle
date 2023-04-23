@@ -27,7 +27,7 @@
                     <div class="about">
                       <h3>My Trips</h3>
                    <ul>
-                      <li *ngFor="let trip of selected?.trips">{{trip.title}}</li>
+                      <li *ngFor="let trip of selected?.trips" (click)="getSingleTripById(trip.id)" >{{trip.title}}</li>
 
                   </ul>
 
@@ -65,5 +65,5 @@
 
 </div>
 </div>
-<app-destination></app-destination>
-<app-leg></app-leg>
+
+<app-leg><app-destination></app-destination></app-leg>

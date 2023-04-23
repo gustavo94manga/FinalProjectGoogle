@@ -38,21 +38,19 @@
       #roundtrip="ngModel"
       [(ngModel)]="newTrip.roundTrip"
     >
-      <option value="" disabled selected>Route Type</option>
-      <option value="0">One-Way</option>
-      <option value="1">Round Trip</option>
+      <option value=null disabled selected>Route Type</option>
+      <option value=false >One-Way</option>
+      <option value=true >Round Trip</option>
     </select>
 
-    <select
+    <!-- <select
       name="vehicle"
       #vehicleInput="ngModel"
-      [(ngModel)]="newTrip.vehicle"
+      [(ngModel)]="vehicle"
     >
       <option value="" disabled selected>Vehicle</option>
-      <option *ngFor="let veh of vehicle" [value]="veh.id">
-        {{ veh.make }} {{ veh.model }}
-      </option>
-    </select>
+      <option *ngFor="let veh of vehicles" value={{veh}} >{{ veh.make }} {{ veh.model }}</option>
+    </select> -->
 
     <br />
 
