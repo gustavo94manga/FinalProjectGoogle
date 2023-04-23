@@ -29,6 +29,7 @@ export class TripService {
     return options;
   }
 
+
   create(trip: Trip): Observable<Trip> {
     console.log(trip);
     return this.http.post<Trip>(this.url, trip, this.getHttpOptions()).pipe(
