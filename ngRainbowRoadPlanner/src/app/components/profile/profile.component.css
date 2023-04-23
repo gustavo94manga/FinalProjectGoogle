@@ -1,4 +1,13 @@
-.center {
+/* .center {
   display: flex;
   justify-content: center;
+  color: white;
 }
+.image{
+  height:40em; background-size:cover; width:auto;
+  background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9TvlN9yX-N6fpizTUfajyH27ibFpQEPEFLQ&usqp=CAU');
+  background-position:50% 50%;
+}
+.about{
+  color: white;
+} */

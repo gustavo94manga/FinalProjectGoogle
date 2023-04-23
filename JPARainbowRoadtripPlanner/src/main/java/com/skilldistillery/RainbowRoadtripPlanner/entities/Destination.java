@@ -50,7 +50,7 @@ public class Destination {
 	@OneToMany(mappedBy = "destinations")
 	private List<Activity> activity;
 
-	
+
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;

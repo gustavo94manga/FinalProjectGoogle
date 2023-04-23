@@ -7,6 +7,7 @@ import com.skilldistillery.RainbowRoadtripPlanner.entities.Destination;
 public interface DestinationService {
 
 		public List<Destination> index();
+		public List<Destination> findByType(String type);
 		public Destination findByAddressId(int startId);
 		public Destination create(Destination destination);
 		public Destination update(Destination dest, int id);

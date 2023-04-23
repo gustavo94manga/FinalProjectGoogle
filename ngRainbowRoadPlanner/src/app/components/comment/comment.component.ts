@@ -81,30 +81,6 @@ createComment(comment: Comment): void{
   }
 
 
-
-
-
-
-
-
-//   // DELETE ME
-//     this.user.id = 1;
-//     this.trip.id = 1;
-//     comment.user = this.user;
-//     comment.trip = this.trip;
-
-//     //
-//     this.commentService.create(comment).subscribe({
-//     next:(madeComment)=>{
-//       this.newComment = new Comment();
-//       this.reload();
-//     },
-//     error: (fail) => {
-//       console.error('Error creating comment');
-//     }
-//   });
-// }
-
 setEditComment() {
   this.editComment = Object.assign({}, this.selected);
 }
