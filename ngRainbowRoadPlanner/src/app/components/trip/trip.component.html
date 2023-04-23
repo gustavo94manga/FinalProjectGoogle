@@ -1,46 +1,123 @@
 <h1>Trip Page</h1>
 <div>
-  <form>
-    <label for="startDestination">Start</label>
+  <form class="create-trip-form">
     <input
       type="text"
       name="startDestination"
       #startDestination="ngModel"
       [ngModel]="newTrip.startDestination?.address?.city"
+      placeholder="Start Destination"
     />
 
-    <label for="endDestination">End</label>
     <input
       type="text"
       name="endDestination"
       #endDestination="ngModel"
       [ngModel]="newTrip.endDestination?.address?.city"
+      placeholder="End Destination"
     />
 
-    <label for="startDate">Start Date</label>
     <input
       type="date"
       name="startDate"
       #startDate="ngModel"
       [(ngModel)]="newTrip.startDate"
+      placeholder="Start Date"
     />
 
-    <label for="endDate">End Date</label>
     <input
       type="date"
       name="endDate"
       #endDate="ngModel"
       [(ngModel)]="newTrip.endDate"
+      placeholder="End Date"
+    />
+
+    <select
+      name="roundtrip"
+      #roundtrip="ngModel"
+      [(ngModel)]="newTrip.roundTrip"
+    >
+      <option value="" disabled selected>Route Type</option>
+      <option value="0">One-Way</option>
+      <option value="1">Round Trip</option>
+    </select>
+
+    <select
+      name="vehicle"
+      #vehicleInput="ngModel"
+      [(ngModel)]="newTrip.vehicle"
+    >
+      <option value="" disabled selected>Vehicle</option>
+      <option *ngFor="let veh of vehicle" [value]="veh.id">
+        {{ veh.make }} {{ veh.model }}
+      </option>
+    </select>
+
+    <br />
+
+    <input
+      type="text"
+      name="img"
+      [(ngModel)]="newTrip.imageUrl"
+      placeholder="Image URL"
+    />
+
+    <input
+      type="submit"
+      class="btn btn-primary"
+      (click)="createTrip(newTrip)"
     />
 
     <app-comment></app-comment>
 
     <input type="submit" (click)="createTrip(newTrip)" />
-    <!-- <button type="submit" (click)="createTrip(newTrip)">Create Trip</button> -->
   </form>
+  <br />
   <google-map
-    height="45em"
+    height="35em"
     width="100%"
     (mapClick)="handleMapClick($event)"
   ></google-map>
 </div>
+<br />
+
+<h3>Current Trips</h3>
+<table class="trip-table">
+  <thead>
+    <tr>
+      <th class="start-destination">Start Destination</th>
+      <th class="end-destination">End Destination</th>
+      <th class="start-date">Start Date</th>
+      <th class="end-date">End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let trip of currentTrips">
+      <td>{{ trip.startDestination?.address?.city }}</td>
+      <td>{{ trip.endDestination?.address?.city }}</td>
+      <td>{{ trip.startDate }}</td>
+      <td>{{ trip.endDate }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 class="past-trips-heading">Past Trips</h3>
+<table class="trip-table">
+  <thead>
+    <tr>
+      <th class="start-destination">Start Destination</th>
+      <th class="end-destination">End Destination</th>
+      <th class="start-date">Start Date</th>
+      <th class="end-date">End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let trip of pastTrips">
+      <td>{{ trip.startDestination.address?.city }}</td>
+      <td>{{ trip.endDestination.address?.city }}</td>
+      <td>{{ trip.startDate }}</td>
+      <td>{{ trip.endDate }}</td>
+    </tr>
+  </tbody>
+</table>

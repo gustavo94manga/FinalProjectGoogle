@@ -6,7 +6,7 @@ export class Trip {
   id: number;
   startDate: string;
   endDate: string;
-  roundTrip: boolean;
+  roundTrip: boolean | null | '';
   miles: number;
   createDate: string;
   updateDate: string;
@@ -15,7 +15,7 @@ export class Trip {
   imageUrl: string;
   active: boolean;
   legs: any[] | null;
-  vehicle: Vehicle | null;
+  vehicle: Vehicle | null | '';
   comments: any[] | null;
   user: User | null;
   startDestination: Destination | null;

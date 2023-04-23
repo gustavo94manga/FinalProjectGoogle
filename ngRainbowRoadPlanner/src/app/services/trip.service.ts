@@ -30,6 +30,19 @@ export class TripService {
   }
 
 
+  getTrips(): Observable<Trip[]> {
+    return this.http.get<Trip[]>(this.url, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('TripService.getTrips(): error retrieving trips: ' + err)
+        );
+      })
+    );
+  }
+
+
   create(trip: Trip): Observable<Trip> {
     console.log(trip);
     return this.http.post<Trip>(this.url, trip, this.getHttpOptions()).pipe(
