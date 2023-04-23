@@ -1,8 +1,10 @@
 <div>
   <h1>Find A Destination by type</h1>
-  <i class="fas fa-gas-pump"></i>
 
-  <button type="button" class="fas fa-gas-pump">Primary</button>
+  <button type="button" (click)="findByType('gas')" >Gas</button>
+  <button type="button" (click)="findByType('food')">Food</button>
+  <button type="button" (click)="findByType('hotel')" >Hotel</button>
+  <button type="button" (click)="findByType('sight')">Sights</button>
 <form >
 
 
@@ -19,7 +21,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let dest of destinations">
-      <td>{{dest.name}} {{dest.description}}</td>
+      <td>{{dest.name}}</td>
     </tr>
     </tbody>
   </table>
