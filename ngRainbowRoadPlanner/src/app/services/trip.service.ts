@@ -29,6 +29,7 @@ export class TripService {
     return options;
   }
 
+
   getTrips(): Observable<Trip[]> {
     return this.http.get<Trip[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {
@@ -40,6 +41,7 @@ export class TripService {
       })
     );
   }
+
 
   create(trip: Trip): Observable<Trip> {
     console.log(trip);
