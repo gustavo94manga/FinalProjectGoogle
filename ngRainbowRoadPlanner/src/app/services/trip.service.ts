@@ -52,6 +52,17 @@ export class TripService {
     );
   }
 
+  viewAll(): Observable<Trip[]> {
+    return this.http.get<Trip[]>(this.url).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('TripService.index(): error retrieving trips: ' + err)
+        );
+      })
+    );
+  }
+
   update(trip: Trip): Observable<Trip> {
     return this.http
       .put<Trip>(this.url + trip.id, trip, this.getHttpOptions())

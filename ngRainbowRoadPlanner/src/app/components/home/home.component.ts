@@ -11,13 +11,14 @@ import { User } from 'src/app/models/user';
 })
 export class HomeComponent {
 
-  viewRoadtrips: boolean = false;
+  viewRoadtrips: boolean | null = false;
   selectedTrip: Trip | null = null;
   selected: Trip | null = null;
   activeSlide = 0;
   user: User = new User;
   selectedUser: User | null = null;
   trips: Trip[] = [];
+  allTrips: Trip[] = [];
 
   constructor(
     private tripServ: TripService){};
@@ -38,16 +39,29 @@ export class HomeComponent {
   }
 
 
-  displayAllRoadtrips(){
+  displayMyRoadtrips(){
     this.tripServ.index().subscribe({
-      next:(alltrips)=>{
+      next:(mytrips)=>{
 
           console.log("Hello")
-          this.trips=alltrips;
+          this.trips=mytrips;
 
 
       }
     })
+  }
+
+  featuredTrips(){
+    this.tripServ.viewAll().subscribe({
+      next:(totalTrips) => {
+        this.allTrips = totalTrips
+      }
+    })
+  }
+
+  ngOnInit(): void {
+  this.featuredTrips();
+  this.displayMyRoadtrips();
   }
 
 

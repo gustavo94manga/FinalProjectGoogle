@@ -111,35 +111,58 @@
   </div>
 </div>
 
-<input type="submit" class="btn btn-primary" value="Show all Trips" (click)="viewRoadtrips = true" (click)="displayAllRoadtrips()">
+<input
+  type="submit"
+  class="btn btn-primary"
+  value="Show all Trips"
+  (click)="viewRoadtrips = true"
+  (click)="displayMyRoadtrips()"
+/>
 
 <h2></h2>
 
-
 <div id="viewRoadtrips" *ngIf="viewRoadtrips">
   <div *ngFor="let trip of trips">
-    <h2 (click)="selectedTrip = trip">{{trip.title}}</h2>
-    <input type="submit" value = "Show Trip Details" class = "btn btn-primary">
-
-
+    <div *ngIf="trip.title != ''">
+      <h2>{{ trip.title }}</h2>
+      <input
+      type="submit"
+      value="Show Trip Details"
+      class="btn btn-primary"
+      (click)="selectedTrip = trip"
+      />
+    </div>
   </div>
+  <br>
+  <input
+    type="submit"
+    value="Hide My Trips"
+    class="btn btn-primary"
+    (click)="viewRoadtrips = null"
+  />
 </div>
 
 <div id="displayDetails" *ngIf="selectedTrip">
   <ul>
-    <li><strong>{{selectedTrip.title}}</strong></li>
-    <img src="{{selectedTrip.imageUrl}}">
-    <li>Description: {{selectedTrip.description}}</li>
-    <li>Created: {{selectedTrip.createDate}}</li>
-    <li>Miles: {{selectedTrip.miles}}mi</li>
-
+    <li>
+      <strong>{{ selectedTrip.title }}</strong>
+    </li>
+    <img src="{{ selectedTrip.imageUrl }}" />
+    <li>Description: {{ selectedTrip.description }}</li>
+    <li>Created: {{ selectedTrip.createDate }}</li>
+    <li>Miles: {{ selectedTrip.miles }}mi</li>
   </ul>
-  <input type="submit" value = "Hide Trip Details" class = "btn btn-primary" (click)="selectedTrip = null">
+  <input
+    type="submit"
+    value="Hide Trip Details"
+    class="btn btn-primary"
+    (click)="selectedTrip = null"
+  />
+</div>
 
+<div id="gallery">
+  <h2>Featured Trips</h2>
+  <div *ngFor="let trip of allTrips">
+    <h3>{{trip.title}}</h3>
   </div>
-
-  <div id="gallery">
-
-
-  </div>
-
+</div>
