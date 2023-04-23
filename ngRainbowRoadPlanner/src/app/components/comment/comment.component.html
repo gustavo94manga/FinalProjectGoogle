@@ -4,6 +4,8 @@
     <div class="form-group">
       <label for="comment">Comment</label>
       <textarea id="comment" class="form-control" [(ngModel)]="newComment.description" name="description" required></textarea>
+      <label for="user"></label>
+
     </div>
     <button (click)="createComment(newComment)" class="btn btn-primary">Submit</button>
   </form>

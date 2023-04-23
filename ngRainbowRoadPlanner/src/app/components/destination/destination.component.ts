@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Destination } from 'src/app/models/destination';
 import { AuthService } from 'src/app/services/auth.service';
 import { DestinationService } from 'src/app/services/destination.service';
@@ -28,7 +29,23 @@ export class DestinationComponent implements OnInit {
 
   }
 
+ findByType(type: string){
+  this.destService.showAllOfType(type).subscribe({
+    next:(found)=>{
+      this.destinations = found;
+    },
+    error: (failure) => {
+      console.error('Error getting destination list');
+      console.error(failure);
+    }
 
+  })
+
+
+
+
+
+ }
 showAll(){
   this.destService.showAll().subscribe({
     next:(destinationList)=>{

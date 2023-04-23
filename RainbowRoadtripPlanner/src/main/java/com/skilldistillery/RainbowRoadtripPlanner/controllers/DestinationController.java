@@ -46,6 +46,22 @@ public class DestinationController {
 			return null;
 		}
 	
+	@GetMapping("destinations/type/{description}")
+	public List<Destination> findByDescription(HttpServletRequest req, HttpServletResponse res, @PathVariable String description) {
+		
+		try {
+			System.out.print(description);
+		List <Destination> destinations = destSrvc.findByType(description);
+			res.setStatus(201);
+			res.setHeader("Location", "http://localhost:8090/api/destinations");
+			return destinations;
+		}catch(Exception e){
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		return null;
+	}
+	
 	
 	
 	@GetMapping("destinations/addresses/{id}")

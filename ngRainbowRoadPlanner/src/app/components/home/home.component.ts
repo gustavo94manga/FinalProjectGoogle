@@ -48,6 +48,7 @@ export class HomeComponent {
           this.trips=alltrips;
 
 
+
       }
     })
   }

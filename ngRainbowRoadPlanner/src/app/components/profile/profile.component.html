@@ -1,6 +1,8 @@
+<div class="image">
 <h1 class="center">Profile</h1>
 
 <div>
+  <div id="sect1"class="container" >
 
   <div>
 
@@ -17,12 +19,12 @@
                   <p>{{selected?.firstName}} {{selected?.lastName}}</p>
 
                   </div>
-                  <div>
+                  <div class="about">
                     <p>About me</p>
                       <p>{{selected?.aboutMe}} </p>
 
                   </div>
-                    <div>
+                    <div class="about">
                       <h3>My Trips</h3>
                    <ul>
                       <li *ngFor="let trip of selected?.trips">{{trip.title}}</li>
@@ -38,7 +40,7 @@
 
 
               </div>
-              <div id="todoEdit" *ngIf="editUser">
+              <div   class="about" id="todoEdit" *ngIf="editUser">
                 <h1>Edit Profile</h1>
                 <form>
 
@@ -62,3 +64,6 @@
   </div>
 
 </div>
+</div>
+<app-destination></app-destination>
+<app-leg></app-leg>
