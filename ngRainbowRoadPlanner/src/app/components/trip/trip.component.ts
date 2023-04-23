@@ -52,6 +52,12 @@ export class TripComponent implements OnInit {
     }
   }
 
+  getSingleTripById(id: number) {
+    this.tripService.getSingleTrip(id).subscribe((trip) =>{
+      this.selected = trip;
+    });
+  }
+
   getVehicles(): void {
     this.vehicleService.getVehicles().subscribe((vehicle) => {
       console.log(vehicle);
