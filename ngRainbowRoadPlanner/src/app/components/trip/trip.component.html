@@ -80,6 +80,12 @@
         </tr>
       </tbody>
     </table>
+    <br />
+  <google-map
+    height="35em"
+    width="100%"
+    (mapClick)="handleMapClick($event)"
+  ></google-map>
 
   </div>
 </div>
@@ -108,12 +114,7 @@
     <app-comment></app-comment>
 
     <input type="submit" (click)="createTrip(newTrip)" />
-  <br />
-  <google-map
-    height="35em"
-    width="100%"
-    (mapClick)="handleMapClick($event)"
-  ></google-map>
+
 </div>
 <br />
 <div *ngIf="!selected">
