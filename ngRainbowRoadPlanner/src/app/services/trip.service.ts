@@ -42,6 +42,18 @@ export class TripService {
     );
   }
 
+  getSingleTrip(id: number): Observable<Trip> {
+    return this.http.get<Trip>(this.url + '/' + id, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('TripService.getSingleTrip(): error retrieving trip: ' + err)
+        );
+      })
+    );
+  }
+
 
   create(trip: Trip): Observable<Trip> {
     console.log(trip);
