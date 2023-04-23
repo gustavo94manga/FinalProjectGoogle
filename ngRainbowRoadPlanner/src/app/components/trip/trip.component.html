@@ -86,8 +86,22 @@
 
   <div id="tripDetail" *ngIf="selected ">
     <h1>Trip Details</h1>
-    <h4>Id: {{ selected.id }}</h4>
-    <h4>Comments: {{ selected.comments }}</h4>
+    <table>
+      <tbody>
+        <tr>{{ selected.startDestination?.address?.city }} - {{ selected.endDestination?.address?.city }}</tr>
+        <tr>{{ selected.startDate }} - {{ selected.endDate }}</tr>
+      </tbody>
+    </table>
+
+
+    <h4>Comments: </h4>
+    <table>
+      <tbody>
+        <td *ngFor="let comment of selected.comments">
+          <tr>{{ comment.description }}</tr>
+        </td>
+      </tbody>
+    </table>
     <h4>Description: {{ selected.description }}</h4>
     <button (click)="getCurrentTrips()">Return</button>
     <app-comment></app-comment>
@@ -114,8 +128,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let trip of currentTrips">
-      <td  (click)="getSingleTripById(trip.id)" >{{ trip.startDestination?.address?.city }}</td>
+    <tr (click)="getSingleTripById(trip.id)" *ngFor="let trip of currentTrips">
+      <td   >{{ trip.startDestination?.address?.city }}</td>
       <td>{{ trip.endDestination?.address?.city }}</td>
       <td>{{ trip.startDate }}</td>
       <td>{{ trip.endDate }}</td>
@@ -135,8 +149,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let trip of pastTrips">
-      <td>{{ trip.startDestination.address?.city }}</td>
+    <tr (click)="getSingleTripById(trip.id)" *ngFor="let trip of pastTrips">
+      <td  >{{ trip.startDestination.address?.city }}</td>
       <td>{{ trip.endDestination.address?.city }}</td>
       <td>{{ trip.startDate }}</td>
       <td>{{ trip.endDate }}</td>
