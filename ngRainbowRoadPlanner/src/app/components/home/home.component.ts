@@ -68,6 +68,7 @@ export class HomeComponent {
     this.tripServ.viewAll().subscribe({
       next:(totalTrips) =>{
         this.allTrips = totalTrips;
+        console.log(this.allTrips)
       }
     })
   }

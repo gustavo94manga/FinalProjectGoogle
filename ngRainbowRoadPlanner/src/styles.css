@@ -12,6 +12,15 @@
   color: #010101;
 }
 
+.header-with-image{
+  background-image: url("https://b.kisscc0.com/20180517/rlw/kisscc0-travel-website-web-hosting-service-namecheap-domai-nature-5afd874a85c6a4.669703911526564682548.jpg");
+}
+
+.top-photo{
+  width:1800px;
+  height:auto;
+}
+
 .body {
   font-family: sans-serif;
   background-color: #f3f6f4;
@@ -24,7 +33,8 @@
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
-  height: 450px;
+  height: auto;
+
 }
 
 /* Set gray background color and 100% height */
