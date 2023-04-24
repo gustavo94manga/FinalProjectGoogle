@@ -1,69 +1,110 @@
 <div class="image">
-<h1 class="center">Profile</h1>
+  <h1 class="center">Profile</h1>
 
-<div>
-  <div id="sect1"class="container" >
-
-  <div>
-
-      <div>
-
-          <div>
-
-              <div class="center">
-                  <img src="{{selected?.imageUrl}}" width="100" class="rounded-circle">
-              </div>
-
-              <div class="center">
-
-                  <p>{{selected?.firstName}} {{selected?.lastName}}</p>
-
-                  </div>
-                  <div class="about">
-                    <p>About me</p>
-                      <p>{{selected?.aboutMe}} </p>
-
-                  </div>
-                    <div class="about">
-                      <h3>My Trips</h3>
-                   <ul>
-                      <li *ngFor="let trip of selected?.trips">{{trip.title}}</li>
-
-                  </ul>
-
-                  <div>
-
-
-                      <button (click)="setEditUser()">Update Profile</button>
-
-                  </div>
-
-
-              </div>
-              <div   class="about" id="todoEdit" *ngIf="editUser">
-                <h1>Edit Profile</h1>
-                <form>
-
-                  <p>About me <input type="text" name="description"  [(ngModel)]="editUser.aboutMe"/><br /></p>
-                  <p>Profile pic <input type="text" name="dueDate" [(ngModel)]="editUser.imageUrl"><br></p>
-
-
-                  <button (click)="cancelEdit()">Cancel</button>
-                  <button (click)="editProfile(editUser)">Save</button>
-
-                </form>
-
-                </div>
-
-
-
-          </div>
-
-      </div>
-
+  <div class="center">
+    <img src="{{ selected?.imageUrl }}" width="100" class="rounded-circle" />
   </div>
 
+  <div class="center">
+    <table>
+      <tr>
+        <td>{{ selected?.firstName }} {{ selected?.lastName }}</td>
+      </tr>
+      <tr>
+        <td>Phone: ({{ selected?.phone }})</td>
+      </tr>
+      <tr>
+        <td>
+          {{ selected?.createDate | date : "'Joined ' MMMM d, y" }}
+        </td>
+      </tr>
+      <tr>
+        <td>About Me: {{ selected?.aboutMe }}</td>
+      </tr>
+      <tr>
+        <button *ngIf="!editUser" (click)="setEditUser()">
+          Update Profile
+        </button>
+      </tr>
+      <div class="aboutUpdate" id="todoEdit" *ngIf="editUser || addVehicle">
+        <form *ngIf="editUser">
+          <h1>Edit Profile</h1>
+          <p>
+            About me
+            <input
+              type="text"
+              name="description"
+              [(ngModel)]="editUser.aboutMe"
+            /><br />
+          </p>
+          <p>
+            Profile pic
+            <input
+              type="text"
+              name="dueDate"
+              [(ngModel)]="editUser.imageUrl"
+            /><br />
+          </p>
+
+          <button (click)="cancelEdit()">Cancel</button>
+          <button (click)="editProfile(editUser)">Save</button>
+        </form>
+        <form *ngIf="addVehicle && !editUser">
+          <h1>Add Vehicle</h1>
+
+          <button (click)="cancelEdit()">Cancel</button>
+          <button>Save</button>
+        </form>
+      </div>
+      <p *ngIf="!editUser">My Vehicles:</p>
+      <tr *ngFor="let vehicle of selected?.vehicles">
+        <td *ngIf="!editUser">
+          {{ vehicle.make }} {{ vehicle.model }} | MPG:
+          {{ vehicle.estimatedMPG }} | Capacity:
+          {{ vehicle.capacity }}
+        </td>
+      </tr>
+      <tr>
+        <button *ngIf="!editUser" (click)="setEditUserVehicle()">
+          Add a Vehicle
+        </button>
+      </tr>
+    </table>
+  </div>
+
+  <div class="aboutUpdate" id="todoEdit" *ngIf="addVehicle && !editUser">
+    <h1>Edit Profile</h1>
+    <form>
+      <p>
+        About me
+        <input type="text" name="description" [(ngModel)]="addVehicle" /><br />
+      </p>
+      <p>
+        Profile pic
+        <input type="text" name="dueDate" [(ngModel)]="addVehicle" /><br />
+      </p>
+
+      <button (click)="cancelEdit()">Cancel</button>
+      <!-- <button (click)="editProfile(addVehicle)">Save</button> -->
+    </form>
+  </div>
+
+  <table *ngIf="!editUser || !addVehicle" class="trips">
+    <thead>
+      My Trips:
+    </thead>
+    <tbody>
+      <tr
+        (click)="getSingleTripById(trip.id)"
+        *ngFor="let trip of selected?.trips"
+      >
+        <td>
+          {{ trip.startDate }} {{ trip.title }} | Starts in:
+          {{ trip.startDestination.address.city }} | Ends:
+          {{ trip.endDestination.address.city }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-</div>
-<app-destination></app-destination>
-<app-leg></app-leg>
+<div></div>

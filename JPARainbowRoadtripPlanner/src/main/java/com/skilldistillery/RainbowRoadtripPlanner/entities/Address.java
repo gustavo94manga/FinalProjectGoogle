@@ -30,6 +30,10 @@ public class Address {
 	
 	private Boolean active;
 	
+	private Double longitude;
+	
+	private Double latitude;
+	
 	@JsonIgnore
 	@OneToOne(mappedBy = "address")
 	private Destination destination;
@@ -102,6 +106,22 @@ public class Address {
 		this.active = active;
 	}
 
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -121,11 +141,9 @@ public class Address {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Address [id=").append(id).append(", street=").append(street).append(", street2=")
-				.append(street2).append(", city=").append(city).append(", state=").append(state).append(", zip=")
-				.append(zip).append("]");
-		return builder.toString();
+		return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", city=" + city + ", state="
+				+ state + ", zip=" + zip + ", active=" + active + ", longitude=" + longitude + ", latitude=" + latitude
+				+ "]";
 	}
 	
 	

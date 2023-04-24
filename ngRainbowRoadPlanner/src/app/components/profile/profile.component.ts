@@ -4,7 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Trip } from 'src/app/models/trip';
 import { User } from 'src/app/models/user';
+import { Vehicle } from 'src/app/models/vehicle';
 import { AuthService } from 'src/app/services/auth.service';
+import { TripService } from 'src/app/services/trip.service';
+import { VehicleService } from 'src/app/services/vehicle.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,14 +20,18 @@ user: User = new User();
 selected: User | null = null;
 username: string ='';
 editUser: User | null = null;
-
+userTrip: Trip | null = null;
+vehicle: Vehicle | null = null;
+addVehicle: boolean = false;
 
 
 constructor(
   private auth: AuthService,
   private route: ActivatedRoute,
   private router: Router,
-  private profileService: ProfileService
+  private profileService: ProfileService,
+  private tripService: TripService,
+  private vehicleService: VehicleService
 ){}
 
 ngOnInit(): void {
@@ -32,6 +39,11 @@ ngOnInit(): void {
   //Add 'implements OnInit' to the class.
   this.getLoggedInUserInfo();
   this.showUserTrips();
+}
+
+setEditUserVehicle(){
+this.addVehicle=true;
+
 }
 
 reload(){
@@ -52,6 +64,12 @@ showUserTrips(){
 }
 
 
+getSingleTripById(id: number) {
+  this.tripService.getSingleTrip(id).subscribe((trip) =>{
+
+  });
+}
+
 
 getLoggedInUserInfo(){
    this.auth.getLoggedInUser().subscribe({
@@ -66,6 +84,12 @@ getLoggedInUserInfo(){
             next:(trips)=>{
               if(this.selected !=null){
                 this.selected.trips=trips;
+                this.vehicleService.getVehicles().subscribe({
+                  next:(vehicles)=>{
+                    if(this.selected !=null)
+                      this.selected.vehicles=vehicles;
+                    }
+                  })
               }
             }
           })
@@ -86,6 +110,7 @@ setEditUser(){
 }
 cancelEdit(){
   this.editUser=null;
+  this.addVehicle=false;
 
 }
 

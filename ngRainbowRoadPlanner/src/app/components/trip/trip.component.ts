@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { User } from 'src/app/models/user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Trip } from 'src/app/models/trip';
 import { AuthService } from 'src/app/services/auth.service';
@@ -16,8 +17,10 @@ import { GeoResultToAddressPipe } from 'src/app/pipes/geo-result-to-address.pipe
 import { DestinationService } from 'src/app/services/destination.service';
 import { AddressService } from 'src/app/services/address.service';
 import { Vehicle } from 'src/app/models/vehicle';
+import { Comment } from 'src/app/models/comment';
 import { VehicleService } from 'src/app/services/vehicle.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
   selector: 'app-trip',
@@ -27,7 +30,7 @@ import { Observable } from 'rxjs';
 export class TripComponent implements OnInit {
   selected: Trip | null = null;
   newTrip: Trip = new Trip();
-  vehicle: Vehicle[] = [];
+  vehicles: Vehicle[] = [];
   trips: Trip[] = [];
   currentTrips: Trip[] = [];
   pastTrips: any[] = [];
@@ -48,6 +51,14 @@ export class TripComponent implements OnInit {
 
   public startDestination: google.maps.LatLngLiteral | null = null;
   public endDestination: google.maps.LatLngLiteral | null = null;
+  vehicle: Vehicle | null = new Vehicle();
+  @Input() profileTrip: Trip | null = null;
+  // startDestination = new FormControl('');
+  // endDestination = new FormControl('');
+  newComment: Comment = new Comment();
+  editComment: Comment | null = null;
+  comments: Comment[] = [];
+  selectedComment: Comment | null = null;
 
   constructor(
     private tripService: TripService,
@@ -59,9 +70,10 @@ export class TripComponent implements OnInit {
     private destService: DestinationService,
     private addressService: AddressService,
     private vehicleService: VehicleService,
-    private directionService: MapDirectionsService
+    private directionService: MapDirectionsService,
+    private commentService: CommentService
   ) {
-    // this.newTrip.roundTrip = '';
+    // this.newTrip.roundTrip = ''//;
     // this.newTrip.vehicle = '';
   }
 
@@ -72,19 +84,26 @@ export class TripComponent implements OnInit {
       this.getCurrentTrips();
       // this.initMap();
       this.directionsRenderer = new google.maps.DirectionsRenderer();
+      this.reload();
     }
+  }
+
+  loggedIn() {
+    return this.auth.checkLogin();
   }
 
   getSingleTripById(id: number) {
     this.tripService.getSingleTrip(id).subscribe((trip) => {
       this.selected = trip;
+      this.reloadComment(trip.id);
+      this.showDirections(trip);
     });
   }
 
   getVehicles(): void {
-    this.vehicleService.getVehicles().subscribe((vehicle) => {
-      console.log(vehicle);
-      this.vehicle = vehicle;
+    this.vehicleService.getVehicles().subscribe((vehicles) => {
+      console.log(vehicles);
+      this.vehicles = vehicles;
     });
   }
 
@@ -115,6 +134,9 @@ export class TripComponent implements OnInit {
   }
 
   createTrip(trip: Trip) {
+    // console.log(this.vehicle)
+    // trip.vehicle=this.vehicle;
+    // console.log(trip.vehicle)
     this.auth.getLoggedInUser().subscribe({
       next: (user) => {
         trip.user = user;
@@ -122,10 +144,28 @@ export class TripComponent implements OnInit {
           next: (madeTrip) => {
             this.selected = madeTrip;
             console.log(madeTrip);
+            this.showDirections(madeTrip);
           },
         });
       },
     });
+  }
+
+  showDirections(madeTrip: Trip) {
+    let directionRequest = {
+      origin: {
+        lat: madeTrip.startDestination!.address.latitude,
+        lng: madeTrip.startDestination!.address.longitude,
+      },
+      destination: {
+        lat: madeTrip.endDestination!.address.latitude,
+        lng: madeTrip.endDestination!.address.longitude,
+      },
+      travelMode: google.maps.TravelMode.DRIVING,
+    };
+    this.directions = this.directionService
+      .route(directionRequest)
+      .pipe(map((response) => response.result));
   }
 
   clearTripDestinations() {
@@ -142,6 +182,10 @@ export class TripComponent implements OnInit {
         let address = new Address();
         let geoAddress: any = result.results[0].address_components;
         address = this.addrPipe.transform(geoAddress);
+        address.latitude = lat.lat();
+        address.longitude = lat.lng();
+        console.log(address);
+
         this.addressService.create(address).subscribe({
           next: (newAddress) => {
             console.log(newAddress);
@@ -210,4 +254,100 @@ export class TripComponent implements OnInit {
   //     map: this.map,
   //   });
   // }
+
+  // initiateComment() {
+  //   let commentIdString = this.route.snapshot.paramMap.get('id');
+  //   if (commentIdString) {
+  //     let id = parseInt(commentIdString)
+  //     if(isNaN(id)) {
+  //       this.router.navigateByUrl('invalidId');
+  //     }
+  //     else {
+  //       this.commentService.show(id).subscribe({
+  //         next: (comment) => {
+  //           this.selectedComment = comment;
+  //         },
+  //         error: (fail) => {
+  //           this.router.navigateByUrl('Comment Not Found');
+  //         }
+  //       })
+  //     }
+  //   }
+  // }
+
+  displayComment(comment: Comment) {
+    this.newComment = comment;
+  }
+
+  displayTable() {
+    this.selected = null;
+  }
+
+  createComment(comment: Comment, tripId: number): void {
+    this.auth.getLoggedInUser().subscribe((user) => {
+      comment.user = user;
+      comment.trip = this.selected;
+      this.commentService.create(comment, tripId).subscribe({
+        next: (madeComment) => {
+          this.newComment = new Comment();
+          if (this.selected) {
+            this.reloadComment(this.selected.id);
+          }
+        },
+        error: (fail) => {
+          console.error('Error creating comment');
+        },
+      });
+    });
+  }
+
+  setEditComment() {
+    this.editComment = Object.assign({}, this.selectedComment);
+  }
+
+  updateComment(comment: Comment, tripId: number, goToDetail = true) {
+    this.commentService.update(comment, tripId).subscribe({
+      next: (updatedComment) => {
+        this.editComment = null;
+
+        if (goToDetail) {
+          this.selectedComment = updatedComment;
+        }
+        this.reload();
+      },
+      error: (fail) => {
+        console.error('Error updating comment');
+        console.log(fail);
+      },
+    });
+  }
+
+  deleteComment(id: number, tripId: number) {
+    this.commentService.destroy(id, tripId).subscribe({
+      next: (result) => {
+        this.reload();
+      },
+      error: (fail) => {
+        console.error('Error deleting comment');
+        console.error(fail);
+      },
+    });
+  }
+  reloadComment(id: number) {
+    this.commentService.index(id).subscribe({
+      next: (retrievedComments) => {
+        this.comments = retrievedComments;
+      },
+      error: (fail) => {
+        console.error('Error getting comment list from service');
+        console.error(fail);
+      },
+    });
+  }
+
+  reload() {
+    this.getVehicles();
+    this.getPastTrips();
+    this.getCurrentTrips();
+  }
 }
