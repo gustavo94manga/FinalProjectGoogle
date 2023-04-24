@@ -42,16 +42,16 @@ create(comment: Comment):Observable <Comment>{
 
 }
 
-index(commentId: number): Observable<Comment[]>{
-  return this.http.get<Comment[]>(this.url + "/trips/" + commentId, this.getHttpOptions()).pipe(
-    catchError((err: any) => {
-      console.log(err);
-      return throwError(
-        () => new Error('TripService.index(): error retrieving Comments: ' + err)
-      );
-    })
-  )
-}
+// index(commentId: number): Observable<Comment[]>{
+//   return this.http.get<Comment[]>(this.url + "/trips/" + commentId, this.getHttpOptions()).pipe(
+//     catchError((err: any) => {
+//       console.log(err);
+//       return throwError(
+//         () => new Error('TripService.index(): error retrieving Comments: ' + err)
+//       );
+//     })
+//   )
+// }
 
 show(commentId: number): Observable<Comment> {
   return this.http.get<Comment>(this.url + "/" + commentId, this.getHttpOptions()).pipe(

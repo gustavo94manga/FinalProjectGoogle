@@ -247,17 +247,17 @@ export class TripComponent implements OnInit {
       }
     });
   }
-  reloadComment(id: number) {
-    this.commentService.index(id).subscribe({
-    next: (comments) => {
-      this.comments = comments;
-  },
-      error: (fail) => {
-        console.error('Error getting comment list from service');
-        console.error(fail);
-      }
-    });
-  }
+  // reloadComment(id: number) {
+  //   this.commentService.index(id).subscribe({
+  //   next: (comments) => {
+  //     this.comments = comments;
+  // },
+  //     error: (fail) => {
+  //       console.error('Error getting comment list from service');
+  //       console.error(fail);
+  //     }
+  //   });
+  // }
 
 
 

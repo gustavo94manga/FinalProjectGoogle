@@ -73,7 +73,7 @@ createComment(comment: Comment): void{
     this.commentService.create(comment).subscribe({
       next:(madeComment)=>{
         this.newComment = new Comment();
-        this.reload();
+        // this.reload();
       },
       error: (fail) => {
         console.error('Error creating comment');
@@ -94,7 +94,7 @@ updateComment(comment: Comment, goToDetail = true){
     if(goToDetail) {
       this.selected = updatedComment;
     }
-    this.reload();
+    // this.reload();
     },
     error: (fail) => {
       console.error('Error updating comment');
@@ -106,7 +106,7 @@ updateComment(comment: Comment, goToDetail = true){
 deleteComment(id: number){
   this.commentService.destroy(id).subscribe({
     next:(result) => {
-      this.reload();
+      // this.reload();
     },
     error: (fail) => {
       console.error('Error deleting comment');
@@ -114,16 +114,16 @@ deleteComment(id: number){
     }
   });
 }
-reload() {
-  this.commentService.index().subscribe({
-  next: (comments) => {
-    this.comments = comments;
-},
-    error: (fail) => {
-      console.error('Error getting comment list from service');
-      console.error(fail);
-    }
-  });
-}
+// reload() {
+//   this.commentService.index().subscribe({
+//   next: (comments) => {
+//     this.comments = comments;
+// },
+//     error: (fail) => {
+//       console.error('Error getting comment list from service');
+//       console.error(fail);
+//     }
+//   });
+// }
 
-}
+ }
