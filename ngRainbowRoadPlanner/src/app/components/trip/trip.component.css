@@ -31,7 +31,7 @@ h1 {
 .create-trip-form textarea,
 .create-trip-form select {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #fe2c02;
   border-radius: 3px;
   margin-bottom: 10px;
   width: 100%;
@@ -51,7 +51,7 @@ h1 {
   padding: 10px;
   padding-top: 10px;
   text-align: left;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #fe2c02;
 }
 
 .trip-table {
@@ -61,3 +61,4 @@ h1 {
 .past-trips-heading {
   padding-top: 40px;
 }
+

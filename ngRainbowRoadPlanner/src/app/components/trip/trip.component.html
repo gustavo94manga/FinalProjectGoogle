@@ -1,5 +1,7 @@
+<br>
 <div *ngIf="!selected">
   <h1>Trip Page</h1>
+
   <form class="create-trip-form">
     <input
       type="text"
@@ -92,6 +94,7 @@
     >
     </map-directions-renderer>
   </google-map>
+
   <table>
     <tbody>
       <tr>
@@ -117,7 +120,7 @@
 
   <!-- <button (click)="getCurrentTrips()">Return</button> -->
 
-  <h4>Comments:</h4>
+  <!-- <h4>Comments:</h4>
   <table>
     <tbody>
       <td *ngFor="let comment of selected.comments">
@@ -129,7 +132,7 @@
       </td>
     </tbody>
   </table>
-  <h4>Description: {{ selected.description }}</h4>
+  <h4>Description: {{ selected.description }}</h4> -->
 
   <div *ngIf="loggedIn">
     <h2>Add Comment</h2>
@@ -203,24 +206,14 @@
     </table>
   </div>
 
-  <!-- <div *ngIf="selected && !editComment">
-      <h2>Comment Detail</h2>
-      <div class="card">
-        <div class="card-body">
-          <p>{{ selected.description }}</p>
-        </div>
-      </div>
-    </div> -->
   <button class="btn btn-secondary mt-2" (click)="displayTable()">Back</button>
-
-  <!-- <input type="submit" (click)="createTrip(newTrip)" /> -->
 
   <!-- <input type="submit" (click)="createTrip(newTrip)" /> -->
 </div>
 <br />
 <div *ngIf="!selected">
   <h3>Current Trips</h3>
-  <table class="trip-table">
+  <table class="trip-table table table-hover">
     <thead>
       <tr>
         <th class="start-destination">Start Destination</th>
@@ -243,7 +236,7 @@
   </table>
 
   <h3 class="past-trips-heading">Past Trips</h3>
-  <table class="trip-table">
+  <table class="trip-table table table-hover">
     <thead>
       <tr>
         <th class="start-destination">Start Destination</th>
