@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -8,28 +8,17 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'ngRainbowRoadPlanner';
-  lat = 39.6087;
-  lng = -104.90271;
-  map: any;
 
-  @ViewChild('mapContainer', { static: false }) mapContainer!: ElementRef;
+  // @ViewChild('mapContainer', { static: false }) mapContainer!: ElementRef;
+
+  // public origin!: google.maps.LatLngLiteral;
+  // public destination!: google.maps.LatLngLiteral;
+  // public directionsService = new google.maps.DirectionsService();
+  // public directionsRenderer!: google.maps.DirectionsRenderer;
 
   constructor(private auth: AuthService) {}
 
   ngOnInit() {
-    this.initMap();
-  }
-
-  initMap(): void {
-    const mapOptions = {
-      center: new google.maps.LatLng(this.lat, this.lng),
-      zoom: 12,
-    };
-    this.map = new google.maps.Map(this.mapContainer.nativeElement, mapOptions);
-
-    const marker = new google.maps.Marker({
-      position: new google.maps.LatLng(this.lat, this.lng),
-      map: this.map,
-    });
+    // this.directionsRenderer = new google.maps.DirectionsRenderer();
   }
 }
