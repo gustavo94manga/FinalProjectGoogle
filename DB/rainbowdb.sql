@@ -52,6 +52,8 @@ CREATE TABLE IF NOT EXISTS `address` (
   `state` VARCHAR(45) NOT NULL,
   `zip` VARCHAR(45) NULL,
   `active` TINYINT NULL,
+  `longitude` DOUBLE NULL,
+  `latitude` DOUBLE NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -413,15 +415,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (1, '1 main st', NULL, 'Denver', 'Colorado', '80014', NULL);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (2, '2 test blvd', NULL, 'Salt Lake City', 'Utah', '84004', NULL);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (3, '45 circle dr', NULL, 'Springfield', 'Nevada', '89001', true);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (4, '1 bedford', NULL, 'San Francisco', 'California', '94102', true);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (5, '65 huntington', NULL, 'Las Vegas', 'Nevada', '89104', true);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (6, '311 circle drive', NULL, 'Huston', 'Texas', '77003', true);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (7, '78 round road', NULL, 'Nashville', 'Tennessee', '37209', true);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (8, '33 lucky lane', NULL, 'Atlanta', 'Georga', '30306', true);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (9, '22 greenbriar', NULL, 'Columbis ', 'Ohio', '43125', true);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (1, '1 main st', NULL, 'Denver', 'Colorado', '80014', NULL, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (2, '2 test blvd', NULL, 'Salt Lake City', 'Utah', '84004', NULL, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (3, '45 circle dr', NULL, 'Springfield', 'Nevada', '89001', true, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (4, '1 bedford', NULL, 'San Francisco', 'California', '94102', true, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (5, '65 huntington', NULL, 'Las Vegas', 'Nevada', '89104', true, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (6, '311 circle drive', NULL, 'Huston', 'Texas', '77003', true, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (7, '78 round road', NULL, 'Nashville', 'Tennessee', '37209', true, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (8, '33 lucky lane', NULL, 'Atlanta', 'Georga', '30306', true, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (9, '22 greenbriar', NULL, 'Columbus ', 'Ohio', '43125', true, NULL, NULL);
 
 COMMIT;
 
