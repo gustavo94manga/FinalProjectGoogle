@@ -68,7 +68,7 @@ createComment(comment: Comment, tripId: number): void{
 
   this.auth.getLoggedInUser().subscribe(user => {
     comment.user = user;
-    this.trip.id = 1;
+    // this.trip.id = 1;
     comment.trip = this.trip;
     this.commentService.create(comment, tripId).subscribe({
       next:(madeComment)=>{

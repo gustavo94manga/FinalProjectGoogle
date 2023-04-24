@@ -238,9 +238,10 @@ export class TripComponent implements OnInit {
   }
 
   deleteComment(id: number, tripId: number) {
+    console.log(tripId, id);
     this.commentService.destroy(id, tripId).subscribe({
       next: (result) => {
-        this.reload();
+        this.reloadComment(tripId);
       },
       error: (fail) => {
         console.error('Error deleting comment');

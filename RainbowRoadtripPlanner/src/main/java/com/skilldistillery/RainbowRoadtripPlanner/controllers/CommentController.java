@@ -36,7 +36,7 @@ public class CommentController {
 
 	@GetMapping("trips/{tripId}/comments/{commentId}")
 	public Comment show(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable int tripId,
-			int commentId) {
+			@PathVariable int commentId) {
 		Comment findComment = commentService.show(principal.getName(), tripId, commentId);
 		if (findComment == null) {
 			res.setStatus(404);
@@ -61,7 +61,7 @@ public class CommentController {
 
 	@PutMapping("trips/{tripId}/comments/{commentId}")
 	public Comment update(Principal principal, HttpServletRequest req, @RequestBody Comment comment,
-			@PathVariable int commentId, int tripId, HttpServletResponse res) {
+			@PathVariable int commentId, @PathVariable int tripId, HttpServletResponse res) {
 		Comment updated = null;
 		try {
 			updated = commentService.update(principal.getName(), commentId, comment, tripId);
@@ -80,7 +80,7 @@ public class CommentController {
 
 	@DeleteMapping("trips/{tripId}/comments/{commentId}")
 	public boolean destroy(Principal principal, HttpServletRequest req, HttpServletResponse res,
-			@PathVariable int commentId, int tripId) {
+			@PathVariable int commentId, @PathVariable int tripId) {
 		boolean deleted = false;
 
 		try {
