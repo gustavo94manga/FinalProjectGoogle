@@ -13,7 +13,7 @@ export class CommentService {
 
 
    //private baseUrl = 'http://localhost:8090/'; // adjust port to match server
-private url = environment.baseUrl + 'api/comments';
+private url = environment.baseUrl + 'api/trips';
 
 
 constructor(private http: HttpClient, private datePipe: DatePipe, private auth: AuthService) { }
@@ -29,9 +29,9 @@ getHttpOptions() {
 }
 
 
-create(comment: Comment):Observable <Comment>{
+create(comment: Comment, tripId: number):Observable <Comment>{
 
-  return this.http.post<Comment>(this.url, comment, this.getHttpOptions()).pipe(
+  return this.http.post<Comment>(this.url + "/" + tripId + "/comments", comment, this.getHttpOptions()).pipe(
     catchError((err: any)=>{
       console.error(err);
       return throwError(
@@ -42,19 +42,19 @@ create(comment: Comment):Observable <Comment>{
 
 }
 
-// index(commentId: number): Observable<Comment[]>{
-//   return this.http.get<Comment[]>(this.url + "/trips/" + commentId, this.getHttpOptions()).pipe(
-//     catchError((err: any) => {
-//       console.log(err);
-//       return throwError(
-//         () => new Error('TripService.index(): error retrieving Comments: ' + err)
-//       );
-//     })
-//   )
-// }
+index(tripId: number): Observable<Comment[]>{
+  return this.http.get<Comment[]>(this.url + "/" + tripId + "/comments", this.getHttpOptions()).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('TripService.index(): error retrieving Comments: ' + err)
+      );
+    })
+  )
+}
 
-show(commentId: number): Observable<Comment> {
-  return this.http.get<Comment>(this.url + "/" + commentId, this.getHttpOptions()).pipe(
+show(commentId: number, tripId: number): Observable<Comment> {
+  return this.http.get<Comment>(this.url + "/" + tripId + "/comments/" + commentId, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(
@@ -64,9 +64,9 @@ show(commentId: number): Observable<Comment> {
   );
 }
 
-update(comment: Comment): Observable<Comment>{
+update(comment: Comment, tripId: number): Observable<Comment>{
 
-  return this.http.put<Comment>(this.url+ comment.id, this.getHttpOptions()).pipe(
+  return this.http.put<Comment>(this.url+ "/" + tripId + "/comments/" + comment.id, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(
@@ -78,9 +78,9 @@ update(comment: Comment): Observable<Comment>{
 
 }
 
-destroy(commentId: number): Observable<void> {
+destroy(commentId: number, tripId: number): Observable<void> {
 
-  return this.http.delete<void>(this.url + "/" + commentId, this.getHttpOptions()).pipe(
+  return this.http.delete<void>(this.url + "/" + tripId + "/comments/" + commentId, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(

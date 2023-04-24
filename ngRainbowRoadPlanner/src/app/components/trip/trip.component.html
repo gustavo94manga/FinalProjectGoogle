@@ -97,6 +97,7 @@
       </tbody>
     </table>
 
+    <!-- <button (click)="getCurrentTrips()">Return</button> -->
 
     <h4>Comments: </h4>
     <table>
@@ -107,9 +108,9 @@
       </tbody>
     </table>
     <h4>Description: {{ selected.description }}</h4>
-    <button (click)="getCurrentTrips()">Return</button>
 
-    <div *ngIf="!selected && !editComment">
+
+    <div *ngIf="loggedIn">
       <h2>Add Comment</h2>
       <form>
         <div class="form-group">
@@ -118,13 +119,13 @@
           <label for="user"></label>
 
         </div>
-        <button (click)="createComment(newComment)" class="btn btn-primary">Submit</button>
+        <button (click)="createComment(newComment, selected.id)" class="btn btn-primary">Submit</button>
       </form>
     </div>
 
     <div *ngIf="selected && editComment">
       <h2>Edit Comment</h2>
-      <form (ngSubmit)="updateComment(editComment)">
+      <form (ngSubmit)="updateComment(editComment, selected.id)">
         <div class="form-group">
           <label for="editComment">Comment</label>
           <textarea id="editComment" class="form-control" [(ngModel)]="editComment.description" name="description" required></textarea>
@@ -147,27 +148,26 @@
           <tr *ngFor="let comment of comments">
             <td>{{ comment.description }}</td>
             <td>
-              <!-- <button class="btn btn-link" (click)="displayComment(comment)">View</button> -->
-              <button class="btn btn-link" (click)="updateComment(comment)">Edit</button>
-              <button class="btn btn-link" (click)="deleteComment(comment.id)">Delete</button>
+
+              <button class="btn btn-link" (click)="deleteComment(comment.id, selected.id)">Delete</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div *ngIf="selected && !editComment">
+    <!-- <div *ngIf="selected && !editComment">
       <h2>Comment Detail</h2>
       <div class="card">
         <div class="card-body">
           <p>{{ selected.description }}</p>
         </div>
       </div>
-      <button class="btn btn-secondary mt-2" (click)="displayTable()">Back</button>
-    </div>
+    </div> -->
+    <button class="btn btn-secondary mt-2" (click)="displayTable()">Back</button>
 
 
-    <input type="submit" (click)="createTrip(newTrip)" />
+    <!-- <input type="submit" (click)="createTrip(newTrip)" /> -->
 
 </div>
 <br />
