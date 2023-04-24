@@ -78,6 +78,8 @@ export class TripService {
     );
   }
 
+
+
   update(trip: Trip): Observable<Trip> {
     return this.http
       .put<Trip>(this.url + trip.id, trip, this.getHttpOptions())
