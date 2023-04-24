@@ -28,9 +28,9 @@ public class CommentController {
 	@Autowired
 	CommentService commentService;
 	
-	@GetMapping("comments")
-public List<Comment> showAll(Principal principal,HttpServletRequest req, HttpServletResponse res) {
-		return commentService.showAll(principal.getName());
+	@GetMapping("comments/trip/{id}")
+public List<Comment> showAllforTrip(Principal principal,HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
+		return commentService.showAllTripComments(id);
 	}
 
 	@GetMapping("comment/{id}")

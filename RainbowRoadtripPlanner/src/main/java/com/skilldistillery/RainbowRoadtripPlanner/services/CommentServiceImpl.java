@@ -21,8 +21,8 @@ public class CommentServiceImpl implements CommentService {
 	
 
 	@Override
-	public List<Comment> showAll(String username) {
-		return commentRepo.findByUser_Username(username);
+	public List<Comment> showAllTripComments(int id) {
+		return commentRepo.findByTripId(id);
 	}
 
 	@Override

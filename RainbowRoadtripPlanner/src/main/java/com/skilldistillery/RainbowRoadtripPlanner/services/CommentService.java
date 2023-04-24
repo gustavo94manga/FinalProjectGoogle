@@ -8,7 +8,7 @@ public interface CommentService {
 	
 	public Comment show(String username, int id);
 	
-	public List<Comment> showAll(String username);
+	public List<Comment> showAllTripComments(int id);
 	
 	public Comment create(String username, Comment comment);
 	

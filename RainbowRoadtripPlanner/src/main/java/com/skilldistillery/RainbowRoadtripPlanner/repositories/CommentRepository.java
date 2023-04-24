@@ -9,7 +9,8 @@ import com.skilldistillery.RainbowRoadtripPlanner.entities.Comment;
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
 	Comment findById(int id);
-	List<Comment> findByUser_Username(String username);
+	List<Comment> findByTripId(int id);
 	Comment deleteById(int id);
 	Comment findByIdAndUser_Username(int id, String username);
+	
 }
