@@ -1,13 +1,33 @@
-/* .center {
+.center {
   display: flex;
   justify-content: center;
-  color: white;
+
+  margin-top: 50px;
 }
 .image{
-  height:40em; background-size:cover; width:auto;
-  background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9TvlN9yX-N6fpizTUfajyH27ibFpQEPEFLQ&usqp=CAU');
+  height:45em; background-size:cover; width:auto;
+  background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN5oylKWbiwNkr5rf7OrRMmrE0KMtlIE752w&usqp=CAU');
   background-position:50% 50%;
+
 }
 .about{
-  color: white;
-} */
+margin-top: 150px;
+}
+
+.update{
+  left: auto;
+  margin-top: -50px;
+  margin-left: -50px;
+}
+.aboutUpdate{
+  margin-top: 150px;
+  margin-right: -50px;
+}
+.trips{
+  margin-top: 75px;
+  margin-right: -50px;
+}
+.vehicle{
+  margin-top: 150px;
+
+}
