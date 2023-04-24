@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Trip } from 'src/app/models/trip';
@@ -11,7 +12,9 @@ import { GeoResultToAddressPipe } from 'src/app/pipes/geo-result-to-address.pipe
 import { DestinationService } from 'src/app/services/destination.service';
 import { AddressService } from 'src/app/services/address.service';
 import { Vehicle } from 'src/app/models/vehicle';
+import { Comment } from 'src/app/models/comment';
 import { VehicleService } from 'src/app/services/vehicle.service';
+import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
 
@@ -30,6 +33,11 @@ export class TripComponent implements OnInit {
   @Input() profileTrip: Trip | null = null;
   startDestination = new FormControl('');
   endDestination = new FormControl('');
+  newComment: Comment = new Comment();
+  editComment: Comment | null = null;
+  comments: Comment[] = [];
+  selectedComment: Comment | null = null;
+
 
   constructor(
     private tripService: TripService,
@@ -40,7 +48,8 @@ export class TripComponent implements OnInit {
     private addrPipe: GeoResultToAddressPipe,
     private destService: DestinationService,
     private addressService: AddressService,
-    private vehicleService: VehicleService
+    private vehicleService: VehicleService,
+    private commentService: CommentService,
   ) {
     // this.newTrip.roundTrip = ''//;
     // this.newTrip.vehicle = '';
@@ -48,11 +57,10 @@ export class TripComponent implements OnInit {
 
   ngOnInit() {
     {
-      this.getVehicles();
-      this.getPastTrips();
-      this.getCurrentTrips();
+      this.reload();
     }
   }
+
 
   getSingleTripById(id: number) {
     this.tripService.getSingleTrip(id).subscribe((trip) =>{
@@ -156,5 +164,107 @@ export class TripComponent implements OnInit {
         });
       },
     });
+  }
+
+  initiateComment() {
+    let commentIdString = this.route.snapshot.paramMap.get('id');
+    if (commentIdString) {
+      let id = parseInt(commentIdString)
+      if(isNaN(id)) {
+        this.router.navigateByUrl('invalidId');
+      }
+      else {
+        this.commentService.show(id).subscribe({
+          next: (comment) => {
+            this.selectedComment = comment;
+          },
+          error: (fail) => {
+            this.router.navigateByUrl('Comment Not Found');
+          }
+        })
+      }
+    }
+  }
+
+  displayComment(comment: Comment) {
+
+    this.newComment = comment;
+  }
+
+  displayTable() {
+    this.selected = null;
+  }
+
+  createComment(comment: Comment): void{
+
+
+    this.auth.getLoggedInUser().subscribe(user => {
+      comment.user = user;
+      comment.trip = this.selected;
+      this.reload();
+      this.commentService.create(comment).subscribe({
+        next:(madeComment)=>{
+          this.newComment = new Comment();
+
+        },
+        error: (fail) => {
+          console.error('Error creating comment');
+        }
+      });
+    });
+    }
+
+
+  setEditComment() {
+    this.editComment = Object.assign({}, this.selectedComment);
+  }
+
+  updateComment(comment: Comment, goToDetail = true){
+    this.commentService.update(comment).subscribe({
+      next:(updatedComment)=>{
+      this.editComment = null;
+
+      if(goToDetail) {
+        this.selectedComment = updatedComment;
+      }
+      this.reload();
+      },
+      error: (fail) => {
+        console.error('Error updating comment');
+        console.log(fail);
+      }
+    })
+  }
+
+  deleteComment(id: number){
+    this.commentService.destroy(id).subscribe({
+      next:(result) => {
+        this.reload();
+      },
+      error: (fail) => {
+        console.error('Error deleting comment');
+        console.error(fail);
+      }
+    });
+  }
+  reloadComment(id: number) {
+    this.commentService.index(id).subscribe({
+    next: (comments) => {
+      this.comments = comments;
+  },
+      error: (fail) => {
+        console.error('Error getting comment list from service');
+        console.error(fail);
+      }
+    });
+  }
+
+
+
+  reload() {
+    this.getVehicles();
+    this.getPastTrips();
+    this.getCurrentTrips();
+    this.initiateComment();
   }
 }
