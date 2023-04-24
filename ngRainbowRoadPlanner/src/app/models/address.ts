@@ -8,6 +8,8 @@ export class Address {
   state: string;
   zip: string;
   active: boolean;
+  longitude: number;
+  latitude: number;
 
   constructor(
     id: number = 0,
@@ -16,7 +18,10 @@ export class Address {
     city: string = '',
     state: string = '',
     zip: string = '',
-    active: boolean = true
+    active: boolean = true,
+    longitude: number=0,
+  latitude: number=0
+
   ) {
     this.id = id;
     this.street = street;
@@ -25,5 +30,7 @@ export class Address {
     this.state = state;
     this.zip = zip;
     this.active = active;
+    this.longitude = longitude;
+  this.latitude = latitude;
   }
 }
