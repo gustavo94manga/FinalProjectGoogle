@@ -57,7 +57,7 @@
       <a class="nav-link" [routerLink]="['/trip']">New Trip</a>
     </li>
     <li class="nav-item" *ngIf="loggedIn()">
-      <a class="nav-link" [routerLink]="['/logout']">Log Out</a>
+      <a class="nav-link" (click)="logout()" [routerLink]="['/logout']">Log Out</a>
     </li>
   </ul>
 
