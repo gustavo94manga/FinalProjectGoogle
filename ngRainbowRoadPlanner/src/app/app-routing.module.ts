@@ -7,6 +7,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { TripComponent } from './components/trip/trip.component';
+import { DestinationComponent } from './components/destination/destination.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'destination', component: DestinationComponent },
   { path: 'trip', component: TripComponent },
 
 ];

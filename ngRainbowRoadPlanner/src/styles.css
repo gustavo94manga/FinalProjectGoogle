@@ -204,3 +204,14 @@ footer {
   transform: translateY(75px);
   background-color: #f3f6f4;
 }
+
+.logoutbutton{
+  transform: translateX(100px);
+  transform: translateY(650px);
+}
+
+.logouttext{
+  color:#010101
+}
+
+

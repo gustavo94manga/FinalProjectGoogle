@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
   <h1>Find A Destination by type</h1>
 
   <button type="button" (click)="findByType('gas')" >Gas</button>
@@ -31,4 +31,30 @@
 
 
 
+</div> -->
+
+<div name="page">
+  <div class="row order-1" name="buttongroup">
+    <form class="buttons text-center">
+      <button type="button" class="btn btn-outline-primary" (click)="findByType('gas')">Gas</button>
+      <button type="button" class="btn btn-outline-primary" (click)="findByType('food')">Food</button>
+      <button type="button" class="btn btn-outline-primary" (click)="findByType('hotel')">Hotel</button>
+      <button type="button" class="btn btn-outline-primary" (click)="findByType('sight')">Sights</button>
+    </form>
+  </div>
+<div name = "displayDestinations" *ngIf="destinations"></div>
+  <div name="destinationsLoop" *ngFor="let destination of destinations">
+    <div class="row order-2">
+      <div class="col-6">
+        <img src="{{destination.imageUrl}}" alt="{{destination.description}}">
+      </div>
+      <div class="col-6">
+        <h4>{{destination.name}}</h4>
+        <p>{{destination.description}}</p>
+        <p>{{destination.phone}}</p>
+        <p>{{destination.address.city}}, {{destination.address.state}}</p>
+        <p>{{destination.fee}}</p>
+      </div>
+    </div>
+  </div>
 </div>
