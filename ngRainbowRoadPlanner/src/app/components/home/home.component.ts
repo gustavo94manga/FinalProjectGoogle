@@ -12,13 +12,14 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
 
-  viewRoadtrips: boolean = false;
+  viewRoadtrips: boolean | null = false;
   selectedTrip: Trip | null = null;
   selected: Trip | null = null;
   activeSlide = 0;
   user: User = new User;
   selectedUser: User | null = null;
   trips: Trip[] = [];
+  allTrips: Trip[] = [];
 
   constructor(
     private tripServ: TripService,
@@ -26,12 +27,18 @@ export class HomeComponent {
 
   // selected: Trip | null = null;
 
+  ngOnInit(){{
+    this.findAllTrips();
+    console.log(this.allTrips);
+  }
+  }
+
   prevSlide() {
-    this.activeSlide = (this.activeSlide - 1 +5) % 5;
+    this.activeSlide = (this.activeSlide - 1 +2) % 2;
   }
 
   nextSlide() {
-    this.activeSlide = (this.activeSlide + 1 + 5) % 5;
+    this.activeSlide = (this.activeSlide + 1 + 2) % 2;
   }
 
 
@@ -40,12 +47,12 @@ export class HomeComponent {
   }
 
 
-  displayAllRoadtrips(){
+  displayMyRoadtrips(){
     this.tripServ.index().subscribe({
-      next:(alltrips)=>{
+      next:(mytrips)=>{
 
           console.log("Hello")
-          this.trips=alltrips;
+          this.trips=mytrips;
 
 
 
@@ -55,6 +62,15 @@ export class HomeComponent {
 
   navigateToTrip() {
     this.router.navigate(['trip']);
+  }
+
+  findAllTrips(){
+    this.tripServ.viewAll().subscribe({
+      next:(totalTrips) =>{
+        this.allTrips = totalTrips;
+        console.log(this.allTrips)
+      }
+    })
   }
 
 
