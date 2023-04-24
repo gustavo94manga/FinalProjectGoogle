@@ -12,5 +12,4 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
 	List<Comment> findByTripId(int id);
 	Comment deleteById(int id);
 	Comment findByIdAndUser_Username(int id, String username);
-	
 }
