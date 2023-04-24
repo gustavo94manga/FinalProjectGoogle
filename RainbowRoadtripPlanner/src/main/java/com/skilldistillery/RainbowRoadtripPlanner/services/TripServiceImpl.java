@@ -27,6 +27,9 @@ public class TripServiceImpl implements TripService {
 	public Trip create(String username, Trip trip) {
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
+			System.out.println(trip);
+			System.out.println(trip.getStartDestination());
+			System.out.println(trip.getStartDestination().getAddress());
 			return tripRepo.saveAndFlush(trip);
 		}
 		return null;
