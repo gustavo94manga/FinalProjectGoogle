@@ -26,15 +26,15 @@ public class Vehicle {
 	private String model;
 	
 	@Column(name="estimated_mpg")
-	private int estimatedMPG;
+	private Integer estimatedMPG;
 	
 	@Column(name="estimated_range")
-	private double estimatedRange;
+	private Double estimatedRange;
 	
-	private int capacity;
+	private Integer capacity;
 	
 	@Column(name="is_electric")
-	private boolean isElectric;
+	private Boolean isElectric;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "vehicle")
@@ -56,6 +56,7 @@ public class Vehicle {
 		this.id = id;
 	}
 
+	
 	public String getMake() {
 		return make;
 	}
@@ -72,41 +73,38 @@ public class Vehicle {
 		this.model = model;
 	}
 
-	public int getEstimatedMPG() {
+	public Integer getEstimatedMPG() {
 		return estimatedMPG;
 	}
 
-	public void setEstimatedMPG(int estimatedMPG) {
+	public void setEstimatedMPG(Integer estimatedMPG) {
 		this.estimatedMPG = estimatedMPG;
 	}
 
-	public double getEstimatedRange() {
+	public Double getEstimatedRange() {
 		return estimatedRange;
 	}
 
-	public void setEstimatedRange(double estimatedRange) {
+	public void setEstimatedRange(Double estimatedRange) {
 		this.estimatedRange = estimatedRange;
 	}
 
-	public int getCapacity() {
+	public Integer getCapacity() {
 		return capacity;
 	}
 
-	public void setCapacity(int capacity) {
+	public void setCapacity(Integer capacity) {
 		this.capacity = capacity;
 	}
 
-	public boolean isElectric() {
+	public Boolean getIsElectric() {
 		return isElectric;
 	}
 
-	public void setElectric(boolean isElectric) {
+	public void setIsElectric(Boolean isElectric) {
 		this.isElectric = isElectric;
 	}
 
-	
-	
-	
 	public List<Trip> getTrips() {
 		return trips;
 	}

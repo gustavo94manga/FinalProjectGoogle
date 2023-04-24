@@ -38,7 +38,7 @@ public class VehicleServiceImpl implements VehicleService {
 			vehicle.setEstimatedMPG(vehicle.getEstimatedMPG());
 			vehicle.setEstimatedRange(vehicle.getEstimatedRange());
 			vehicle.setCapacity(vehicle.getCapacity());
-			vehicle.setElectric(vehicle.isElectric());
+			vehicle.setIsElectric(vehicle.getIsElectric());
 			return vehicleRepo.saveAndFlush(vehicle);
 		} else {
 			return null;
@@ -55,7 +55,7 @@ public class VehicleServiceImpl implements VehicleService {
 			vehicle.setEstimatedMPG(vehicle.getEstimatedMPG());
 			vehicle.setEstimatedRange(vehicle.getEstimatedRange());
 			vehicle.setCapacity(vehicle.getCapacity());
-			vehicle.setElectric(vehicle.isElectric());
+			vehicle.setIsElectric(vehicle.getIsElectric());
 			return vehicleRepo.saveAndFlush(vehicle);
 		} else {
 			return null;
