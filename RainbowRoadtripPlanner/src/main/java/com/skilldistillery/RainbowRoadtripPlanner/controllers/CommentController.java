@@ -22,53 +22,55 @@ import com.skilldistillery.RainbowRoadtripPlanner.services.CommentService;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin({"*", "http://localhost/"})
+@CrossOrigin({ "*", "http://localhost/" })
 public class CommentController {
-	
+
 	@Autowired
 	CommentService commentService;
-	
-	@GetMapping("comments/trip/{id}")
-public List<Comment> showAllforTrip(Principal principal,HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
-		return commentService.showAllTripComments(id);
+
+	@GetMapping("trips/{tripId}/comments")
+	public List<Comment> showAllforTrip(Principal principal, HttpServletRequest req, HttpServletResponse res,
+			@PathVariable int tripId) {
+		return commentService.showAllTripComments(tripId);
 	}
 
-	@GetMapping("comment/{id}")
-public Comment show(Principal principal,HttpServletRequest req, HttpServletResponse res,@PathVariable  int id) {
-	Comment findComment = commentService.show(principal.getName(), id); 
-	if (findComment == null) {
-		res.setStatus(404);
-	}
-	return findComment;
-}
-	
-	
-
-	@PostMapping("comments")
-public Comment create(Principal principal,HttpServletRequest req, @RequestBody Comment comment,HttpServletResponse res) {
-	Comment createdComment =  null;
-	try {
-		createdComment = commentService.create(principal.getName(), comment);
-		res.setStatus(201);
-	} catch (Exception e) {
-		e.printStackTrace();
-		res.setStatus(400);
-	}
-	return createdComment;
-	
+	@GetMapping("trips/{tripId}/comments/{commentId}")
+	public Comment show(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable int tripId,
+			int commentId) {
+		Comment findComment = commentService.show(principal.getName(), tripId, commentId);
+		if (findComment == null) {
+			res.setStatus(404);
+		}
+		return findComment;
 	}
 
-	@PutMapping("comments/{id}")
-public Comment update(Principal principal,HttpServletRequest req, @RequestBody Comment comment,@PathVariable int id, HttpServletResponse res) {
+	@PostMapping("trips/{tripId}/comments")
+	public Comment create(Principal principal, HttpServletRequest req, @RequestBody Comment comment,
+			HttpServletResponse res, @PathVariable int tripId) {
+		Comment createdComment = null;
+		try {
+			createdComment = commentService.create(principal.getName(), comment, tripId);
+			res.setStatus(201);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		return createdComment;
+
+	}
+
+	@PutMapping("trips/{tripId}/comments/{commentId}")
+	public Comment update(Principal principal, HttpServletRequest req, @RequestBody Comment comment,
+			@PathVariable int commentId, int tripId, HttpServletResponse res) {
 		Comment updated = null;
 		try {
-				updated = commentService.update(principal.getName(), id, comment);
-				if (updated != null) {
+			updated = commentService.update(principal.getName(), commentId, comment, tripId);
+			if (updated != null) {
 				res.setStatus(200);
 			} else {
 				res.setStatus(400);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
@@ -76,23 +78,22 @@ public Comment update(Principal principal,HttpServletRequest req, @RequestBody C
 		return updated;
 	}
 
-	@DeleteMapping("comments/{id}")
-public boolean destroy(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
+	@DeleteMapping("trips/{tripId}/comments/{commentId}")
+	public boolean destroy(Principal principal, HttpServletRequest req, HttpServletResponse res,
+			@PathVariable int commentId, int tripId) {
 		boolean deleted = false;
-		
+
 		try {
-			deleted = commentService.destroy(principal.getName(), id);
-			if(deleted) {
+			deleted = commentService.destroy(principal.getName(), commentId, tripId);
+			if (deleted) {
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);
 			}
-			} catch(Exception e) {
-				res.setStatus(500);
-			}
+		} catch (Exception e) {
+			res.setStatus(500);
+		}
 		return deleted;
 	}
-	
-	
 
 }
