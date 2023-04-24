@@ -6,7 +6,7 @@ export class Trip {
   id: number;
   startDate: string;
   endDate: string;
-  roundTrip: boolean;
+  roundTrip: boolean | null | '';
   miles: number;
   createDate: string;
   updateDate: string;

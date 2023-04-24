@@ -82,6 +82,12 @@ public class DestinationServiceImpl implements DestinationService {
 		}
 		return null;
 	}
+	@Override
+	public List<Destination> findByType(String type) {
+		// TODO Auto-generated method stub
+		type = "%" + type +"%";
+		return destinationRepo.findByDescriptionLike(type);
+	}
 
 	
 	

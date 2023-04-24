@@ -33,6 +33,10 @@ public class TripController {
 		return tripService.index();
 	}
 	
+	@GetMapping("trips/{id}")
+	public Trip getSingleTripById(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
+		return tripService.findTripById(id);
+	}
 	
 	@GetMapping("users/trips")
 	public List<Trip> getUserTrips(Principal principal, HttpServletRequest req, HttpServletResponse res) {

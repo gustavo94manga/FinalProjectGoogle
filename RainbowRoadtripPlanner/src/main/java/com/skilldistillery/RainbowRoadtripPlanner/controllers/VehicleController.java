@@ -28,10 +28,12 @@ public class VehicleController {
 	@Autowired
 	private VehicleService vehicleService;
 
+	
 	@GetMapping("vehicles")
 public List<Vehicle> showAll(Principal principal,HttpServletRequest req, HttpServletResponse res) {
 		return vehicleService.showAll(principal.getName());
 	}
+	
 	
 	@GetMapping("vehicles/{id}")
 	public Vehicle getVehicleById(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
@@ -94,3 +96,5 @@ public List<Vehicle> showAll(Principal principal,HttpServletRequest req, HttpSer
 	}
 
 }
+
+

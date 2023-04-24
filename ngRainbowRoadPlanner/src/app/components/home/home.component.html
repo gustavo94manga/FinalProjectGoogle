@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="row justify-content-center">
+<!-- <body class="container-fluid">
+  <div class="row" class="head">
     <div class="col-12 text-center">
       <h1>Welcome to Rainbow Road Trip Planners!!!</h1>
       <div>
@@ -11,8 +11,8 @@
     </div>
   </div>
 
-  <div class="row justify-content-center">
-    <div class="col-12">
+  <div class="row">
+    <div class="col-6">
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li
@@ -108,8 +108,15 @@
         </a>
       </div>
     </div>
+    <div class="col-6">
+      <img
+        src="https://fineartshippers.com/wp-content/uploads/2020/12/Art-shuttle-San-Francisco.jpg"
+        alt="My Image"
+        (click)="navigateToTrip()"
+      />
+    </div>
   </div>
-</div>
+</body>
 
 <input
   type="submit"
@@ -126,14 +133,14 @@
     <div *ngIf="trip.title != ''">
       <h2>{{ trip.title }}</h2>
       <input
-      type="submit"
-      value="Show Trip Details"
-      class="btn btn-primary"
-      (click)="selectedTrip = trip"
+        type="submit"
+        value="Show Trip Details"
+        class="btn btn-primary"
+        (click)="selectedTrip = trip"
       />
     </div>
   </div>
-  <br>
+  <br />
   <input
     type="submit"
     value="Hide My Trips"
@@ -163,6 +170,142 @@
 <div id="gallery">
   <h2>Featured Trips</h2>
   <div *ngFor="let trip of allTrips">
-    <h3>{{trip.title}}</h3>
+    <h3>{{ trip.title }}</h3>
   </div>
-</div>
+</div> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body class="body">
+    <div class="container-fluid text-center head">
+      <div class="row content top">
+        <div class="col-1 sidenav"></div>
+        <div class="col-sm-10 text-left">
+          <h1>Welcome</h1>
+          <h3>
+            Rainbow Roadtrip Planner was created in order to assist users in the
+            planning of the perfect roadtrip!
+          </h3>
+          <hr class="hr hr-blurry">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Show Featured Trips</h3>
+          <div class="row" *ngFor="let trip of trips | slice:0:3">
+            <div class="col-3">
+              {{trip.id}}
+              {{trip.description}}
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="col-sm-1 sidenav"></div>
+        <div class="col-1 sidenav"></div>
+        <div class="col-sm-10 text-left"></div>
+        <div class="col-sm-1 sidenav"></div>
+      </div>
+    </div>
+    <div class="container-fluid text-center">
+      <div class="row content">
+        <div class="col-1 sidenav"></div>
+        <div class="col-sm-5 text-center">
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li
+                data-target="#myCarousel"
+                data-slide-to="0"
+                [class.active]="activeSlide === 0"
+              ></li>
+              <li
+                data-target="#myCarousel"
+                data-slide-to="1"
+                [class.active]="activeSlide === 1"
+              ></li>
+            </ol>
+
+            <div class="carousel-inner">
+              <div class="carousel-item" [class.active]="activeSlide === 0">
+                <img
+                  src="https://us.123rf.com/450wm/edgarbullon/edgarbullon2005/edgarbullon200500265/148254276-epic-adventurous-extreme-sport-composite-of-rock-climbing-man-rappelling-from-a-cliff-mountain.jpg?ver=6"
+                  alt="Image 1"
+                />
+              </div>
+              <div class="carousel-item" [class.active]="activeSlide === 1">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPCWS4qr1QByDcUkr-9uIajXFPFsxCkqlsBCZh9Wr2Osywiu5z14_fQfNkiFsDvEx9Bec&usqp=CAU"
+                  alt="Image 2"
+                />
+              </div>
+            </div>
+
+            <a
+              class="carousel-control-prev"
+              href="#myCarousel"
+              role="button"
+              data-slide="prev"
+              (click)="prevSlide()"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#myCarousel"
+              role="button"
+              data-slide="next"
+              (click)="nextSlide()"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-5 text-center">
+          <div class="col-lg-8 col-md-4 col-sm-12 col-xs-12">
+            <div class="hovereffect">
+              <img
+                class="image"
+                src="https://fineartshippers.com/wp-content/uploads/2020/12/Art-shuttle-San-Francisco.jpg"
+                alt="My Image"
+              />
+              <div class="overlay">
+                <h2></h2>
+                <p>
+                  <input
+                    class="btn btn-default"
+                    type="submit"
+                    value="Go To Trip Maker"
+                    (click)="navigateToTrip()"
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 sidenav"></div>
+
+        <footer class="container-fluid text-center footer">
+          <p>Footer Text</p>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

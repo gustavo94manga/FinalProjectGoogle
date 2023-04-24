@@ -10,8 +10,8 @@ import { Destination } from 'src/app/models/destination';
 import { GeoResultToAddressPipe } from 'src/app/pipes/geo-result-to-address.pipe';
 import { DestinationService } from 'src/app/services/destination.service';
 import { AddressService } from 'src/app/services/address.service';
-
-
+import { Vehicle } from 'src/app/models/vehicle';
+import { VehicleService } from 'src/app/services/vehicle.service';
 
 @Component({
   selector: 'app-trip',
@@ -21,6 +21,10 @@ import { AddressService } from 'src/app/services/address.service';
 export class TripComponent implements OnInit {
   selected: Trip | null = null;
   newTrip: Trip = new Trip();
+  vehicle: Vehicle[] = [];
+  trips: Trip[] = [];
+  currentTrips: Trip[] = [];
+  pastTrips: any[] = [];
 
   startDestination = new FormControl('');
   endDestination = new FormControl('');
@@ -33,30 +37,73 @@ export class TripComponent implements OnInit {
     private geocoder: MapGeocoder,
     private addrPipe: GeoResultToAddressPipe,
     private destService: DestinationService,
-    private addressService: AddressService
+    private addressService: AddressService,
+    private vehicleService: VehicleService
+  ) {
+    // this.newTrip.roundTrip = '';
+    // this.newTrip.vehicle = '';
+  }
 
-  ) {}
+  ngOnInit() {
+    {
+      this.getVehicles();
+      this.getPastTrips();
+      this.getCurrentTrips();
+    }
+  }
 
-  ngOnInit() {}
+  getSingleTripById(id: number) {
+    this.tripService.getSingleTrip(id).subscribe((trip) =>{
+      this.selected = trip;
+    });
+  }
 
+  getVehicles(): void {
+    this.vehicleService.getVehicles().subscribe((vehicle) => {
+      console.log(vehicle);
+      this.vehicle = vehicle;
+    });
+  }
 
+  getCurrentTrips() {
+    const now = new Date().getTime();
+    this.tripService.getTrips().subscribe({
+      next: (trips) => {
+        this.currentTrips = trips.filter((trip) => {
+          const endDate = new Date(trip.endDate).getTime();
+          return endDate >= now;
+        });
+      },
+      error: (err) => console.error(err),
+    });
+  }
 
+  getPastTrips() {
+    const now = new Date().getTime();
+    this.tripService.getTrips().subscribe({
+      next: (trips) => {
+        this.pastTrips = trips.filter((trip) => {
+          const endDate = new Date(trip.endDate).getTime();
+          return endDate < now;
+        });
+      },
+      error: (err) => console.error(err),
+    });
+  }
 
   createTrip(trip: Trip) {
     this.auth.getLoggedInUser().subscribe({
-      next:(user)=>{
-        trip.user=user;
+      next: (user) => {
+        trip.user = user;
         this.tripService.create(trip).subscribe({
-
           next: (madeTrip) => {
             this.selected = madeTrip;
             console.log(madeTrip);
           },
         });
-      }
-    })
+      },
+    });
   }
-
 
   clearTripDestinations() {
     this.newTrip.startDestination = null;
@@ -73,33 +120,28 @@ export class TripComponent implements OnInit {
         let geoAddress: any = result.results[0].address_components;
         address = this.addrPipe.transform(geoAddress);
         this.addressService.create(address).subscribe({
-          next:(newAddress)=>{
-
-            console.log(newAddress)
+          next: (newAddress) => {
+            console.log(newAddress);
 
             let dest = new Destination();
-            dest.address = newAddress
+            dest.address = newAddress;
             dest.name = newAddress.city;
             console.log(dest);
 
             if (this.newTrip.startDestination == null) {
               this.destService.create(dest).subscribe({
-                next:(madeDest)=>{
-                  this.newTrip.startDestination=madeDest
+                next: (madeDest) => {
+                  this.newTrip.startDestination = madeDest;
                   // console.log(madeDest)
                 },
-
-              })
-
-
-            }else if(this.newTrip.endDestination == null) {
+              });
+            } else if (this.newTrip.endDestination == null) {
               this.destService.create(dest).subscribe({
-                next:(madeDest)=>{
-                  this.newTrip.endDestination=madeDest;
+                next: (madeDest) => {
+                  this.newTrip.endDestination = madeDest;
                   // console.log(madeDest)
-                }
-
-              })
+                },
+              });
             } else {
               this.clearTripDestinations();
             }
@@ -107,10 +149,7 @@ export class TripComponent implements OnInit {
             console.log(this.newTrip);
           },
         });
-      }
-      })
-    }
-
-
-
+      },
+    });
+  }
 }

@@ -18,6 +18,7 @@ public class CommentServiceImpl implements CommentService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
 
 	@Override
 	public List<Comment> showAll(String username) {
@@ -33,7 +34,7 @@ public class CommentServiceImpl implements CommentService {
 	public Comment create(String username, Comment comment) {
 		User user = userRepo.findByUsername(username);
 		if(user != null) {
-			commentRepo.saveAndFlush(comment);
+			return commentRepo.saveAndFlush(comment);
 		}
 		return null;
 	}

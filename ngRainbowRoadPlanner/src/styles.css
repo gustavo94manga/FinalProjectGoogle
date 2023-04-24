@@ -1,2 +1,167 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+
+.navbar-nav {
+  margin-bottom: 0;
+  border-radius: 0;
+  background-color: #f3f6f4;
+  margin: 0 !important;
+}
+
+.nav-link{
+  color: #010101;
+}
+
+.body {
+  font-family: sans-serif;
+  background-color: #f3f6f4;
+  color:#010101;
+}
+
+.top{
+  height:500px;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+  height: 450px;
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  background-color: #F6E1C3;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%23F6E1C3' cx='50' cy='0' r='50'/%3E%3Cg fill='%23f6dbb6' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23f6d4a9' cx='50' cy='100' r='50'/%3E%3Cg fill='%23f6cd9d' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23f6c691' cx='50' cy='200' r='50'/%3E%3Cg fill='%23f6bf85' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%23f7b879' cx='50' cy='300' r='50'/%3E%3Cg fill='%23f7b16e' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%23f8a963' cx='50' cy='400' r='50'/%3E%3Cg fill='%23f8a158' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23f9994e' cx='50' cy='500' r='50'/%3E%3Cg fill='%23fa9044' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%23fa883b' cx='50' cy='600' r='50'/%3E%3Cg fill='%23fb7e32' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23fb7429' cx='50' cy='700' r='50'/%3E%3Cg fill='%23fc6a21' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23fd5e18' cx='50' cy='800' r='50'/%3E%3Cg fill='%23fd5111' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23fe4109' cx='50' cy='900' r='50'/%3E%3Cg fill='%23fe2d03' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23FF0000' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: contain;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+  background-color: #f3f6f4;
+  color: #010101;
+  padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {
+    height: auto;
+  }
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  width: 100%;
+}
+
+.carousel {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image {
+  height: 400px;
+  width: 560px;
+}
+
+.head {
+}
+
+.carousel-item {
+  height: 400px;
+}
+
+.carousel-item img {
+  width: 560px;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+.hovereffect {
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+}
+
+.hovereffect .overlay {
+  position: absolute;
+  overflow: hidden;
+  width: 80%;
+  height: 80%;
+  left: 10%;
+  top: 10%;
+  border-bottom: 1px solid #fff;
+  border-top: 1px solid #fff;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: scale(0, 1);
+  -ms-transform: scale(0, 1);
+  transform: scale(0, 1);
+}
+
+.hovereffect:hover .overlay {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+.hovereffect img {
+  display: block;
+  position: relative;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+}
+
+.hovereffect:hover img {
+  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
+  filter: brightness(0.6);
+  -webkit-filter: brightness(0.6);
+}
+
+.hovereffect h2 {
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  background-color: transparent;
+  color: #fff;
+  padding: 1em 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+}
+
+.hovereffect a,
+.hovereffect p {
+  color: #fff;
+  padding: 1em 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+
+.hovereffect:hover a,
+.hovereffect:hover p,
+.hovereffect:hover h2 {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}

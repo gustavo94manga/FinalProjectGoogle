@@ -2,6 +2,7 @@ import { TripService } from './../../services/trip.service';
 import { Trip } from 'src/app/models/trip';
 import { Component } from '@angular/core';
 import { User } from 'src/app/models/user';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,16 +22,23 @@ export class HomeComponent {
   allTrips: Trip[] = [];
 
   constructor(
-    private tripServ: TripService){};
+    private tripServ: TripService,
+    private router: Router){};
 
   // selected: Trip | null = null;
 
+  ngOnInit(){{
+    this.findAllTrips();
+    console.log(this.allTrips);
+  }
+  }
+
   prevSlide() {
-    this.activeSlide = (this.activeSlide - 1 +5) % 5;
+    this.activeSlide = (this.activeSlide - 1 +2) % 2;
   }
 
   nextSlide() {
-    this.activeSlide = (this.activeSlide + 1 + 5) % 5;
+    this.activeSlide = (this.activeSlide + 1 + 2) % 2;
   }
 
 
@@ -47,21 +55,21 @@ export class HomeComponent {
           this.trips=mytrips;
 
 
+
       }
     })
   }
 
-  featuredTrips(){
+  navigateToTrip() {
+    this.router.navigate(['trip']);
+  }
+
+  findAllTrips(){
     this.tripServ.viewAll().subscribe({
-      next:(totalTrips) => {
-        this.allTrips = totalTrips
+      next:(totalTrips) =>{
+        this.allTrips = totalTrips;
       }
     })
-  }
-
-  ngOnInit(): void {
-  this.featuredTrips();
-  this.displayMyRoadtrips();
   }
 
 

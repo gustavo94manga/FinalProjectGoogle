@@ -18,6 +18,8 @@ import { TripComponent } from './components/trip/trip.component';
 import { ActivityComponent } from './components/activity/activity.component';
 import { GeoResultToAddressPipe } from './pipes/geo-result-to-address.pipe';
 import { CommentComponent } from './components/comment/comment.component';
+import { LegComponent } from './components/leg/leg.component';
+import { DestinationComponent } from './components/destination/destination.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { CommentComponent } from './components/comment/comment.component';
     ActivityComponent,
     GeoResultToAddressPipe,
     CommentComponent,
+    LegComponent,
+    DestinationComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +45,7 @@ import { CommentComponent } from './components/comment/comment.component';
     HttpClientModule,
     NgbModule,
     GoogleMapsModule,
+
   ],
   providers: [DatePipe, NgbActiveModal, GeoResultToAddressPipe],
   bootstrap: [AppComponent],

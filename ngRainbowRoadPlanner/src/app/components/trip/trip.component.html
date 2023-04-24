@@ -1,44 +1,161 @@
-<h1>Trip Page</h1>
-<div>
-  <form>
-    <label for="startDestination">Start</label>
+<div *ngIf="!selected">
+  <h1>Trip Page</h1>
+  <form class="create-trip-form">
     <input
       type="text"
       name="startDestination"
       #startDestination="ngModel"
       [ngModel]="newTrip.startDestination?.address?.city"
+      placeholder="Start Destination"
     />
 
-    <label for="endDestination">End</label>
     <input
       type="text"
       name="endDestination"
       #endDestination="ngModel"
       [ngModel]="newTrip.endDestination?.address?.city"
+      placeholder="End Destination"
     />
 
-    <label for="startDate">Start Date</label>
     <input
       type="date"
       name="startDate"
       #startDate="ngModel"
       [(ngModel)]="newTrip.startDate"
+      placeholder="Start Date"
     />
 
-    <label for="endDate">End Date</label>
     <input
       type="date"
       name="endDate"
       #endDate="ngModel"
       [(ngModel)]="newTrip.endDate"
+      placeholder="End Date"
     />
 
-    <input type="submit" (click)="createTrip(newTrip)" />
-    <!-- <button type="submit" (click)="createTrip(newTrip)">Create Trip</button> -->
+    <select
+      name="roundtrip"
+      #roundtrip="ngModel"
+      [(ngModel)]="newTrip.roundTrip"
+    >
+      <option value="" disabled selected>Route Type</option>
+      <option value="0">One-Way</option>
+      <option value="1">Round Trip</option>
+    </select>
+
+    <select
+      name="vehicle"
+      #vehicleInput="ngModel"
+      [(ngModel)]="newTrip.vehicle"
+    >
+      <option value="" disabled selected>Vehicle</option>
+      <option *ngFor="let veh of vehicle" [value]="veh.id">
+        {{ veh.make }} {{ veh.model }}
+      </option>
+    </select>
+
+    <br />
+
+    <input
+      type="text"
+      name="img"
+      [(ngModel)]="newTrip.imageUrl"
+      placeholder="Image URL"
+    />
+
+    <input
+      type="submit"
+      class="btn btn-primary"
+      (click)="createTrip(newTrip)"
+    />
+
   </form>
+
+  <div *ngIf="!selected">
+    <table class="table table-striped table-hover">
+
+      <tbody>
+        <tr *ngFor="let trip of trips">
+          <td (click)="getCurrentTrips()">{{ trip.title }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
   <google-map
-    height="45em"
+    height="35em"
     width="100%"
     (mapClick)="handleMapClick($event)"
   ></google-map>
+
+  </div>
+</div>
+
+  <div id="tripDetail" *ngIf="selected ">
+    <h1>Trip Details</h1>
+    <table>
+      <tbody>
+        <tr>{{ selected.startDestination?.address?.city }} - {{ selected.endDestination?.address?.city }}</tr>
+        <tr>{{ selected.startDate }} - {{ selected.endDate }}</tr>
+      </tbody>
+    </table>
+
+
+    <h4>Comments: </h4>
+    <table>
+      <tbody>
+        <td *ngFor="let comment of selected.comments">
+          <tr>{{ comment.description }}</tr>
+        </td>
+      </tbody>
+    </table>
+    <h4>Description: {{ selected.description }}</h4>
+    <button (click)="getCurrentTrips()">Return</button>
+
+    <app-comment></app-comment>
+
+    <input type="submit" (click)="createTrip(newTrip)" />
+
+</div>
+<br />
+<div *ngIf="!selected">
+<h3>Current Trips</h3>
+<table class="trip-table">
+  <thead>
+    <tr>
+      <th class="start-destination">Start Destination</th>
+      <th class="end-destination">End Destination</th>
+      <th class="start-date">Start Date</th>
+      <th class="end-date">End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr (click)="getSingleTripById(trip.id)" *ngFor="let trip of currentTrips">
+      <td>{{ trip.startDestination?.address?.city }}</td>
+      <td>{{ trip.endDestination?.address?.city }}</td>
+      <td>{{ trip.startDate }}</td>
+      <td>{{ trip.endDate }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 class="past-trips-heading">Past Trips</h3>
+<table class="trip-table">
+  <thead>
+    <tr>
+      <th class="start-destination">Start Destination</th>
+      <th class="end-destination">End Destination</th>
+      <th class="start-date">Start Date</th>
+      <th class="end-date">End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr (click)="getSingleTripById(trip.id)" *ngFor="let trip of pastTrips">
+      <td  >{{ trip.startDestination.address?.city }}</td>
+      <td>{{ trip.endDestination.address?.city }}</td>
+      <td>{{ trip.startDate }}</td>
+      <td>{{ trip.endDate }}</td>
+    </tr>
+  </tbody>
+</table>
 </div>
