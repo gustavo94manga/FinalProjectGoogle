@@ -399,11 +399,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (1, 'admin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'admin', 'bob', 'dobs', '544-344-4322', 'https://img.freepik.com/free-icon/user_318-159711.jpg', NULL, NULL, NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (2, 'kenny', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'user', 'Kenny', 'Yan', '322-424-7488', 'https://img.freepik.com/free-icon/user_318-159711.jpg', NULL, NULL, NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (3, 'collin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'user', 'Collin', 'Wheat', '740-445-9884', 'https://img.freepik.com/free-icon/user_318-159711.jpg', NULL, NULL, NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (4, 'angel', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'user', 'Angel G', 'Guevara', '334-432-2344', 'https://img.freepik.com/free-icon/user_318-159711.jpg', NULL, NULL, NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (5, 'david', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'user', 'David', 'Dunlevy', '375-334-2773', 'https://img.freepik.com/free-icon/user_318-159711.jpg', NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (1, 'admin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'admin', 'bob', 'dobs', '544-344-4322', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3Mn3XDhKZOxXrtkvl4iY7ND6qfeFEMVWgXQ&usqp=CAU', NULL, '2023-04-23', NULL, true);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (2, 'kenny', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'user', 'Kenny', 'Yan', '322-424-7488', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm4ohG6k87EJB7waa501NbsXPiFujPrGHGIA&usqp=CAU', 'Skill Distillery Graduate !', '2023-04-23', NULL, true);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (3, 'collin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'user', 'Collin', 'Wheat', '740-445-9884', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx6z5p1wLD5OBTOyvjwX3Bc3B5AtKBCbWBeA&usqp=CAU', 'Skill Distillery Graduate !', '2023-04-23', NULL, true);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (4, 'angel', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'user', 'Angel G', 'Guevara', '334-432-2344', 'https://images-na.ssl-images-amazon.com/images/I/71GW59ur2AL._AC_UL210_SR210,210_.jpg', 'Skill Distillery Graduate !', '2023-04-23', NULL, true);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `phone`, `image_url`, `about_me`, `create_date`, `update_date`, `active`) VALUES (5, 'david', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'user', 'David', 'Dunlevy', '375-334-2773', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-UKSIEYJWfeOGjjKfm0chCvQYOSFbw_TzVg&usqp=CAU', 'Skill Distillery Graduate !', '2023-04-23', NULL, true);
 
 COMMIT;
 
@@ -415,7 +415,13 @@ START TRANSACTION;
 USE `rainbowdb`;
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (1, '1 main st', NULL, 'Denver', 'Colorado', '80014', NULL);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (2, '2 test blvd', NULL, 'Salt Lake City', 'Utah', '84004', NULL);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (3, '45 circle dr', NULL, 'Springfield', 'Nevada', '44995', NULL);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (3, '45 circle dr', NULL, 'Springfield', 'Nevada', '89001', true);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (4, '1 bedford', NULL, 'San Francisco', 'California', '94102', true);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (5, '65 huntington', NULL, 'Las Vegas', 'Nevada', '89104', true);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (6, '311 circle drive', NULL, 'Huston', 'Texas', '77003', true);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (7, '78 round road', NULL, 'Nashville', 'Tennessee', '37209', true);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (8, '33 lucky lane', NULL, 'Atlanta', 'Georga', '30306', true);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (9, '22 greenbriar', NULL, 'Columbis ', 'Ohio', '43125', true);
 
 COMMIT;
 
@@ -425,8 +431,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `vehicle` (`id`, `make`, `model`, `estimated_mpg`, `estimated_range`, `capacity`, `user_id`, `is_electric`) VALUES (1, 'toyota', 'carolla', 23, 300, 4, 1, false);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `estimated_mpg`, `estimated_range`, `capacity`, `user_id`, `is_electric`) VALUES (2, 'ford', 'ranger', 18, 350, 2, 1, false);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `estimated_mpg`, `estimated_range`, `capacity`, `user_id`, `is_electric`) VALUES (1, 'Toyota', 'Carolla', 23, 300, 4, 1, false);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `estimated_mpg`, `estimated_range`, `capacity`, `user_id`, `is_electric`) VALUES (2, 'Ford', 'Ranger', 18, 350, 2, 1, false);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `estimated_mpg`, `estimated_range`, `capacity`, `user_id`, `is_electric`) VALUES (3, 'Dodge', 'Charger', 18, 450, 5, 2, false);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `estimated_mpg`, `estimated_range`, `capacity`, `user_id`, `is_electric`) VALUES (4, 'Tesla', 'Model S', null, 500, 6, 2, true);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `estimated_mpg`, `estimated_range`, `capacity`, `user_id`, `is_electric`) VALUES (5, 'Nissan ', 'Leaf', null, 500, 5, 3, true);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `estimated_mpg`, `estimated_range`, `capacity`, `user_id`, `is_electric`) VALUES (6, 'BMW', 'I3', null, 450, 5, 4, true);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `estimated_mpg`, `estimated_range`, `capacity`, `user_id`, `is_electric`) VALUES (7, 'Jeep', 'Wrangler', 17, 550, 5, 5, false);
 
 COMMIT;
 
@@ -436,9 +447,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (1, 'McDonalds', 1, 'food', NULL, NULL, '555-55-5555', NULL, NULL);
-INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (2, 'Shell', 2, 'gas', NULL, NULL, NULL, 2.89, NULL);
-INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (3, 'Hilton', 3, 'hotel', NULL, NULL, '876-332-2763', 99.99, NULL);
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (1, 'McDonalds', 1, 'food', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLM3TZRu5pu01awnakUTlIk0FoKk-7J36zfQ&usqp=CAU', NULL, '777-353-2242', NULL, true);
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (2, 'Shell', 2, 'gas', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAR3H124hCNTvyjc8Tt-c7dlqw8m6zLHzX3w&usqp=CAU', NULL, '453-664-5325', 2.89, true);
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (3, 'Hilton', 3, 'hotel', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMKBenOrt4DW-rHUFDGuJO-6EWZva0Wys59A&usqp=CAU', NULL, '876-332-2763', 99.99, true);
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (4, 'Taco Bell', 4, 'food', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHU02W1VHs___NC4kRo4A8uc_2X43Nw449DQ&usqp=CAU', NULL, '247-538-9822', NULL, true);
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (5, 'Wing Stop', 5, 'food', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQuKMu7wIe11DPkpubVPlyS1VZk7BNZoZk8w&usqp=CAU', NULL, '422-944-4782', NULL, true);
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (6, 'BP', 6, 'gas', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9NtdP6h03-guzDahvsLyc3ulZwzRCyl2cvw&usqp=CAU', NULL, '740-442-2031', 2.98, true);
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (7, 'Quik Trip', 7, 'gas', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7kD9RDqwUX1k0srjcY4ugDqwsDZ2hRRuj9A&usqp=CAU', NULL, '322-326-8831', 2.75, true);
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (8, 'Holiday Inn', 8, 'hotel', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBrRKXN5bQ95rxdrfBFBR4gPypzF8jXFk8ow&usqp=CAU', NULL, '322-211-3197', NULL, true);
+INSERT INTO `destination` (`id`, `name`, `address_id`, `description`, `image_url`, `notes`, `phone`, `fee`, `active`) VALUES (9, 'Worlds largest ball of string', 9, 'sight', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9otaBWkFcevBdEW4Wfwllg2d3DNdfvteDpA&usqp=CAU', NULL, NULL, 5.00, true);
 
 COMMIT;
 
@@ -448,10 +465,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (1, '2023-02-02', '2023-02-22', true, 500, 1, 1, NULL, NULL, 'First trip', 'test trip 1', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-CYcYaVQnP9DF8EQ7fIgEL-raKRaXNO7uqpRgSaOVQSqU6K6rovc9mLYDc2plipuboIA&usqp=CAU', NULL, 1, 3);
-INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (2, '2019-01-01', '2019-01-09', true, 600, 1, 2, NULL, NULL, 'Second Trip', 'test trip 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXWedvqc3ZZqnTIqlp-Kyi0BWTBOknEJ3Dwmn2-v3kHcwzyXOdHT_LdGr-vNG4dXtUKg&usqp=CAU', NULL, 3, 1);
-INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (3, '2022-06-03', '2022-07-01', false, 366, 2, 2, NULL, NULL, 'Third trip', 'test trip 3', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPCWS4qr1QByDcUkr-9uIajXFPFsxCkqlsBCZh9Wr2Osywiu5z14_fQfNkiFsDvEx9Bec&usqp=CAU', NULL, 1, 2);
-INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (4, '2023-03-03', '2023-05-05', false, 344, 3, 1, NULL, NULL, 'last trip', 'test trip 4', 'https://us.123rf.com/450wm/edgarbullon/edgarbullon2005/edgarbullon200500265/148254276-epic-adventurous-extreme-sport-composite-of-rock-climbing-man-rappelling-from-a-cliff-mountain.jpg?ver=6', NULL, 2, 3);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (1, '2023-02-02', '2023-02-22', true, 500, 1, 1, NULL, NULL, 'Skill Distillery Alum Tour', 'Cross Country Trip!', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-CYcYaVQnP9DF8EQ7fIgEL-raKRaXNO7uqpRgSaOVQSqU6K6rovc9mLYDc2plipuboIA&usqp=CAU', true, 4, 9);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (2, '2019-01-01', '2019-01-09', true, 600, 2, 3, NULL, NULL, 'Vegas Trip', 'My first trip from L.A. to Vegas', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXWedvqc3ZZqnTIqlp-Kyi0BWTBOknEJ3Dwmn2-v3kHcwzyXOdHT_LdGr-vNG4dXtUKg&usqp=CAU', false, 3, 1);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (3, '2022-06-03', '2022-07-01', false, 366, 2, 5, NULL, NULL, 'Summer Break', '', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPCWS4qr1QByDcUkr-9uIajXFPFsxCkqlsBCZh9Wr2Osywiu5z14_fQfNkiFsDvEx9Bec&usqp=CAU', false, 1, 2);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (4, '2023-03-03', '2023-05-05', false, 344, 3, 1, NULL, NULL, 'Last trip of the year', '', 'https://us.123rf.com/450wm/edgarbullon/edgarbullon2005/edgarbullon200500265/148254276-epic-adventurous-extreme-sport-composite-of-rock-climbing-man-rappelling-from-a-cliff-mountain.jpg?ver=6', true, 2, 3);
 
 COMMIT;
 
@@ -461,7 +478,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `comment` (`id`, `photo`, `description`, `trip_id`, `user_id`, `comment_date`, `active`) VALUES (1, NULL, 'testing comment', 1, 1, '2023-02-02', NULL);
+INSERT INTO `comment` (`id`, `photo`, `description`, `trip_id`, `user_id`, `comment_date`, `active`) VALUES (1, NULL, 'Lets meet up \'round noon', 1, 1, '2023-04-24', true);
+INSERT INTO `comment` (`id`, `photo`, `description`, `trip_id`, `user_id`, `comment_date`, `active`) VALUES (2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoKx8K5hOAYBzbGJYL8WQ19-2mycYyZwqlxg&usqp=CAU', 'Vegas Baby !!', 1, 3, '2023-04-24', true);
 
 COMMIT;
 
@@ -471,8 +489,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rainbowdb`;
-INSERT INTO `leg` (`id`, `estimated_miles`, `trip_id`, `actual_miles`, `name`, `description`, `start_destination_id`, `end_destination_id`, `leg_number`, `notes`, `active`) VALUES (1, 500, 1, 700, 'first leg', NULL, 1, 2, 1, NULL, NULL);
-INSERT INTO `leg` (`id`, `estimated_miles`, `trip_id`, `actual_miles`, `name`, `description`, `start_destination_id`, `end_destination_id`, `leg_number`, `notes`, `active`) VALUES (2, 300, 1, 275, 'second leg', NULL, 2, 3, 2, NULL, NULL);
+INSERT INTO `leg` (`id`, `estimated_miles`, `trip_id`, `actual_miles`, `name`, `description`, `start_destination_id`, `end_destination_id`, `leg_number`, `notes`, `active`) VALUES (1, 570, 1, null, 'Going to vegas !', NULL, 4, 5, 1, NULL, true);
+INSERT INTO `leg` (`id`, `estimated_miles`, `trip_id`, `actual_miles`, `name`, `description`, `start_destination_id`, `end_destination_id`, `leg_number`, `notes`, `active`) VALUES (2, 1400, 1, null, 'On to Huston', NULL, 5, 6, 2, NULL, true);
+INSERT INTO `leg` (`id`, `estimated_miles`, `trip_id`, `actual_miles`, `name`, `description`, `start_destination_id`, `end_destination_id`, `leg_number`, `notes`, `active`) VALUES (3, 780, 1, NULL, 'Nashville here we come', NULL, 6, 7, 3, NULL, true);
+INSERT INTO `leg` (`id`, `estimated_miles`, `trip_id`, `actual_miles`, `name`, `description`, `start_destination_id`, `end_destination_id`, `leg_number`, `notes`, `active`) VALUES (4, 250, 1, NULL, 'Hotlanta', NULL, 7, 8, 4, NULL, true);
+INSERT INTO `leg` (`id`, `estimated_miles`, `trip_id`, `actual_miles`, `name`, `description`, `start_destination_id`, `end_destination_id`, `leg_number`, `notes`, `active`) VALUES (5, 570, 1, NULL, 'Columbus ', NULL, 8, 9, 5, NULL, true);
 
 COMMIT;
 
