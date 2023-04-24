@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Trip } from 'src/app/models/trip';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,6 +14,7 @@ import { Vehicle } from 'src/app/models/vehicle';
 import { VehicleService } from 'src/app/services/vehicle.service';
 
 @Component({
+
   selector: 'app-trip',
   templateUrl: './trip.component.html',
   styleUrls: ['./trip.component.css'],
@@ -21,11 +22,12 @@ import { VehicleService } from 'src/app/services/vehicle.service';
 export class TripComponent implements OnInit {
   selected: Trip | null = null;
   newTrip: Trip = new Trip();
-  vehicle: Vehicle[] = [];
+  vehicles: Vehicle[] = [];
   trips: Trip[] = [];
   currentTrips: Trip[] = [];
   pastTrips: any[] = [];
-
+  vehicle: Vehicle | null = new Vehicle();
+  @Input() profileTrip: Trip | null = null;
   startDestination = new FormControl('');
   endDestination = new FormControl('');
 
@@ -40,7 +42,7 @@ export class TripComponent implements OnInit {
     private addressService: AddressService,
     private vehicleService: VehicleService
   ) {
-    // this.newTrip.roundTrip = '';
+    // this.newTrip.roundTrip = ''//;
     // this.newTrip.vehicle = '';
   }
 
@@ -59,9 +61,9 @@ export class TripComponent implements OnInit {
   }
 
   getVehicles(): void {
-    this.vehicleService.getVehicles().subscribe((vehicle) => {
-      console.log(vehicle);
-      this.vehicle = vehicle;
+    this.vehicleService.getVehicles().subscribe((vehicles) => {
+      console.log(vehicles);
+      this.vehicles = vehicles;
     });
   }
 
@@ -92,6 +94,9 @@ export class TripComponent implements OnInit {
   }
 
   createTrip(trip: Trip) {
+    // console.log(this.vehicle)
+    // trip.vehicle=this.vehicle;
+    // console.log(trip.vehicle)
     this.auth.getLoggedInUser().subscribe({
       next: (user) => {
         trip.user = user;
