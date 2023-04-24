@@ -17,7 +17,6 @@ import { VehicleService } from 'src/app/services/vehicle.service';
 import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
-
   selector: 'app-trip',
   templateUrl: './trip.component.html',
   styleUrls: ['./trip.component.css'],
@@ -38,7 +37,6 @@ export class TripComponent implements OnInit {
   comments: Comment[] = [];
   selectedComment: Comment | null = null;
 
-
   constructor(
     private tripService: TripService,
     private auth: AuthService,
@@ -49,7 +47,7 @@ export class TripComponent implements OnInit {
     private destService: DestinationService,
     private addressService: AddressService,
     private vehicleService: VehicleService,
-    private commentService: CommentService,
+    private commentService: CommentService
   ) {
     // this.newTrip.roundTrip = ''//;
     // this.newTrip.vehicle = '';
@@ -61,10 +59,14 @@ export class TripComponent implements OnInit {
     }
   }
 
+  loggedIn() {
+    return this.auth.checkLogin();
+  }
 
   getSingleTripById(id: number) {
-    this.tripService.getSingleTrip(id).subscribe((trip) =>{
+    this.tripService.getSingleTrip(id).subscribe((trip) => {
       this.selected = trip;
+      this.reloadComment(trip.id);
     });
   }
 
@@ -166,28 +168,27 @@ export class TripComponent implements OnInit {
     });
   }
 
-  initiateComment() {
-    let commentIdString = this.route.snapshot.paramMap.get('id');
-    if (commentIdString) {
-      let id = parseInt(commentIdString)
-      if(isNaN(id)) {
-        this.router.navigateByUrl('invalidId');
-      }
-      else {
-        this.commentService.show(id).subscribe({
-          next: (comment) => {
-            this.selectedComment = comment;
-          },
-          error: (fail) => {
-            this.router.navigateByUrl('Comment Not Found');
-          }
-        })
-      }
-    }
-  }
+  // initiateComment() {
+  //   let commentIdString = this.route.snapshot.paramMap.get('id');
+  //   if (commentIdString) {
+  //     let id = parseInt(commentIdString)
+  //     if(isNaN(id)) {
+  //       this.router.navigateByUrl('invalidId');
+  //     }
+  //     else {
+  //       this.commentService.show(id).subscribe({
+  //         next: (comment) => {
+  //           this.selectedComment = comment;
+  //         },
+  //         error: (fail) => {
+  //           this.router.navigateByUrl('Comment Not Found');
+  //         }
+  //       })
+  //     }
+  //   }
+  // }
 
   displayComment(comment: Comment) {
-
     this.newComment = comment;
   }
 
@@ -195,76 +196,73 @@ export class TripComponent implements OnInit {
     this.selected = null;
   }
 
-  createComment(comment: Comment): void{
-
-
-    this.auth.getLoggedInUser().subscribe(user => {
+  createComment(comment: Comment, tripId: number): void {
+    this.auth.getLoggedInUser().subscribe((user) => {
       comment.user = user;
       comment.trip = this.selected;
-      this.reload();
-      this.commentService.create(comment).subscribe({
-        next:(madeComment)=>{
+      this.commentService.create(comment, tripId).subscribe({
+        next: (madeComment) => {
           this.newComment = new Comment();
+          if (this.selected) {
 
-        },
-        error: (fail) => {
-          console.error('Error creating comment');
-        }
-      });
+            this.reloadComment(this.selected.id);
+          }
+          },
+          error: (fail) => {
+            console.error('Error creating comment');
+          },
+        });
+
     });
-    }
-
+  }
 
   setEditComment() {
     this.editComment = Object.assign({}, this.selectedComment);
   }
 
-  updateComment(comment: Comment, goToDetail = true){
-    this.commentService.update(comment).subscribe({
-      next:(updatedComment)=>{
-      this.editComment = null;
+  updateComment(comment: Comment, tripId: number, goToDetail = true) {
+    this.commentService.update(comment, tripId).subscribe({
+      next: (updatedComment) => {
+        this.editComment = null;
 
-      if(goToDetail) {
-        this.selectedComment = updatedComment;
-      }
-      this.reload();
+        if (goToDetail) {
+          this.selectedComment = updatedComment;
+        }
+        this.reload();
       },
       error: (fail) => {
         console.error('Error updating comment');
         console.log(fail);
-      }
-    })
+      },
+    });
   }
 
-  deleteComment(id: number){
-    this.commentService.destroy(id).subscribe({
-      next:(result) => {
+  deleteComment(id: number, tripId: number) {
+    this.commentService.destroy(id, tripId).subscribe({
+      next: (result) => {
         this.reload();
       },
       error: (fail) => {
         console.error('Error deleting comment');
         console.error(fail);
-      }
+      },
     });
   }
-  // reloadComment(id: number) {
-  //   this.commentService.index(id).subscribe({
-  //   next: (comments) => {
-  //     this.comments = comments;
-  // },
-  //     error: (fail) => {
-  //       console.error('Error getting comment list from service');
-  //       console.error(fail);
-  //     }
-  //   });
-  // }
-
-
+  reloadComment(id: number) {
+    this.commentService.index(id).subscribe({
+      next: (retrievedComments) => {
+        this.comments = retrievedComments;
+      },
+      error: (fail) => {
+        console.error('Error getting comment list from service');
+        console.error(fail);
+      },
+    });
+  }
 
   reload() {
     this.getVehicles();
     this.getPastTrips();
     this.getCurrentTrips();
-    this.initiateComment();
   }
 }
