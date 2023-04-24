@@ -35,7 +35,7 @@ import { DestinationComponent } from './components/destination/destination.compo
     GeoResultToAddressPipe,
     CommentComponent,
     LegComponent,
-    DestinationComponent
+    DestinationComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +45,6 @@ import { DestinationComponent } from './components/destination/destination.compo
     HttpClientModule,
     NgbModule,
     GoogleMapsModule,
-
   ],
   providers: [DatePipe, NgbActiveModal, GeoResultToAddressPipe],
   bootstrap: [AppComponent],
