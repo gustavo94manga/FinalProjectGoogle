@@ -2,7 +2,7 @@
 
 .buttongroup{
   margin-top: 0;
-  transform: translateY(-200px);
+  transform: translateY(-300px);
   margin-bottom: 0;
 }
 
@@ -12,7 +12,7 @@ transform: translateY(-100px);
 }
 
 .headerphoto{
-  transform: translateY(-200px);
+  transform: translateY(-300px);
 }
 
 .page{
