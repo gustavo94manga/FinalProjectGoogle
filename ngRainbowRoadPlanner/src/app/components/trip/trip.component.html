@@ -97,7 +97,7 @@
 
   <table>
     <tbody>
-      <tr><td>{{selected.user?.firstName}} {{selected.user?.lastName}}</td></tr>
+      <tr><td [routerLink]="['/profile/'+selected.user?.id]">{{selected.user?.firstName}} {{selected.user?.lastName}}</td></tr>
       <tr>
         {{
           selected.startDestination?.address?.city
@@ -178,7 +178,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let comment of comments">
+        <tr *ngFor="let comment of comments" [routerLink]="['/profile/'+comment.user?.id]">
           <td>{{comment.user?.firstName}} {{comment.user?.lastName}}</td>
           <td>{{ comment.description }}</td>
           <td>
