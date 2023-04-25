@@ -1,3 +1,4 @@
+import { ProfileService } from './../../services/profile.service';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -71,7 +72,8 @@ export class TripComponent implements OnInit {
     private addressService: AddressService,
     private vehicleService: VehicleService,
     private directionService: MapDirectionsService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private ProfileService: ProfileService
   ) {
     // this.newTrip.roundTrip = ''//;
     // this.newTrip.vehicle = '';
@@ -91,6 +93,8 @@ export class TripComponent implements OnInit {
   loggedIn() {
     return this.auth.checkLogin();
   }
+
+
 
   getSingleTripById(id: number) {
     this.tripService.getSingleTrip(id).subscribe((trip) => {

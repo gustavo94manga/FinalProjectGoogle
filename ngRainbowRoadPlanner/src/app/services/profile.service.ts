@@ -31,6 +31,22 @@ getHttpOptions() {
   return options;
 }
 
+userById(id: number): Observable<User> {
+  return this.http.get<User>(this.url+"/id/"+id, this.getHttpOptions() ).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('ProfileSrvc(): error retrieving User: ' + err)
+      );
+    })
+  );
+
+
+
+
+
+}
+
 show(username:string):Observable <User>{
 return this.http.get<User>(this.url+"/"+username, this.getHttpOptions() ).pipe(
   catchError((err: any) => {
