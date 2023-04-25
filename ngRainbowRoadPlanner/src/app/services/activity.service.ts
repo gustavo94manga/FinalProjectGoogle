@@ -29,12 +29,12 @@ getHttpOptions() {
 
 
 create(activity:Activity):Observable <Activity>{
-
+console.log(activity);
   return this.http.post<Activity>(this.url, activity, this.getHttpOptions()).pipe(
     catchError((err: any)=>{
       console.error(err);
       return throwError(
-        ()=> new Error('tripService.create(): error creating Trip'+ activity)
+        ()=> new Error('tripService.create(): error creating Activity'+ activity)
       )
     })
 )
@@ -46,7 +46,7 @@ index(): Observable<Activity[]>{
     catchError((err: any) => {
       console.log(err);
       return throwError(
-        () => new Error('TripService.index(): error retrieving trips: ' + err)
+        () => new Error('TripService.index(): error retrieving activites: ' + err)
       );
     })
   )
@@ -57,12 +57,24 @@ update(activity: Activity): Observable<Activity>{
     catchError((err: any) => {
       console.log(err);
       return throwError(
-        () => new Error('TripService.index(): error update trip: ' + err)
+        () => new Error('TripService.index(): error update activity: ' + err)
       );
     })
 
   )
 
+}
+
+destroy(id: number): Observable<void> {
+  return this.http
+    .delete<void>(this.url + '/' + id, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError(
+          () => new Error('activityService.destroy(): error deleting Activity: ' + err)
+        );
+      })
+    );
 }
 
 

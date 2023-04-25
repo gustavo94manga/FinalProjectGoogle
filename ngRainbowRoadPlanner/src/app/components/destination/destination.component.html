@@ -32,7 +32,8 @@
 
 
 </div> -->
-
+<br>
+<div class="conainer-fluid">
 <div class="page" name="page">
   <div class="row headerphoto">
     <img src="https://4kwallpapers.com/images/wallpapers/beach-aerial-view-3840x2160-60.jpg" alt="Top Down Beach Photo">
@@ -49,6 +50,12 @@
       <button type="button" class="btn btn-outline-primary btn-lg col-12" (click)="findByType('sight')">Sights</button><br>
       <hr>
     </form>
+    <div id="createActivity">
+  <form class="table table-striped">
+    <input type="text" name="description" [(ngModel)]="newActivity.description"><br>
+    <button (click)="createActivity(newActivity)">Submit</button>
+  </form>
+</div>
   </div>
 <div class="displaydestinations" name = "displayDestinations" *ngIf="destinations"></div>
   <div class="displaydestinations" name="destinationsLoop" *ngFor="let destination of destinations">
@@ -67,4 +74,5 @@
     </div>
     <hr>
   </div>
+</div>
 </div>
