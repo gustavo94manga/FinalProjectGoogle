@@ -11,4 +11,5 @@ public interface TripService {
 	public Trip update(String username, int id, Trip trip);
 	public boolean destroy(String username, int id);
 	List<Trip> findUserTrips(String username);
+	List<Trip> findByUserId(int id);
 }

@@ -96,7 +96,12 @@ public List<Vehicle> showAll(Principal principal,HttpServletRequest req, HttpSer
 	}
 	
 	
-
+	@GetMapping("vehicles/user/{id}")
+	public List<Vehicle> findUsersVehicles(HttpServletRequest req, HttpServletResponse res, @PathVariable int id){
+			return vehicleService.findUsersVehicles(id);
+		
+		
+	}
 	
 
 }

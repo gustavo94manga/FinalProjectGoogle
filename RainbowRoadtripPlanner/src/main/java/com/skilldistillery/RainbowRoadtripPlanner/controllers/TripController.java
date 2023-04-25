@@ -43,6 +43,11 @@ public class TripController {
 		return tripService.findUserTrips(principal.getName());
 	}
 	
+	@GetMapping("users/trips/id/{id}")
+	public List<Trip> getUserTripsById(HttpServletRequest req, HttpServletResponse res, @PathVariable int id){
+		return tripService.findByUserId(id);
+	}
+	
 	@PostMapping("trips")
 	public Trip create(Principal principal, HttpServletRequest req, HttpServletResponse res, @RequestBody Trip trip) {
 		Trip createTrip = null;
