@@ -1,6 +1,6 @@
 <br>
-<div *ngIf="!selected">
-  <h1>Trip Page</h1>
+<div class="tripBackground" *ngIf="!selected">
+  <h1>Trips</h1>
 
   <form class="create-trip-form">
     <input
@@ -83,7 +83,7 @@
     </tr>
   </tbody>
 </table>
-<br />
+
 
 <div id="tripDetail" *ngIf="selected">
   <h1>Trip Details</h1>
@@ -199,7 +199,7 @@
   <!-- <input type="submit" (click)="createTrip(newTrip)" /> -->
 </div>
 <br />
-<div *ngIf="!selected">
+<div class="backGroundColor" *ngIf="!selected">
   <h3>Current Trips</h3>
   <table class="trip-table table table-hover">
     <thead>
