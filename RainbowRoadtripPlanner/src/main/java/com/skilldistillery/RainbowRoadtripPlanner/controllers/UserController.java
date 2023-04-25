@@ -2,6 +2,7 @@ package com.skilldistillery.RainbowRoadtripPlanner.controllers;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +35,10 @@ public class UserController {
 		return userService.listAllUsers();
 	}
 	
+	@GetMapping("users/id/{id}")
+	public Optional<User> getUserById(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
+		return userService.findById(id);
+	}
 	
 	
 	@GetMapping("users/{username}")

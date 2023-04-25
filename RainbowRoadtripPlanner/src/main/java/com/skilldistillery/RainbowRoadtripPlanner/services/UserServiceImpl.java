@@ -1,6 +1,7 @@
 package com.skilldistillery.RainbowRoadtripPlanner.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,6 +61,12 @@ public class UserServiceImpl implements UserService {
 			deleted = true;
 		}
 		return deleted;
+	}
+
+	@Override
+	public Optional<User> findById(int id) {
+		
+		return userRepo.findById(id);
 	}
 
 
