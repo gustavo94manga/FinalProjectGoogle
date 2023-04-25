@@ -20,8 +20,9 @@
 
                 <p class="text-secondary mb-1">Full Stack Developer</p>
                 <p class="text-muted font-size-sm">
-                  {{ selected?.createDate | date : "'Joined ' MMMM d, y" }} <br>
-                  {{selected?.role}}
+                  {{ selected?.createDate | date : "'Joined ' MMMM d, y" }}<br>
+
+
                 </p>
               </div>
             </div>
@@ -53,6 +54,12 @@
                         Capacity:{{ vehicle.capacity }}
                         <p *ngIf="vehicle.estimatedMPG != null">MPG:{{ vehicle.estimatedMPG }} </p>
                       </td>
+                      <button *ngIf="checkedUser"
+                      class="btn btn-link"
+                      (click)="deleteVehicle(vehicle.id)"
+                    >
+                      Delete
+                    </button>
                     </tr>
                   </tbody>
                 </table>
@@ -91,10 +98,10 @@
 
             <div class="row">
               <div class="col-sm-12">
-                <button *ngIf="!editUser && (checkUser())" (click)="setEditUser()">
+                <button *ngIf="!editUser && checkedUser"  (click)="setEditUser()">
                   Update Profile
                 </button>
-                <button *ngIf="!editUser">
+                <button *ngIf="!editUser && checkedUser" (click)="setEditUserVehicle()">
                   Add a Vehicle
                 </button>
               </div>
@@ -108,8 +115,8 @@
         </div>
         <div class="card mt-3">
           <table>
-            <div class="aboutUpdate" id="todoEdit" *ngIf="editUser">
-              <form *ngIf="editUser">
+            <div class="aboutUpdate" id="todoEdit" *ngIf="editUser || addVehicle">
+              <form *ngIf="editUser && !addVehicle">
                 <h1>Edit Profile</h1>
                 <p>
                   About me
@@ -138,6 +145,45 @@
 
                 <button (click)="cancelEdit()">Cancel</button>
                 <button (click)="editProfile(editUser)">Save</button>
+              </form>
+              <form *ngIf="addVehicle &&vehicle != null">
+
+                <h1>Add a Vehicle</h1>
+                <p>
+                  Make:
+                  <input
+                    type="text"
+                    name="make"
+                    [(ngModel)]="vehicle.make"
+                  /><br />
+                </p>
+                <p>
+                  Model:
+                  <input
+                    type="text"
+                    name="model"
+                    [(ngModel)]="vehicle.model"
+                  /><br />
+                </p>
+                <p>
+                  MPG:
+                  <input
+                    type="number"
+                    name="mpg"
+                    [(ngModel)]="vehicle.estimatedMPG"
+                  /><br />
+                </p>
+                <p>
+                  Capacity
+                  <input
+                    type="text"
+                    name="capacity"
+                    [(ngModel)]="vehicle.capacity"
+                  /><br />
+                </p>
+
+                <button (click)="cancelEdit()">Cancel</button>
+                <button (click)="addNewVehicle(vehicle)">Save</button>
               </form>
 
             </div>

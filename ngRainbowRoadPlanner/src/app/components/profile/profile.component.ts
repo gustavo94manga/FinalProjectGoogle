@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   userTrip: Trip | null = null;
   vehicle: Vehicle | null = null;
   addVehicle: boolean = false;
-
+  checkedUser: boolean = false;
   constructor(
     private auth: AuthService,
     private route: ActivatedRoute,
@@ -41,29 +41,28 @@ export class ProfileComponent implements OnInit {
     if (userIdfromTripComponent) {
       this.profileService.userById(userIdfromTripComponent).subscribe({
         next: (user: User) => {
-          this.username = user.username;
-          this.profileService.show(this.username).subscribe({
-            next: (foundUser) => {
-              this.selected = foundUser;
-
-              this.profileService.getUserTrips().subscribe({
-                next: (trips) => {
-                  if (this.selected != null) {
-                    this.selected.trips = trips;
-                    this.vehicleService.getVehicles().subscribe({
-                      next: (vehicles) => {
-                        if (this.selected != null)
-                          this.selected.vehicles = vehicles;
-                      },
-                    });
-                  }
-                },
-              });
-            },
-            error: (fail) => {
-              console.log('ohh no');
+          console.log(user);
+          this.selected = user;
+          this.checkedUser = false;
+          this.profileService.getSingleUserTrips(this.selected.id).subscribe({
+            next: (trips) => {
+              if (this.selected != null) {
+                this.selected.trips = trips;
+                this.vehicleService
+                  .findUsersVehicles(this.selected.id)
+                  .subscribe({
+                    next: (vehicles) => {
+                      if (this.selected != null)
+                        this.selected.vehicles = vehicles;
+                    },
+                  });
+              }
             },
           });
+
+          error: (fail: string) => {
+            console.log('ohh no' + fail);
+          };
         },
       });
     } else {
@@ -72,18 +71,15 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  checkUser(){
-
-
-  }
-
   setEditUserVehicle() {
     this.addVehicle = true;
+    this.vehicle = new Vehicle();
   }
 
   reload() {
     this.getLoggedInUserInfo();
     this.editUser = null;
+    this.addVehicle = false;
   }
 
   showUserTrips() {
@@ -100,7 +96,7 @@ export class ProfileComponent implements OnInit {
     this.tripService.getSingleTrip(id).subscribe((trip) => {});
   }
 
-  getLoggedInUserInfo() {
+  getLoggedInUserInfo(): Observable<User> | null {
     this.auth.getLoggedInUser().subscribe({
       next: (foundUser) => {
         this.username = foundUser.username;
@@ -108,7 +104,7 @@ export class ProfileComponent implements OnInit {
         this.profileService.show(this.username).subscribe({
           next: (foundUser) => {
             this.selected = foundUser;
-
+            this.checkedUser = true;
             this.profileService.getUserTrips().subscribe({
               next: (trips) => {
                 if (this.selected != null) {
@@ -117,6 +113,7 @@ export class ProfileComponent implements OnInit {
                     next: (vehicles) => {
                       if (this.selected != null)
                         this.selected.vehicles = vehicles;
+                      return foundUser;
                     },
                   });
                 }
@@ -130,6 +127,32 @@ export class ProfileComponent implements OnInit {
       },
       error: (fail) => {
         console.log('ohh no');
+      },
+    });
+
+    return null;
+  }
+
+  deleteVehicle(id: number) {
+    this.vehicleService.delete(id).subscribe({
+      next: () => {
+        this.reload();
+      },
+    });
+  }
+
+  addNewVehicle(newVehicle: Vehicle) {
+    newVehicle.user = this.selected;
+
+    this.vehicleService.create(newVehicle).subscribe({
+      next: (vehicle) => {
+        // console.log(user)
+
+        this.reload();
+      },
+      error: (failure) => {
+        console.error('Error getting edit prifile');
+        console.error(failure);
       },
     });
   }

@@ -60,6 +60,22 @@ return this.http.get<User>(this.url+"/"+username, this.getHttpOptions() ).pipe(
 
 }
 
+getSingleUserTrips(id:number):Observable <Trip[]> {
+  return this.http.get<Trip[]>(this.url+"/trips/id/" + id, this.getHttpOptions() ).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('ProfileSrvc(): error retrieving Trips: ' + err)
+      );
+    })
+
+
+
+  );
+
+
+}
+
 getUserTrips():Observable<Trip[]>{
   return this.http.get<Trip[]>(this.url+"/trips",this.getHttpOptions()).pipe(
     catchError((err: any) => {

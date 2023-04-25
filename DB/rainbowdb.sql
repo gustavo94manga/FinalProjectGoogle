@@ -420,7 +420,7 @@ INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `activ
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (3, '3131 Las Vegas Blvd', NULL, 'Las Vegas', 'Nevada', '89109', true, -115.136389, 36.175);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (4, '1600 Amphitheater Pkwy', NULL, 'Mountain View', 'California', '94043', true, -122.45422660252977, 37.389444);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (5, '2121 E Craig Rd', NULL, 'Las Vegas', 'Nevada', '89030', true, -115.118824, 36.238521);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (6, '2222 Shearn St', NULL, 'Huston', 'Texas', '77007', true, -95.3836231, 29.7680711);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (6, '2222 Shearn St', NULL, 'Houston', 'Texas', '77007', true, -95.3836231, 29.7680711);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (7, '237 Hermitage Ave', NULL, 'Nashville', 'Tennessee', '37210', true, -86.7652816, 36.1520845);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (8, '1238 DeKalb Ave', NULL, 'Atlanta', 'Georga', '30307', true, -84.3913665, 33.7586154);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (9, '22 greenbriar', NULL, 'Columbus ', 'Ohio', '43125', true,  -83.000556, 39.962222);
