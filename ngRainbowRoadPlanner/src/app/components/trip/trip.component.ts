@@ -351,4 +351,5 @@ export class TripComponent implements OnInit {
     this.getPastTrips();
     this.getCurrentTrips();
   }
+
 }
