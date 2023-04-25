@@ -91,7 +91,7 @@
 
             <div class="row">
               <div class="col-sm-12">
-                <button *ngIf="!editUser" (click)="setEditUser()">
+                <button *ngIf="!editUser && (checkUser())" (click)="setEditUser()">
                   Update Profile
                 </button>
                 <button *ngIf="!editUser">

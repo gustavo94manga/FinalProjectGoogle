@@ -72,6 +72,11 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  checkUser(){
+
+
+  }
+
   setEditUserVehicle() {
     this.addVehicle = true;
   }

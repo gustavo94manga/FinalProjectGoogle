@@ -269,8 +269,8 @@ DROP TABLE IF EXISTS `activity` ;
 
 CREATE TABLE IF NOT EXISTS `activity` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `leg_id` INT NOT NULL,
-  `destination_id` INT NOT NULL,
+  `leg_id` INT NULL,
+  `destination_id` INT NULL,
   `did_stop` TINYINT NULL,
   `description` TEXT NULL,
   `priority_level` INT NULL,
@@ -468,7 +468,7 @@ COMMIT;
 START TRANSACTION;
 USE `rainbowdb`;
 INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (1, '2023-04-23', '2023-04-29', true, 3500, 1, 1, NULL, NULL, 'Skill Distillery Alum Tour', 'Cross Country Trip!', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-CYcYaVQnP9DF8EQ7fIgEL-raKRaXNO7uqpRgSaOVQSqU6K6rovc9mLYDc2plipuboIA&usqp=CAU', true, 4, 9);
-INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (2, '2019-01-01', '2019-01-09', true, 600, 2, 3, NULL, NULL, 'Vegas Trip', 'My first trip from L.A. to Vegas', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXWedvqc3ZZqnTIqlp-Kyi0BWTBOknEJ3Dwmn2-v3kHcwzyXOdHT_LdGr-vNG4dXtUKg&usqp=CAU', false, 3, 1);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (2, '2019-01-01', '2019-01-09', true, 600, 2, 3, NULL, NULL, 'Vegas Trip', 'My first trip from Denver to Vegas', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXWedvqc3ZZqnTIqlp-Kyi0BWTBOknEJ3Dwmn2-v3kHcwzyXOdHT_LdGr-vNG4dXtUKg&usqp=CAU', false, 3, 1);
 INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (3, '2022-06-03', '2022-07-01', false, 366, 2, 5, NULL, NULL, 'Summer Break', '', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPCWS4qr1QByDcUkr-9uIajXFPFsxCkqlsBCZh9Wr2Osywiu5z14_fQfNkiFsDvEx9Bec&usqp=CAU', false, 1, 2);
 INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (4, '2023-04-30', '2023-05-05', false, 344, 3, 1, NULL, NULL, 'Last trip of the year', '', 'https://us.123rf.com/450wm/edgarbullon/edgarbullon2005/edgarbullon200500265/148254276-epic-adventurous-extreme-sport-composite-of-rock-climbing-man-rappelling-from-a-cliff-mountain.jpg?ver=6', true, 2, 3);
 
