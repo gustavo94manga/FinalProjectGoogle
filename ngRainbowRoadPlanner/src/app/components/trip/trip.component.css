@@ -2,6 +2,20 @@ body {
   text-align: center;
 }
 
+.tripBackground {
+  background-color: rgb(253, 245, 234);
+}
+
+.backGroundColor {
+  background-color: rgb(253, 245, 234);
+}
+
+#tripDetail {
+  background-color: rgb(253, 245, 234);
+
+}
+
+
 h1,
 h2,
 h3 {
