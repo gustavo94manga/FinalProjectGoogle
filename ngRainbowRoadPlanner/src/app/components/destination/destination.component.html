@@ -55,13 +55,13 @@
 <br>
 <br>
 <br>
-<br>
+
 <div class="displaydestinations" name = "displayDestinations" *ngIf="destinations">
   <div class="displaydestinations" name="destinationsLoop" *ngFor="let destination of destinations">
     <div class="row">
-      <!-- <div class="col text-center"> -->
-        <!-- <img class="businessimages border" src="{{destination.imageUrl}}" alt="{{destination.description}}"> -->
-      <!-- </div> -->
+      <div class="col text-center">
+        <img class="businessimages border" src="{{destination.imageUrl}}" alt="{{destination.description}}">
+      </div>
       <div class="col text-center">
         <h4>{{destination.name}}</h4>
         <p> Description: {{destination.description}}</p>
