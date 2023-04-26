@@ -11,4 +11,5 @@ public interface TripRepository extends JpaRepository<Trip, Integer>{
 	Trip findByIdAndUser_Username(int id, String username);
 	Trip deleteById(int id);
 	List<Trip> findByUser_Username(String username);
+	List<Trip> findByUserId(int id);
 }

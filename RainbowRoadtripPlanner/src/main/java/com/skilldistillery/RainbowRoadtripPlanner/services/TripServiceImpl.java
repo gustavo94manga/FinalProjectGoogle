@@ -76,4 +76,10 @@ public class TripServiceImpl implements TripService {
 		return tripRepo.findById(id);
 	}
 
+	@Override
+	public List<Trip> findByUserId(int id) {
+		// TODO Auto-generated method stub
+		return tripRepo.findByUserId(id);
+	}
+
 }

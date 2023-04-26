@@ -63,7 +63,7 @@ export class TripComponent implements OnInit {
 
   constructor(
     private tripService: TripService,
-    private auth: AuthService,
+
     private route: ActivatedRoute,
     private router: Router,
     private geocoder: MapGeocoder,
@@ -73,41 +73,43 @@ export class TripComponent implements OnInit {
     private vehicleService: VehicleService,
     private directionService: MapDirectionsService,
     private commentService: CommentService,
-    private ProfileService: ProfileService
+    private authService: AuthService
   ) {
     // this.newTrip.roundTrip = ''//;
     // this.newTrip.vehicle = '';
   }
 
   ngOnInit() {
-    {
-      this.getVehicles();
-      this.getPastTrips();
-      this.getCurrentTrips();
-      // this.initMap();
-      this.directionsRenderer = new google.maps.DirectionsRenderer();
-      this.reload();
-    }
+    this.getPastTrips();
+    this.getCurrentTrips();
+    this.directionsRenderer = new google.maps.DirectionsRenderer();
   }
 
   loggedIn() {
-    return this.auth.checkLogin();
+    return this.authService.checkLogin();
   }
 
-
-
   getSingleTripById(id: number) {
-    this.tripService.getSingleTrip(id).subscribe((trip) => {
+    this.tripService.getSingleTrip(id).subscribe({
+      next: (trip) =>{
       this.selected = trip;
       this.reloadComment(trip.id);
       this.showDirections(trip);
+    },
+    error: () => {
+      this.router.navigate(['/login']);
+    },
     });
   }
 
   getVehicles(): void {
-    this.vehicleService.getVehicles().subscribe((vehicles) => {
-      console.log(vehicles);
-      this.vehicles = vehicles;
+    this.vehicleService.getVehicles().subscribe({
+      next: (vehicleList) => {
+        this.vehicles = vehicleList;
+      },
+      error: () => {
+        this.router.navigate(['/login']);
+      },
     });
   }
 
@@ -141,7 +143,7 @@ export class TripComponent implements OnInit {
     // console.log(this.vehicle)
     // trip.vehicle=this.vehicle;
     // console.log(trip.vehicle)
-    this.auth.getLoggedInUser().subscribe({
+    this.authService.getLoggedInUser().subscribe({
       next: (user) => {
         trip.user = user;
         this.tripService.create(trip).subscribe({
@@ -246,39 +248,6 @@ export class TripComponent implements OnInit {
     }
   }
 
-  // initMap(): void {
-  //   const mapOptions = {
-  //     center: new google.maps.LatLng(this.lat, this.lng),
-  //     zoom: 8,
-  //   };
-  //   this.map = new google.maps.Map(this.mapContainer.nativeElement, mapOptions);
-
-  //   const marker = new google.maps.Marker({
-  //     position: new google.maps.LatLng(this.lat, this.lng),
-  //     map: this.map,
-  //   });
-  // }
-
-  // initiateComment() {
-  //   let commentIdString = this.route.snapshot.paramMap.get('id');
-  //   if (commentIdString) {
-  //     let id = parseInt(commentIdString)
-  //     if(isNaN(id)) {
-  //       this.router.navigateByUrl('invalidId');
-  //     }
-  //     else {
-  //       this.commentService.show(id).subscribe({
-  //         next: (comment) => {
-  //           this.selectedComment = comment;
-  //         },
-  //         error: (fail) => {
-  //           this.router.navigateByUrl('Comment Not Found');
-  //         }
-  //       })
-  //     }
-  //   }
-  // }
-
   displayComment(comment: Comment) {
     this.newComment = comment;
   }
@@ -288,7 +257,7 @@ export class TripComponent implements OnInit {
   }
 
   createComment(comment: Comment, tripId: number): void {
-    this.auth.getLoggedInUser().subscribe((user) => {
+    this.authService.getLoggedInUser().subscribe((user) => {
       comment.user = user;
       comment.trip = this.selected;
       this.commentService.create(comment, tripId).subscribe({
@@ -355,5 +324,4 @@ export class TripComponent implements OnInit {
     this.getPastTrips();
     this.getCurrentTrips();
   }
-
 }

@@ -73,4 +73,10 @@ public class VehicleServiceImpl implements VehicleService {
 		return deleted;
 	}
 
+	@Override
+	public List<Vehicle> findUsersVehicles(int id) {
+		// TODO Auto-generated method stub
+		return vehicleRepo.findByUser_Id(id);
+	}
+
 }

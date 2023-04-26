@@ -31,7 +31,7 @@ export class TripService {
 
 
   getTrips(): Observable<Trip[]> {
-    return this.http.get<Trip[]>(this.url, this.getHttpOptions()).pipe(
+    return this.http.get<Trip[]>(this.url).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

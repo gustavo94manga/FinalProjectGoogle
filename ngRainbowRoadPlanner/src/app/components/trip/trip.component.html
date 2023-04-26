@@ -1,4 +1,4 @@
-<br>
+<br />
 <div class="tripBackground" *ngIf="!selected">
   <h1>Trips</h1>
 
@@ -45,14 +45,12 @@
       <option value="true">Round Trip</option>
     </select>
 
-    <!-- <select
-      name="vehicle"
-      #vehicleInput="ngModel"
-      [(ngModel)]="vehicle"
-    >
+    <select name="vehicle" #vehicleInput="ngModel" [(ngModel)]="vehicle">
       <option value="" disabled selected>Vehicle</option>
-      <option *ngFor="let veh of vehicles" value={{veh}} >{{ veh.make }} {{ veh.model }}</option>
-    </select> -->
+      <option *ngFor="let veh of vehicles" value="{{ veh }}">
+        {{ veh.make }} {{ veh.model }}
+      </option>
+    </select>
 
     <br />
 
@@ -84,7 +82,6 @@
   </tbody>
 </table>
 
-
 <div id="tripDetail" *ngIf="selected">
   <h1>Trip Details</h1>
   <google-map height="35em" width="100%">
@@ -97,28 +94,27 @@
 
   <table>
     <tbody>
-      <tr><td [routerLink]="['/profile/'+selected.user?.id]">{{selected.user?.firstName}} {{selected.user?.lastName}}</td></tr>
       <tr>
-        {{
-          selected.startDestination?.address?.city
-        }}
-        -
-        {{
-          selected.endDestination?.address?.city
-        }}
+        <td [routerLink]="['/profile/' + selected.user?.id]">
+          {{ selected.user?.firstName }} {{ selected.user?.lastName }}
+        </td>
       </tr>
       <tr>
-        {{
-          selected.startDate
-        }}
+        <h6>Starts:</h6>
+        {{selected.startDestination?.address?.city}}, {{selected.startDestination?.address?.state}}
         -
-        {{
-          selected.endDate
-        }}
+        {{selected.startDate | date : " MMMM d, y"}}
+
+      </tr>
+      <br>
+      <tr>
+        <h6>Ends:</h6>
+        {{selected.endDestination?.address?.city}}, {{selected.endDestination?.address?.state}}
+        -
+        {{selected.endDate | date : " MMMM d, y"}}
       </tr>
     </tbody>
   </table>
-
 
   <div *ngIf="loggedIn">
     <h2>Add Comment</h2>
@@ -178,8 +174,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let comment of comments" [routerLink]="['/profile/'+comment.user?.id]">
-          <td>{{comment.user?.firstName}} {{comment.user?.lastName}}</td>
+        <tr *ngFor="let comment of comments">
+          <td [routerLink]="['/profile/' + comment.user?.id]">
+            {{ comment.user?.firstName }} {{ comment.user?.lastName }}
+          </td>
           <td>{{ comment.description }}</td>
           <td>
             <button
