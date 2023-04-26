@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'destination', component: DestinationComponent },
   { path: 'trip', component: TripComponent },
+  { path: 'profile/:id', component: ProfileComponent,data :{data:'id'} },
 
 ];
 

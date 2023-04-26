@@ -31,6 +31,22 @@ getHttpOptions() {
   return options;
 }
 
+userById(id: number): Observable<User> {
+  return this.http.get<User>(this.url+"/id/"+id, this.getHttpOptions() ).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('ProfileSrvc(): error retrieving User: ' + err)
+      );
+    })
+  );
+
+
+
+
+
+}
+
 show(username:string):Observable <User>{
 return this.http.get<User>(this.url+"/"+username, this.getHttpOptions() ).pipe(
   catchError((err: any) => {
@@ -40,6 +56,22 @@ return this.http.get<User>(this.url+"/"+username, this.getHttpOptions() ).pipe(
     );
   })
 );
+
+
+}
+
+getSingleUserTrips(id:number):Observable <Trip[]> {
+  return this.http.get<Trip[]>(this.url+"/trips/id/" + id, this.getHttpOptions() ).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('ProfileSrvc(): error retrieving Trips: ' + err)
+      );
+    })
+
+
+
+  );
 
 
 }

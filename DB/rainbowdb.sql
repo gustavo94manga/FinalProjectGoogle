@@ -269,8 +269,8 @@ DROP TABLE IF EXISTS `activity` ;
 
 CREATE TABLE IF NOT EXISTS `activity` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `leg_id` INT NOT NULL,
-  `destination_id` INT NOT NULL,
+  `leg_id` INT NULL,
+  `destination_id` INT NULL,
   `did_stop` TINYINT NULL,
   `description` TEXT NULL,
   `priority_level` INT NULL,
@@ -420,7 +420,7 @@ INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `activ
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (3, '3131 Las Vegas Blvd', NULL, 'Las Vegas', 'Nevada', '89109', true, -115.136389, 36.175);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (4, '1600 Amphitheater Pkwy', NULL, 'Mountain View', 'California', '94043', true, -122.45422660252977, 37.389444);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (5, '2121 E Craig Rd', NULL, 'Las Vegas', 'Nevada', '89030', true, -115.118824, 36.238521);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (6, '2222 Shearn St', NULL, 'Huston', 'Texas', '77007', true, -95.3836231, 29.7680711);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (6, '2222 Shearn St', NULL, 'Houston', 'Texas', '77007', true, -95.3836231, 29.7680711);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (7, '237 Hermitage Ave', NULL, 'Nashville', 'Tennessee', '37210', true, -86.7652816, 36.1520845);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (8, '1238 DeKalb Ave', NULL, 'Atlanta', 'Georga', '30307', true, -84.3913665, 33.7586154);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`, `longitude`, `latitude`) VALUES (9, '22 greenbriar', NULL, 'Columbus ', 'Ohio', '43125', true,  -83.000556, 39.962222);
@@ -468,7 +468,7 @@ COMMIT;
 START TRANSACTION;
 USE `rainbowdb`;
 INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (1, '2023-04-23', '2023-04-29', true, 3500, 1, 1, NULL, NULL, 'Skill Distillery Alum Tour', 'Cross Country Trip!', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-CYcYaVQnP9DF8EQ7fIgEL-raKRaXNO7uqpRgSaOVQSqU6K6rovc9mLYDc2plipuboIA&usqp=CAU', true, 4, 9);
-INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (2, '2019-01-01', '2019-01-09', true, 600, 2, 3, NULL, NULL, 'Vegas Trip', 'My first trip from L.A. to Vegas', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXWedvqc3ZZqnTIqlp-Kyi0BWTBOknEJ3Dwmn2-v3kHcwzyXOdHT_LdGr-vNG4dXtUKg&usqp=CAU', false, 3, 1);
+INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (2, '2019-01-01', '2019-01-09', true, 600, 2, 3, NULL, NULL, 'Vegas Trip', 'My first trip from Denver to Vegas', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXWedvqc3ZZqnTIqlp-Kyi0BWTBOknEJ3Dwmn2-v3kHcwzyXOdHT_LdGr-vNG4dXtUKg&usqp=CAU', false, 3, 1);
 INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (3, '2022-06-03', '2022-07-01', false, 366, 2, 5, NULL, NULL, 'Summer Break', '', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPCWS4qr1QByDcUkr-9uIajXFPFsxCkqlsBCZh9Wr2Osywiu5z14_fQfNkiFsDvEx9Bec&usqp=CAU', false, 1, 2);
 INSERT INTO `trip` (`id`, `start_date`, `end_date`, `roundtrip`, `miles`, `user_id`, `vehicle_id`, `create_date`, `update_date`, `title`, `description`, `image_url`, `active`, `start_destination_id`, `end_destination_id`) VALUES (4, '2023-04-30', '2023-05-05', false, 344, 3, 1, NULL, NULL, 'Last trip of the year', '', 'https://us.123rf.com/450wm/edgarbullon/edgarbullon2005/edgarbullon200500265/148254276-epic-adventurous-extreme-sport-composite-of-rock-climbing-man-rappelling-from-a-cliff-mountain.jpg?ver=6', true, 2, 3);
 

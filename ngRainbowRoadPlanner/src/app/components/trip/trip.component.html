@@ -1,6 +1,6 @@
 <br>
-<div *ngIf="!selected">
-  <h1>Trip Page</h1>
+<div class="tripBackground" *ngIf="!selected">
+  <h1>Trips</h1>
 
   <form class="create-trip-form">
     <input
@@ -83,7 +83,7 @@
     </tr>
   </tbody>
 </table>
-<br />
+
 
 <div id="tripDetail" *ngIf="selected">
   <h1>Trip Details</h1>
@@ -97,6 +97,7 @@
 
   <table>
     <tbody>
+      <tr><td [routerLink]="['/profile/'+selected.user?.id]">{{selected.user?.firstName}} {{selected.user?.lastName}}</td></tr>
       <tr>
         {{
           selected.startDestination?.address?.city
@@ -118,21 +119,6 @@
     </tbody>
   </table>
 
-  <!-- <button (click)="getCurrentTrips()">Return</button> -->
-
-  <!-- <h4>Comments:</h4>
-  <table>
-    <tbody>
-      <td *ngFor="let comment of selected.comments">
-        <tr>
-          {{
-            comment.description
-          }}
-        </tr>
-      </td>
-    </tbody>
-  </table>
-  <h4>Description: {{ selected.description }}</h4> -->
 
   <div *ngIf="loggedIn">
     <h2>Add Comment</h2>
@@ -183,15 +169,17 @@
 
   <div *ngIf="comments.length > 0">
     <h2>Comments</h2>
-    <table class="table">
+    <table class="table table table-hover">
       <thead>
         <tr>
+          <th>User</th>
           <th>Comment</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let comment of comments">
+        <tr *ngFor="let comment of comments" [routerLink]="['/profile/'+comment.user?.id]">
+          <td>{{comment.user?.firstName}} {{comment.user?.lastName}}</td>
           <td>{{ comment.description }}</td>
           <td>
             <button
@@ -211,7 +199,7 @@
   <!-- <input type="submit" (click)="createTrip(newTrip)" /> -->
 </div>
 <br />
-<div *ngIf="!selected">
+<div class="backGroundColor" *ngIf="!selected">
   <h3>Current Trips</h3>
   <table class="trip-table table table-hover">
     <thead>

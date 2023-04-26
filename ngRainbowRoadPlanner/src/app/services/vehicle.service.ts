@@ -39,6 +39,44 @@ export class VehicleService {
     );
   }
 
+  findUsersVehicles(id: number): Observable<Vehicle[]> {
+    return this.http
+      .get<Vehicle[]>(this.url + 'user/' + id, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error('TripService.index(): error retrieving trips: ' + err)
+          );
+        })
+      );
+  }
+
+  create(vehicle: Vehicle) {
+    return this.http
+      .post<Vehicle>(this.url, vehicle, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () => new Error('TripService.index(): error create vehicle: ' + err)
+          );
+        })
+      );
+  }
+
+  delete(id: number) {
+    return this.http.delete<Vehicle>(this.url+ id, this.getHttpOptions()).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () => new Error('TripService.index(): error delete vehicle: ' + err)
+          );
+        })
+      );
+  }
+
   getVehicles(): Observable<Vehicle[]> {
     return this.http.get<Vehicle[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {
