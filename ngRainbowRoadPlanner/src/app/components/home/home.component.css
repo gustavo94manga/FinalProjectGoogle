@@ -4,16 +4,34 @@ html {
   padding: 0;
 }
 
+h2 {
+  font-size: 40px;
+  color: #ffffff;
+  margin: 1em;
+}
+
 h3 {
   font-size: 20px;
   color: #fe2c02;
 }
-h2 {
-  font-size: 40px;
-  color: #fe2c02;
+
+.fixed-width {
+  width: 100%;
+  display: block;
 }
 
-/* Container holding the image and the text */
+.centered {
+  font-size: 90px;
+  opacity: 0.9;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  top: 40%;
+}
+
 .container {
   position: relative;
   text-align: center;
@@ -24,31 +42,26 @@ h2 {
   margin-right: auto;
   box-sizing: border-box;
   width: 100%;
+  max-width: 100%;
 }
-
-.fixed-width {
-  width: 100%;
-  /* max-width: 1200px; */
-}
-
-/* Centered text */
-.centered {
-  font-size: 60px;
-  color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.no-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .responsive-text {
+  color: #ffffff;
+  font-size: 3rem;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  margin: 1em;
+  margin-bottom: 2em;
 }
 
 .map-text {
-  color: #fe2c02;
-  font-size: 40px;
+  color: #ffffff;
+  font-size: 60px;
+  text-align: center;
 }
 
 .mapimage {
@@ -89,14 +102,13 @@ h2 {
 }
 
 .scene {
-  width: 40em;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: row;
   gap: 2.5em;
   perspective: 1000px;
   z-index: 1;
-  transform: translateX(-20px);
 }
 
 .card {
@@ -151,10 +163,10 @@ h2 {
 }
 
 .image-text {
-  font-family: "Ysabeau", sans-serif;
+  font-family: "Ubuntu", sans-serif;
   font-size: 3em;
   font-weight: 300 italic;
   position: absolute;
   top: 40%;
-  right: 40%;
+  right: 30%;
 }

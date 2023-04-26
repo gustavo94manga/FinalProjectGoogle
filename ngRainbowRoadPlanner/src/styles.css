@@ -10,10 +10,10 @@
   height: auto;
 }
 
-.body {
-  font-family: sans-serif;
-  background-color: #f3f6f4;
-  color: #010101;
+body,
+html {
+  margin: 0;
+  padding: 0;
 }
 
 .top {
