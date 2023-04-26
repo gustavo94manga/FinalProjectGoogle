@@ -25,23 +25,49 @@ constructor(private activityService: ActivityService,
 }
 
 
-createTrip(activity: Activity){
+createActivity(activity: Activity){
   this.activityService.create(activity).subscribe({
     next:(madeActivity)=>{
       this.selected=madeActivity;
       console.log(madeActivity)
-    }
+      this.reload();
+    },
+    error: (fail) => {
+      console.error('Error creating activity', fail);
+      console.error(fail);
+    },
 
   })
 }
 
-updateTrip(activity: Activity){
+updateActivity(activity: Activity){
   this.activityService.update(activity).subscribe({
     next:(updatedActivity)=>{
     this.selected=updatedActivity;
-    }
+    this.reload();
+    },
+    error: (fail) => {
+      console.error('Error updating activity', fail);
+      console.error(fail);
+    },
   })
 }
 
+deleteActivity(id: number) {
+  console.log(id);
+  this.activityService.destroy(id).subscribe({
+    next: (result) => {
+      this.reload();
+    },
+    error: (fail) => {
+      console.error('Error deleting activity', fail);
+      console.error(fail);
+    },
+  });
+}
+
+reload() {
+
+}
 
 }

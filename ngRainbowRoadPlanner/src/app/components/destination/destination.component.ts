@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Activity } from 'src/app/models/activity';
 import { Destination } from 'src/app/models/destination';
+import { ActivityService } from 'src/app/services/activity.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { DestinationService } from 'src/app/services/destination.service';
 
@@ -17,16 +19,68 @@ export class DestinationComponent implements OnInit {
   editDestination: Destination | null = null;
   selected: Destination | null = null;
   destinations: Destination[] | null = null;
+  selectedActivity: Activity | null = null;
+  newActivity: Activity = new Activity();
 
   constructor(
     private auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private destService: DestinationService
+    private destService: DestinationService,
+    private activityService: ActivityService
   ) { }
 
   ngOnInit() {
 
+
+  }
+
+  createActivity(activity: Activity){
+    this.newActivity = activity;
+    this.newActivity.destinationId = 3;
+    console.log(this.newActivity);
+    this.newActivity.legId = 3;
+    this.activityService.create(this.newActivity).subscribe({
+      next:(madeActivity)=>{
+        this.selectedActivity = madeActivity;
+        console.log(madeActivity)
+        this.reload();
+      },
+      error: (fail) => {
+        console.error('Error creating activity', fail);
+        console.error(fail);
+      },
+
+    })
+  }
+
+  updateActivity(activity: Activity){
+    this.activityService.update(activity).subscribe({
+      next:(updatedActivity)=>{
+      this.selectedActivity = updatedActivity;
+      this.reload();
+      },
+      error: (fail) => {
+        console.error('Error updating activity', fail);
+        console.error(fail);
+      },
+    })
+  }
+
+  deleteActivity(id: number) {
+    console.log(id);
+    this.activityService.destroy(id).subscribe({
+      next: (result) => {
+        this.reload();
+      },
+      error: (fail) => {
+        console.error('Error deleting activity', fail);
+        console.error(fail);
+      },
+    });
+  }
+
+  reload() {
 
   }
 

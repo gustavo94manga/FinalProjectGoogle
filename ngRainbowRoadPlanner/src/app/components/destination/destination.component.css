@@ -8,7 +8,7 @@
 
 .displaydestinations{
 transform: translateY(-200px);
-
+background-color: #FFF5E9;
 }
 
 .headerphoto{
@@ -16,7 +16,7 @@ transform: translateY(-200px);
 }
 
 .page{
-  background-color: #FFF5E9
+  background-color: #FFF5E9;
 }
 
 .businessimages{
