@@ -23,6 +23,8 @@ export class ProfileComponent implements OnInit {
   vehicle: Vehicle | null = null;
   addVehicle: boolean = false;
   checkedUser: boolean = false;
+
+
   constructor(
     private auth: AuthService,
     private route: ActivatedRoute,

@@ -18,7 +18,11 @@ export class NavbarComponent {
      ) {}
 
   showSignupModal() {
-    const modalRef = this.modalService.open(SignupComponent);
+     this.modalService.open(SignupComponent)
+
+      this.router.navigate(['/login']);
+
+
   }
 
   loggedIn(): boolean {
