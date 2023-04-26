@@ -31,11 +31,11 @@ public class SecurityConfig {
         .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll() // For CORS, the preflight request
         .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/trips/**").permitAll()
-<<<<<<< HEAD
+
         .antMatchers(HttpMethod.GET, "/api/destinations/**").permitAll()
-=======
+
         .antMatchers("/api/**").authenticated()         // Requests for our REST API must be authorized.
->>>>>>> 036a1b2ada4b5d249b96f92c996b576a41577f92
+
         .anyRequest().permitAll()               // All other requests are allowed without authentication.
         .and()
         .httpBasic();                           // Use HTTP Basic Authentication

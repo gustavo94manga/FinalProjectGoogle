@@ -21,7 +21,7 @@ h3 {
 }
 
 .centered {
-  font-size: 90px;
+  font-size: 85px;
   opacity: 0.9;
   color: white;
   position: absolute;
@@ -29,7 +29,7 @@ h3 {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  top: 40%;
+  top: 30%;
 }
 
 .container {
@@ -166,7 +166,7 @@ h3 {
   font-family: "Ubuntu", sans-serif;
   font-size: 3em;
   font-weight: 300 italic;
-  position: absolute;
+  position: center;
   top: 40%;
   right: 30%;
 }

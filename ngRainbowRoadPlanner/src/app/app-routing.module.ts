@@ -9,7 +9,6 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { TripComponent } from './components/trip/trip.component';
 import { DestinationComponent } from './components/destination/destination.component';
 
-
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
@@ -19,8 +18,8 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'destination', component: DestinationComponent },
   { path: 'trip', component: TripComponent },
-  { path: 'profile/:id', component: ProfileComponent,data :{data:'id'} },
-
+  { path: 'profile/:id', component: ProfileComponent, data: { data: 'id' } },
+  { path: 'trip/:id', component: TripComponent, data: { data: 'id' } },
 ];
 
 @NgModule({

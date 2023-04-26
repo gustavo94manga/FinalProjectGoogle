@@ -33,7 +33,7 @@
         <!-- Featured Trips, Carousel, and Footer -->
 
         <h2>Featured Trips</h2>
-        <br />
+
         <div class="row" *ngFor="let trip of trips | slice : 0 : 3">
           {{ trip.id }}
           {{ trip.description }}
@@ -42,19 +42,19 @@
       <div class="row text-center">
         <div class="cards-container">
           <div class="scene">
-            <div class="card col-md-10">
+            <div class="card col-md-10" [routerLink]="['/trip/' + 1]">
               <div class="card-face-front card-face">
                 <img class="card-image" src="assets/featured1.png" alt="" />
-                <p class="image-text">Las Vegas</p>
+                <p class="image-text">Alumni Trip</p>
               </div>
 
               <div class="card-face-back card-face">
-                <img class="card-image" src="assets/featured2.png" alt="" />
+                <img class="card-image" src="assets/featured1.png" alt="" />
               </div>
             </div>
-            <div class="card col-md-10">
+            <div class="card col-md-10" [routerLink]="['/trip/' + 2]">
               <div class="card-face-front card-face">
-                <img class="card-image" src="assets/featured2.png" alt="" />
+                <img class="card-image" src="assets/featured3.png" alt="" />
                 <p class="image-text">Summer Break</p>
               </div>
               <div class="card-face-back card-face">
