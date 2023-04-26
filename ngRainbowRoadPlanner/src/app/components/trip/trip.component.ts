@@ -73,7 +73,7 @@ export class TripComponent implements OnInit {
     private vehicleService: VehicleService,
     private directionService: MapDirectionsService,
     private commentService: CommentService,
-    private ProfileService: ProfileService
+    private authService: AuthService
   ) {
     // this.newTrip.roundTrip = ''//;
     // this.newTrip.vehicle = '';
@@ -81,12 +81,14 @@ export class TripComponent implements OnInit {
 
   ngOnInit() {
     {
+
+      this.authService.getLoggedInUser();
       this.getVehicles();
       this.getPastTrips();
       this.getCurrentTrips();
-      // this.initMap();
+
       this.directionsRenderer = new google.maps.DirectionsRenderer();
-      this.reload();
+
     }
   }
 
@@ -246,38 +248,7 @@ export class TripComponent implements OnInit {
     }
   }
 
-  // initMap(): void {
-  //   const mapOptions = {
-  //     center: new google.maps.LatLng(this.lat, this.lng),
-  //     zoom: 8,
-  //   };
-  //   this.map = new google.maps.Map(this.mapContainer.nativeElement, mapOptions);
 
-  //   const marker = new google.maps.Marker({
-  //     position: new google.maps.LatLng(this.lat, this.lng),
-  //     map: this.map,
-  //   });
-  // }
-
-  // initiateComment() {
-  //   let commentIdString = this.route.snapshot.paramMap.get('id');
-  //   if (commentIdString) {
-  //     let id = parseInt(commentIdString)
-  //     if(isNaN(id)) {
-  //       this.router.navigateByUrl('invalidId');
-  //     }
-  //     else {
-  //       this.commentService.show(id).subscribe({
-  //         next: (comment) => {
-  //           this.selectedComment = comment;
-  //         },
-  //         error: (fail) => {
-  //           this.router.navigateByUrl('Comment Not Found');
-  //         }
-  //       })
-  //     }
-  //   }
-  // }
 
   displayComment(comment: Comment) {
     this.newComment = comment;
