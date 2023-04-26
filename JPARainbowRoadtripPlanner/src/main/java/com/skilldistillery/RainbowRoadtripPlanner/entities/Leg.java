@@ -20,10 +20,10 @@ public class Leg {
 	private int id;
 	
 	@Column(name="estimated_miles")
-	private int estimatedMiles;
+	private Integer estimatedMiles;
 	
 	@Column(name="actual_miles")
-	private int actualMiles;
+	private Integer actualMiles;
 	
 	private String name;
 	
@@ -71,19 +71,19 @@ public class Leg {
 		this.id = id;
 	}
 
-	public int getEstimatedMiles() {
+	public Integer getEstimatedMiles() {
 		return estimatedMiles;
 	}
 
-	public void setEstimatedMiles(int estimatedMiles) {
+	public void setEstimatedMiles(Integer estimatedMiles) {
 		this.estimatedMiles = estimatedMiles;
 	}
 
-	public int getActualMiles() {
+	public Integer getActualMiles() {
 		return actualMiles;
 	}
 
-	public void setActualMiles(int actualMiles) {
+	public void setActualMiles(Integer actualMiles) {
 		this.actualMiles = actualMiles;
 	}
 

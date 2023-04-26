@@ -32,7 +32,8 @@
 
 
 </div> -->
-
+<br>
+<div class="conainer-fluid">
 <div class="page" name="page">
   <div class="row headerphoto">
     <img src="https://4kwallpapers.com/images/wallpapers/beach-aerial-view-3840x2160-60.jpg" alt="Top Down Beach Photo">
@@ -50,12 +51,17 @@
       <hr>
     </form>
   </div>
-<div class="displaydestinations" name = "displayDestinations" *ngIf="destinations"></div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="displaydestinations" name = "displayDestinations" *ngIf="destinations">
   <div class="displaydestinations" name="destinationsLoop" *ngFor="let destination of destinations">
     <div class="row">
-      <div class="col text-center">
-        <img class="businessimages border" src="{{destination.imageUrl}}" alt="{{destination.description}}">
-      </div>
+      <!-- <div class="col text-center"> -->
+        <!-- <img class="businessimages border" src="{{destination.imageUrl}}" alt="{{destination.description}}"> -->
+      <!-- </div> -->
       <div class="col text-center">
         <h4>{{destination.name}}</h4>
         <p> Description: {{destination.description}}</p>
