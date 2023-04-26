@@ -63,7 +63,7 @@ export class TripComponent implements OnInit {
 
   constructor(
     private tripService: TripService,
-    private auth: AuthService,
+
     private route: ActivatedRoute,
     private router: Router,
     private geocoder: MapGeocoder,
@@ -80,36 +80,36 @@ export class TripComponent implements OnInit {
   }
 
   ngOnInit() {
-    {
-
-      this.authService.getLoggedInUser();
-      this.getVehicles();
-      this.getPastTrips();
-      this.getCurrentTrips();
-
-      this.directionsRenderer = new google.maps.DirectionsRenderer();
-
-    }
+    this.getPastTrips();
+    this.getCurrentTrips();
+    this.directionsRenderer = new google.maps.DirectionsRenderer();
   }
 
   loggedIn() {
-    return this.auth.checkLogin();
+    return this.authService.checkLogin();
   }
 
-
-
   getSingleTripById(id: number) {
-    this.tripService.getSingleTrip(id).subscribe((trip) => {
+    this.tripService.getSingleTrip(id).subscribe({
+      next: (trip) =>{
       this.selected = trip;
       this.reloadComment(trip.id);
       this.showDirections(trip);
+    },
+    error: () => {
+      this.router.navigate(['/login']);
+    },
     });
   }
 
   getVehicles(): void {
-    this.vehicleService.getVehicles().subscribe((vehicles) => {
-      console.log(vehicles);
-      this.vehicles = vehicles;
+    this.vehicleService.getVehicles().subscribe({
+      next: (vehicleList) => {
+        this.vehicles = vehicleList;
+      },
+      error: () => {
+        this.router.navigate(['/login']);
+      },
     });
   }
 
@@ -143,7 +143,7 @@ export class TripComponent implements OnInit {
     // console.log(this.vehicle)
     // trip.vehicle=this.vehicle;
     // console.log(trip.vehicle)
-    this.auth.getLoggedInUser().subscribe({
+    this.authService.getLoggedInUser().subscribe({
       next: (user) => {
         trip.user = user;
         this.tripService.create(trip).subscribe({
@@ -248,8 +248,6 @@ export class TripComponent implements OnInit {
     }
   }
 
-
-
   displayComment(comment: Comment) {
     this.newComment = comment;
   }
@@ -259,7 +257,7 @@ export class TripComponent implements OnInit {
   }
 
   createComment(comment: Comment, tripId: number): void {
-    this.auth.getLoggedInUser().subscribe((user) => {
+    this.authService.getLoggedInUser().subscribe((user) => {
       comment.user = user;
       comment.trip = this.selected;
       this.commentService.create(comment, tripId).subscribe({
@@ -326,5 +324,4 @@ export class TripComponent implements OnInit {
     this.getPastTrips();
     this.getCurrentTrips();
   }
-
 }
