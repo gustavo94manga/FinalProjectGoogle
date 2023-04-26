@@ -41,10 +41,13 @@
   <!-- Links -->
   <ul class="navbar-nav fixed-top">
     <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/home']">Home</a>
+      <!-- <a class="nav-link" [routerLink]="['/home']">Home</a> -->
+      <a class="nav-link" [routerLink]="['/home']">
+        <i class="bi bi-house-door-fill"></i>
+      </a>
     </li>
     <li class="nav-item" *ngIf="!loggedIn()">
-      <a class="nav-link"  (click)="showSignupModal()" >Sign Up</a>
+      <a class="nav-link" (click)="showSignupModal()">Sign Up</a>
     </li>
 
     <li class="nav-item" *ngIf="loggedIn()">
