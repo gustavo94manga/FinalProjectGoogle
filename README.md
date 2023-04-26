@@ -3,10 +3,10 @@
 ## Project Description:
 
 ### Functionality
-	this project was created to be used as a tool by users planning to embark on a roadtrip within the united states. The user has the ability using out application to plan a trip, add details to the trip such as dates, as well as start and end destinations. The user also had the ability to browse a library of destinations to stop at along their roat trip, such as gas stations, hotels, sights, and restaraunts. When viewing a trip, a user can comment on the trip as well as see other users' comments on that trip. When the user views their profile, they are able to see all of the trips that they have created in the application, their vehicles, an about me, as well as other details about that particular user. 
+this project was created to be used as a tool by users planning to embark on a roadtrip within the united states. The user has the ability using out application to plan a trip, add details to the trip such as dates, as well as start and end destinations. The user also had the ability to browse a library of destinations to stop at along their roat trip, such as gas stations, hotels, sights, and restaraunts. When viewing a trip, a user can comment on the trip as well as see other users' comments on that trip. When the user views their profile, they are able to see all of the trips that they have created in the application, their vehicles, an about me, as well as other details about that particular user. 
 
 ### Development Process
-	When we began this Sprint, we started first with out planning process. We used tools such as Figma and Trello to help us keep track with out goals, user stories, and design ideas. After the planning stage, we created the basic schema for our database, and began populating it with sample information to later be used in the development of the site. After getting to an acceptable point with the database, as a group we began working on the backend of the site with things like security, and creating our entities. Using postman, we were able to ensure that our entities were behaving as expected, and our backend was communicating properly with the database. Once we were in a good place with the backend, we began the creation of our angular front end. This is where we spent the majority of our time to actually build the site. We started by creating the basic components, services, and models which we would need immediately, and then later on would add more whenever it was needed for a feature we wanted to implement. 
+When we began this Sprint, we started first with out planning process. We used tools such as Figma and Trello to help us keep track with out goals, user stories, and design ideas. After the planning stage, we created the basic schema for our database, and began populating it with sample information to later be used in the development of the site. After getting to an acceptable point with the database, as a group we began working on the backend of the site with things like security, and creating our entities. Using postman, we were able to ensure that our entities were behaving as expected, and our backend was communicating properly with the database. Once we were in a good place with the backend, we began the creation of our angular front end. This is where we spent the majority of our time to actually build the site. We started by creating the basic components, services, and models which we would need immediately, and then later on would add more whenever it was needed for a feature we wanted to implement. 
 
 ##
 
@@ -16,13 +16,13 @@
 
 ## Take Aways From Team Members:
 
-	Collin: "As our first experience using angular to create a full stack application from start to finish on our own, the time spent intimately learning the ins and outs of angular was time well spent. In addition, as always, the process of troubleshooting the errors which we encountered was very educational. The process of finding our mistakes and fixing them to "
+Collin: "As our first experience using angular to create a full stack application from start to finish on our own, the time spent intimately learning the ins and outs of angular was time well spent. In addition, as always, the process of troubleshooting the errors which we encountered was very educational. The process of finding our mistakes and fixing them to "
 
-	Kenny:
+Kenny:
 
-	David:
+David:
 
-	Angel: "One of the main takeaways for this project is more experience working in an agile environment. Every team member had a role and executed that role excellently. It was exciting learning how to use Google Map’s REST API in order to have their map display on our website. And finally, I learned how to use multiple ID’s in a mapping when there are many to one relationships in the database in order to implement the CRUD methods on both the front end, and the back end."
+Angel: "One of the main takeaways for this project is more experience working in an agile environment. Every team member had a role and executed that role excellently. It was exciting learning how to use Google Map’s REST API in order to have their map display on our website. And finally, I learned how to use multiple ID’s in a mapping when there are many to one relationships in the database in order to implement the CRUD methods on both the front end, and the back end."
 
 ## 
 	
