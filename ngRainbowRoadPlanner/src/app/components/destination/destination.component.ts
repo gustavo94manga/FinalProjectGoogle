@@ -16,7 +16,8 @@ export class DestinationComponent implements OnInit {
   destination: Destination = new Destination();
   editDestination: Destination | null = null;
   selected: Destination | null = null;
-  destinations: Destination[]=[];
+  destinations: Destination[] | null = null;
+
   constructor(
     private auth: AuthService,
     private route: ActivatedRoute,
@@ -33,6 +34,8 @@ export class DestinationComponent implements OnInit {
   this.destService.showAllOfType(type).subscribe({
     next:(found)=>{
       this.destinations = found;
+      console.log(this.destinations);
+
     },
     error: (failure) => {
       console.error('Error getting destination list');

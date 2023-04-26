@@ -1,17 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
-.navbar-nav {
-  margin-bottom: 0;
-  border-radius: 0;
-  background-color: #f3f6f4;
-  margin: 0 !important;
-}
-
-.nav-link {
-  color: #010101;
-}
-
 .header-with-image {
   background-image: url("https://b.kisscc0.com/20180517/rlw/kisscc0-travel-website-web-hosting-service-namecheap-domai-nature-5afd874a85c6a4.669703911526564682548.jpg");
 }
@@ -46,9 +35,10 @@
 
 /* Set black background color, white text and some padding */
 footer {
-  background-color: #f3f6f4;
-  color: #000000;
+  background-color: #fe2c02;
+  color: white;
   padding: 15px;
+  font-size: 20px;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */
@@ -70,19 +60,4 @@ footer {
   .rounded-bl-lg-5 {
     border-bottom-left-radius: 0.5rem;
   }
-}
-
-.loginpage {
-  transform: translateY(75px);
-  background-color: #f3f6f4;
-}
-
-.display-1 {
-  height: 500px;
-  width: 500px;
-  color: #f3f6f4;
-  position: absolute;
-  top: 50%;
-  left: 51%;
-  transform: translate(-50%, -50%);
 }

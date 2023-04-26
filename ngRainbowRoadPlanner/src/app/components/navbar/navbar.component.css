@@ -1,0 +1,13 @@
+.navbar {
+  position: sticky;
+  margin-bottom: 5;
+  border-radius: 5;
+  background-color: #f6dbb5;
+  margin: 0 !important;
+}
+
+.nav-link {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+}
