@@ -1,36 +1,45 @@
 plugins {
-	id 'java'
-	id 'war'
-	id 'org.springframework.boot' version '2.7.10'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-}
+    id 'java'
+    id 'war'
+    id 'org.springframework.boot' version '3.5.4'
+    id 'io.spring.dependency-management' version '1.1.6'
 
-apply plugin: 'war'
-war {
-  enabled = true
-  archiveFileName = "${archivesBaseName}.war"
-  destinationDirectory = file("../")          // Project workspace directory
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
 
-repositories {
-	mavenCentral()
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(21) }
 }
+
+repositories { mavenCentral() }
 
 dependencies {
-	implementation project(':JPARainbowRoadtripPlanner')
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+    // --- Add this line ---
+    implementation platform("org.springframework.boot:spring-boot-dependencies:3.5.4")
+
+    implementation project(':JPARainbowRoadtripPlanner')
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
+tasks.test { useJUnitPlatform() }
+
+bootJar { enabled = false }
+
+bootWar {
+    enabled = true
+    archiveFileName = "${project.name}.war"
+    destinationDirectory = file("../")
 }
+
+tasks.named('war') { enabled = false }

@@ -19,6 +19,7 @@ public class AuthServiceImpl implements AuthService {
 	@Override
 	public User register(User user) {
 		//FIXME
+                System.out.println("Getting to register: ");
 		String encrypted = encoder.encode(user.getPassword());
 		user.setPassword(encrypted);
 //		// TODO Auto-generated method stub

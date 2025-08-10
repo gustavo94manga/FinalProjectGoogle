@@ -1,15 +1,14 @@
 package com.skilldistillery.RainbowRoadtripPlanner.entities;
 
-import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Activity {
@@ -36,6 +35,7 @@ public class Activity {
 	@ManyToOne
 	@JoinColumn(name="leg_id")
 	private Leg leg;
+        
 	
 	
 	public Activity() {

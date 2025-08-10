@@ -3,8 +3,6 @@ package com.skilldistillery.RainbowRoadtripPlanner.controllers;
 import java.security.Principal;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.RainbowRoadtripPlanner.entities.Vehicle;
 import com.skilldistillery.RainbowRoadtripPlanner.services.VehicleService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("api")

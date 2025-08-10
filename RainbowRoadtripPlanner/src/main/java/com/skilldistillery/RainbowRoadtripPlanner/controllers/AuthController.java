@@ -2,7 +2,6 @@ package com.skilldistillery.RainbowRoadtripPlanner.controllers;
 
 import java.security.Principal;
 
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.RainbowRoadtripPlanner.entities.User;
 import com.skilldistillery.RainbowRoadtripPlanner.services.AuthService;
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @CrossOrigin({"*", "http://localhost/"})

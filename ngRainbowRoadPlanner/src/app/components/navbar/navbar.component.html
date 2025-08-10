@@ -47,7 +47,10 @@
       </a>
     </li>
     <li class="nav-item" *ngIf="!loggedIn()">
-      <a class="nav-link" (click)="showSignupModal()">Sign Up</a>
+      <!-- <a class="nav-link" (click)="showSignupModal()">Sign Up</a>
+        -->
+      <a class="nav-link" [routerLink]="['/signup']">Sign Up</a>
+
     </li>
 
     <li class="nav-item" *ngIf="loggedIn()">
